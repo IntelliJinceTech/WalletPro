@@ -6,8 +6,8 @@
 - Increased amount of credit cards for the points could provide individuals with different wallet/purse combinations and carries
 
 ### What's Next?
+- Identify Solution
 - Begin implmentation of a solution for calculating points for credit cards
-- 
 
 ## High Level Todos
 ### Front-end 
