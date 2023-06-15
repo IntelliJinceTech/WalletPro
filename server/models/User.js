@@ -1,11 +1,5 @@
 const mongoose = require('mongoose');
 const bcrypt = require("bcrypt");
-// todo:
-// todo: 
-// todo: 
-// todo: 
-// todo: 
-// todo: 
 
 const UserSchema = new mongoose.Schema({
   userName: { type: String, unique: true, required: true },
