@@ -14,10 +14,10 @@ const Dashboard = () => {
         </div>
         <div className="divider"></div>
         <div className="grid h-20 card bg-base-300 rounded-box place-items-center">
-          <h1>Credit Card Points Dashboard</h1>
+          <h1>Credit Card Database</h1>
         </div>
       </div>
-      <DashboardNavBar />
+      {isMobile && <DashboardNavBar  />}
     </div>
   )
 }
