@@ -1,16 +1,17 @@
 import './App.css'
-import LandingPage from './components/LandingPage';
+import Home from './pages/Home'
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import SignUpLandingPage from './components/SignUpLandingPage';
+import Dashboard from './pages/Dashboard';
+
 
 function App() {
 
   return (
     <>
       <Navbar  />
-      <LandingPage  />
-      <SignUpLandingPage />
+      <Home  />
+      <Dashboard  />
       <Footer  />
       </>
   ); 
