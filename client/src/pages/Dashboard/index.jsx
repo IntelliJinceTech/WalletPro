@@ -1,23 +1,19 @@
 import { useState } from 'react'
 import DashboardNavBar from './DashboardNavBar'
-
+import Wallet from './Wallet'
 
 const Dashboard = () => {
-  
-  const [isMobile,setIsMobile] = useState(true)
+  const [isMobile, setIsMobile] = useState(true)
 
   return (
-    <div>
+    <div className='min-h-screen'>
       <div className="flex flex-col w-full border-opacity-50">
-        <div className="grid h-20 card bg-base-300 rounded-box place-items-center">
-          <h1>Wallet Dashboard</h1>
-        </div>
-        <div className="divider"></div>
-        <div className="grid h-20 card bg-base-300 rounded-box place-items-center">
+        <Wallet />
+        {/* <div className="grid h-20 card bg-base-300 rounded-box place-items-center">
           <h1>Credit Card Database</h1>
-        </div>
+        </div> */}
       </div>
-      {isMobile && <DashboardNavBar  />}
+      {isMobile && <DashboardNavBar />}
     </div>
   )
 }
