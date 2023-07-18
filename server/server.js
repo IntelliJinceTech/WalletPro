@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 8000
 const mongoose = require('mongoose');
 const cors = require('cors')
 const logger = require('morgan')
+const googleRoutes = require('./routes/googleRoutes.js')
 
 const connectDB = require('./config/database')
 
@@ -26,6 +27,8 @@ app.use(logger('dev'))
 app.get('/' , async (req,res) => {
   res.json('hello world')
 })
+
+app.use('/auth', googleRoutes)
 
 
 app.listen(PORT, () => {

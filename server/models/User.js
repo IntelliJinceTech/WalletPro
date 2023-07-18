@@ -1,43 +1,42 @@
 const mongoose = require('mongoose');
+const {Schema} = mongoose.model
 const bcrypt = require("bcrypt");
 
-const UserSchema = new mongoose.Schema({
+
+
+const UserSchema = new Schema({
   userName: { type: String, unique: true, required: true },
   email: { type: String, unique: true , required: true },
   password: {required: true, type: String},
-  allCreditCards: [{ //array of credit card objects
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "CreditCard"
-  }],
-  wallets: [WalletSchema],
+  google: {
+    id: {
+      type: String,
+    },
+    name: {
+      type: String,
+    },
+    email: {
+      type: String,
+    },
+  },
 });
 
-const WalletSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  creditCards: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "CreditCard"
-  }]
-})
+UserSchema.statics.signup = async (email,password,userName) => {
+  const exists = await this.findOne({email})
+  if(exists) {
+    throw Error('Email already in use');
+  }
+  const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(password, salt);
 
-// UserSchema.pre("save", function save(next) {
-//   const user = this;
-//   if (!user.isModified("password")) {
-//     return next();
-//   }
-//   bcrypt.genSalt(10, (err, salt) => {
-//     if (err) {
-//       return next(err);
-//     }
-//     bcrypt.hash(user.password, salt, (err, hash) => {
-//       if (err) {
-//         return next(err);
-//       }
-//       user.password = hash;
-//       next();
-//     });
-//   });
-// });
+    const user = await this.create({
+        email,
+        password: hash,
+        userName
+    });
+
+    return user;
+}
 
 // Helper method for validating user's password.
 // UserSchema.methods.comparePassword = function comparePassword(
