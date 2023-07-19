@@ -13,16 +13,15 @@
 Tests should be in each folder breakdown
 - Pages (one folder for each page, should have a single root file (index.jsx) alongisde all the files that are only applicable to that page)
 - Assets (css, svg, etc.)
-- Components 
+- Components (shared components like buttons and forms)
 - Context (AuthContext, etc.)
 - Data (json data)
 - 
 ## High Level Todos
 ### Front-end 
 #### Setup
-- Use daisy for components
-- Choose color scheme for entire app
-- Determine SPA setup
+- Credit Card / Categories Layout
+- 
 - 
 
 ### Backend

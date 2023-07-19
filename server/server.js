@@ -1,18 +1,15 @@
-const express = require('express');
+import dotenv from 'dotenv'
+dotenv.config()
+import express from 'express'
 const app = express()
 const PORT = process.env.PORT || 8000
-const mongoose = require('mongoose');
-const cors = require('cors')
-const logger = require('morgan')
-
-const connectDB = require('./config/database')
-
+import cors from 'cors'
+import logger from 'morgan'
+// const googleRoutes = require('./routes/googleRoutes.js')
 
 // use .env file in config folder
-require('dotenv').config({ path: './config/.env' });
 
-//connect to database
-connectDB()
+import connectDB from './config/database.js'
 
 app.use(cors());
 
@@ -27,6 +24,10 @@ app.get('/' , async (req,res) => {
   res.json('hello world')
 })
 
+// app.use('/auth', googleRoutes)
+
+//connect to database
+connectDB()
 
 app.listen(PORT, () => {
   console.log("Server is running, you better catch it!");

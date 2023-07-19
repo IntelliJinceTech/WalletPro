@@ -1,8 +1,9 @@
 {
-  "name": "server",
+  "name": "walletpro",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js"
@@ -20,6 +21,9 @@
     "method-override": "^3.0.0",
     "mongodb": "^5.5.0",
     "mongoose": "^7.1.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "passport": "^0.6.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local-mongoose": "^8.0.0"
   }
 }
