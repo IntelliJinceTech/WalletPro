@@ -5,6 +5,7 @@ const app = express()
 const PORT = process.env.PORT || 8000
 import cors from 'cors'
 import logger from 'morgan'
+import passport from 'passport'
 // const googleRoutes = require('./routes/googleRoutes.js')
 
 // use .env file in config folder
@@ -18,6 +19,17 @@ app.use(express.json());
 
 //logging
 app.use(logger('dev'))
+
+app.use(
+    cors({
+        // need this while in development, since front/backend are running on seperate origins
+        origin: 'http://localhost:5173',
+        credentials: true,
+    })
+);
+
+// passport middleware
+app.use(passport.initialize());
 
 // test routes
 app.get('/' , async (req,res) => {
