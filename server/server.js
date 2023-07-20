@@ -9,6 +9,7 @@ import MongoStore from 'connect-mongo'
 import passport from 'passport'
 import session from 'express-session'
 import cookieParser from 'cookie-parser'
+import mainRoutes from './routes/mainRoutes.js'
 import oauthRoutes from './routes/oauthRoutes.js'
 // const googleRoutes = require('./routes/googleRoutes.js')
 
@@ -65,16 +66,13 @@ passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
 
-// test routes
-app.get('/' , async (req,res) => {
-  res.json('hello world')
-})
-
+// Routes
+app.use('/', mainRoutes)
 app.use('/auth', oauthRoutes)
 
 //connect to database
 connectDB()
 
 app.listen(PORT, () => {
-  console.log("Server is running, you better catch it!");
+  console.log(`Server is running on ${PORT}, you better catch it!`);
 });
