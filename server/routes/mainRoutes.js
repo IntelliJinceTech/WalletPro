@@ -1,21 +1,16 @@
 import express from 'express'
+import authController from '../controllers/auth.js'
 
 const router = express.Router()
 
-router.get('/getUser', (req,res) => (
-  res.json(req.user)
-) )
+router.get('/getUser', authController.getUser)
+router.get('/logout', authController.logout)
 
-router.get('/logout', function(req, res, next){
-  req.logout(function(err) {
-      console.log("logged out");
-      if (err) { return next(err); }
-      res.send('done');
-  });
-});
+router.post('/login', authController.login);
+router.post ('/signup', authController.signup);
 
 router.get('/', (req, res) => {
-res.send('Hello World!');
+  res.send(`hello, ${req.query.person}`)
 });
 
 export default router

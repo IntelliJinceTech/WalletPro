@@ -37,9 +37,6 @@ app.use(
     })
 );
 
-
-
-
 app.use(
   session({
       secret: 'keyboard cat', //secret used to sign the session ID cookie

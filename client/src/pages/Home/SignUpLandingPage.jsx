@@ -1,4 +1,6 @@
 import React from 'react'
+import {GoogleLogin} from '@react-oauth/google'
+import GoogleBtn from '../../components/buttons/GoogleBtn'
 
 const SignUpLandingPage = () => {
   return (
@@ -30,12 +32,11 @@ const SignUpLandingPage = () => {
             <div className="form-control mt-6">
               <button className="btn btn-primary">Login</button>
             </div>
-            <div className="form-control mt-6">
-              <button className="btn btn-primary btn-outline">Login with Google</button>
-            </div>
+            <GoogleBtn  />
           </div>
         </div>
       </div>
+      
     </div>
   )
 }
