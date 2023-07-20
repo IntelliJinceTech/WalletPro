@@ -16,19 +16,25 @@ Tests should be in each folder breakdown
 - Components (shared components like buttons and forms)
 - Context (AuthContext, etc.)
 - Data (json data)
-- 
 ## High Level Todos
+- Hook up front end sign in options with backend authentication
+- 
 ### Front-end 
-#### Setup
-- Credit Card / Categories Layout
-- 
-- 
+#### Todos
+- ~~Credit Card / Categories Layout~~
+- ~~Main sign up layout~~
+- ~~Layout when signed in~~
+- Create auth context
+- setup form for adding credit cards to credit card bank
+- install and setup axios instead of fetch API
+- display all credit cards added in the bank
+- allow user to add to current wallet
 
 ### Backend
-#### Setup
+#### Todos
 - Authentication
-    - Determine other third party authentication services
-    - eg. google, github, or discord, etc.  
+- Main Routes
+- Auth Routes
 - 
 #### Logic
 
