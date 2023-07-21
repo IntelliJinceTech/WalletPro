@@ -36,7 +36,6 @@ const Navbar = (props) => {
                   </svg>
                   Theme
                 </label>
-                
               </div>
             </div>
 
