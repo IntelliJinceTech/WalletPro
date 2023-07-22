@@ -3,8 +3,14 @@ import CCCategorySelect from './CCCategorySelect'
 import { ErrorMessage } from '@hookform/error-message'
 
 const AddCreditCardForm = () => {
-  const methods = useForm()
-  const { register, handleSubmit, errors } = methods
+  const methods = useForm({
+    criteriaMode: 'all',
+  })
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = methods
   const onSubmit = (data) => console.log(data)
 
   return (
@@ -23,14 +29,21 @@ const AddCreditCardForm = () => {
             name="bank"
             type="text"
             placeholder="Type here"
-            className="input input-bordered w-full max-w-xs"
-          />
-          <ErrorMessage
-            errors={errors}
-            name="multipleErrorInput"
-            render={({ messages }) => messages && Object.entries(messages).map(([type, message]) => <p key={type}>{message}</p>)}
+            className="input input-bordered w-full max-w-xs invalid:border-pink-500"
           />
         </label>
+        <ErrorMessage
+          errors={errors}
+          name="bank"
+          render={({ messages }) =>
+            messages &&
+            Object.entries(messages).map(([type, message]) => (
+              <p className="text-red-500 before:inline before:content-['⚠\00a0']" key={type}>
+                {message}
+              </p>
+            ))
+          }
+        />
         <label className="label">
           <span className="label-text">Name of your Credit Card?</span>
           <input
@@ -46,6 +59,18 @@ const AddCreditCardForm = () => {
             className="input input-bordered w-full max-w-xs"
           />
         </label>
+        <ErrorMessage
+          errors={errors}
+          name="name"
+          render={({ messages }) =>
+            messages &&
+            Object.entries(messages).map(([type, message]) => (
+              <p className="text-red-500 before:inline before:content-['⚠\00a0']" key={type}>
+                {message}
+              </p>
+            ))
+          }
+        />
         <label className="label">
           <span className="label-text">Network?</span>
           <input
@@ -61,6 +86,18 @@ const AddCreditCardForm = () => {
             className="input input-bordered w-full max-w-xs"
           />
         </label>
+        <ErrorMessage
+          errors={errors}
+          name="network"
+          render={({ messages }) =>
+            messages &&
+            Object.entries(messages).map(([type, message]) => (
+              <p className="text-red-500 before:inline before:content-['⚠\00a0']" key={type}>
+                {message}
+              </p>
+            ))
+          }
+        />
         <hr></hr>
         <CCCategorySelect tier="1st" />
         <CCCategorySelect tier="2nd" />
