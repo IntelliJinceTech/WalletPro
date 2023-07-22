@@ -10,7 +10,7 @@ const Modal = ({ children }) => {
         {children}
       </div>
       <form method="dialog" className="modal-backdrop">
-        <button>close</button>
+        <button onClick={handleClose}>close</button>
       </form>
     </dialog>
   )
