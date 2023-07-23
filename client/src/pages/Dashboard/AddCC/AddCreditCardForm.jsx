@@ -7,8 +7,8 @@ const AddCreditCardForm = () => {
   const onSubmit = (data) => console.log(data)
 
   return (
-    <FormProvider>
-      <form method="post" className="form-control w-full max-w-lg place-content-center" onSubmit={handleSubmit(onSubmit)}>
+    <FormProvider {...methods}>
+      <form method="post" className="form-control w-full max-w-lg place-content-center" onSubmit={methods.handleSubmit(onSubmit)}>
         <label className="label" htmlFor="bank">
           <span className="label-text">Credit Card Bank?</span>
           <input {...methods.register('bank')} name="bank" type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" />
