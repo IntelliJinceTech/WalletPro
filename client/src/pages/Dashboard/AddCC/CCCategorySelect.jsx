@@ -18,7 +18,12 @@ const CCCategorySelect = (props) => {
       </select>
       <label className="label">
         <span className="label-text">Reward Percentage?</span>
-        <input type="number" placeholder="%" className="ml-2 input input-bordered w-full max-w-xs" {...register(percentCategorySelect, { min: 0, max: 99 })} />
+        <input
+          type="number"
+          placeholder="%"
+          className="ml-2 input input-bordered w-full max-w-xs invalid:border-red-500"
+          {...register(percentCategorySelect, { min: 0, max: 99 })}
+        />
       </label>
     </div>
   )
