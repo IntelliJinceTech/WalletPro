@@ -9,8 +9,8 @@ const Modal = ({ children }) => {
       <div method="dialog" className="modal-box">
         {children}
       </div>
-      <form method="dialog" className="modal-backdrop">
-        <button>close</button>
+      <form method="dialog" className="modal-backdrop bg-slate-700 opacity-50">
+        <button onClick={handleClose}>close</button>
       </form>
     </dialog>
   )
