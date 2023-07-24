@@ -103,7 +103,9 @@ const AddCreditCardForm = () => {
         <CCCategorySelect tier="2nd" />
         <CCCategorySelect tier="3rd" />
         <CCCategorySelect tier="4th" />
-        <button type="submit">Add</button>
+        <button className="btn btn-primary" type="submit">
+          Add
+        </button>
       </form>
     </FormProvider>
   )
