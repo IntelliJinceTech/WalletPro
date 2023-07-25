@@ -1,12 +1,11 @@
 import passport from 'passport'
-import { validationResult } from 'express-validator'
+import { validationResult, body } from 'express-validator'
 import User from '../models/User.js'
 
 // req needs isAuthenticated State
 
 const getUser = (req, res) => {
   console.log(req.isAuthenticated())
-  console.log('this is to get the users')
   if (req.isAuthenticated()) {
     console.log(req.user)
     return res.json({
@@ -14,6 +13,8 @@ const getUser = (req, res) => {
       user: req.user,
     })
   }
+  console.log('Not signed in')
+  return res.json({ isLoggedIn: false })
 }
 
 const login = (req, res, next) => {
@@ -43,24 +44,27 @@ const login = (req, res, next) => {
 
 const signup = async (req, res, next) => {
   try {
+    // await body('username').notEmpty().withMessage('Username is required').run(req)
+    // await body('email').isEmail().withMessage('Invalid email address').run(req)
+    // await body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long').run(req)
+
     const errors = validationResult(req)
-
+    // console.log(errors)
     if (!errors.isEmpty()) {
-      return res.status(400).json({ error: errors.array() })
+      return res.status(400).json({ errors: errors.array() })
     }
+    const { email, password } = req.body
+    console.log(email)
+    const newUser = new User({ email })
+    await User.register(newUser, password)
 
-    const { email, password, username } = req.body
-    const user = await User.signup(email, password, username)
-
-    // Log in the newly registered user
-    req.login(user, (err) => {
-      if (err) {
-        // Handle login error
-        return res.status(500).json({ error: 'Login error' })
-      }
-      // User is logged in
-      return res.status(200).json({ message: 'Signup and login successful' })
+    passport.authenticate('local')(req, res, () => {
+      return res.json({ message: 'Registration successful', user: req.user })
     })
+    // req.login(newUser, (err) => {
+    //   if (err) return res.status(500).json({ error: 'login error' })
+    // })
+    // return res.status(200).json({ message: 'signup and login successful' })
   } catch (err) {
     next(err)
   }
