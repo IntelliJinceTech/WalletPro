@@ -16,18 +16,25 @@ Tests should be in each folder breakdown
 - Components (shared components like buttons and forms)
 - Context (AuthContext, etc.)
 - Data (json data)
+
+## What's Included in MVP
+- Ability to 
+  -  see a dashboard of credit cards
+  -  Login with credentials
+  -  Add Credit Cards
+  -  Scroll through credit card rewards
+  -  Delete Credit Cards
+  -  Update Credit Cards
+  -  
 ## High Level Todos
 - Hook up front end sign in options with backend authentication
 - 
 ### Front-end 
 #### Todos
-- ~~Credit Card / Categories Layout~~
-- ~~Main sign up layout~~
-- ~~Layout when signed in~~
+- Setup schema
+- Setup reset on clicking add on credit card form
 - Create auth context
-- setup form for adding credit cards to credit card bank
 - install and setup axios instead of fetch API
-- display all credit cards added in the bank
 - allow user to add to current wallet
 
 ### Backend
