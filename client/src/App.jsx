@@ -13,19 +13,19 @@ function App() {
   }, [])
 
   const selectTheme = () => {
-    <select data-choose-theme>
-    <option value="">Default</option>
-    <option value="light">Light</option>
-    <option value="dark">Dark</option>
-    <option value="corporate">Corporate</option>
-    <option value="business">Business</option>
-  </select>
+    ;<select data-choose-theme>
+      <option value="">Default</option>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+      <option value="corporate">Corporate</option>
+      <option value="business">Business</option>
+    </select>
   }
 
   return (
     <>
-      <Navbar/>
-      {/* <Home  /> */}
+      <Navbar />
+      <Home />
       {!isLoggedIn && <Dashboard />}
     </>
   )
