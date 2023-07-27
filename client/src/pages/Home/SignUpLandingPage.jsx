@@ -1,5 +1,5 @@
 import React from 'react'
-import {GoogleLogin} from '@react-oauth/google'
+import { GoogleLogin } from '@react-oauth/google'
 import GoogleBtn from '../../components/buttons/GoogleBtn'
 
 const SignUpLandingPage = () => {
@@ -12,12 +12,20 @@ const SignUpLandingPage = () => {
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <div className="card-body">
-            <div className="form-control">
+            <form className="form-control">
+              <label htmlFor="email">
+                <span className="label-text">Email:</span>
+              </label>
+              <input type="text" placeholder="xxxx@gmail.com" className="input input-bordered w-full max-w-xs" />
+            </form>
+
+            {/* <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
               <input type="text" placeholder="email" className="input input-bordered" />
-            </div>
+            </div> */}
+
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Password</span>
@@ -29,14 +37,15 @@ const SignUpLandingPage = () => {
                 </a>
               </label>
             </div>
+
             <div className="form-control mt-6">
               <button className="btn btn-primary">Login</button>
             </div>
-            <GoogleBtn  />
+
+            <GoogleBtn />
           </div>
         </div>
       </div>
-      
     </div>
   )
 }
