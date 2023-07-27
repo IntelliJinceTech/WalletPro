@@ -4,7 +4,7 @@ import { ErrorMessage } from '@hookform/error-message'
 
 const AddCreditCardForm = () => {
   const methods = useForm({
-    criteriaMode: 'all',
+    criteriaMode: 'all', // all errors from each field will be gathered
   })
   const {
     register,

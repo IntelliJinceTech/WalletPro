@@ -16,22 +16,6 @@ const AuthProvider = ({ children }) => {
   const { setCurrentPage } = useRoutingContext() // temp
   const [user, setUser] = useState(null)
 
-  // useEffect(() => {
-  //   async function getUser() {
-  //     try {
-  //       const data = await DataService.getUser()
-  //       if (data.isLoggedIn) {
-  //         console.log('logged in')
-  //         setIsAuthenticated(true)
-  //       }
-  //       console.log(data)
-  //     } catch (err) {
-  //       console.log(err)
-  //     }
-  //   }
-  //   getUser()
-  // }, [isAuthenticated])
-
   const login = async (loginData) => {
     console.log('clicked to login')
 
@@ -43,7 +27,7 @@ const AuthProvider = ({ children }) => {
       setCurrentPage('dashboard')
 
       setIsAuthenticated(true)
-      console.log(isAuthenticated)
+      console.log('authentication: ', isAuthenticated)
     } catch (err) {
       console.error('login error', err.message)
     }
