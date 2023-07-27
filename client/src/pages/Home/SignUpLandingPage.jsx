@@ -24,7 +24,7 @@ const SignUpLandingPage = () => {
     event.preventDefault()
     console.log('data: ', data)
     try {
-      const response = await DataService.signup(data)
+      const response = await axios.post('http://localhost:8888/signup', data)
       console.log(response.data)
 
       if (response) {
