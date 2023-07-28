@@ -16,11 +16,32 @@ const AuthProvider = ({ children }) => {
   const { setCurrentPage } = useRoutingContext() // temp
   const [user, setUser] = useState(null)
 
-  const login = async (loginData) => {
+  useEffect(() => {
+    // this is used to check the authentication status only once, when the auth provider component mounts. After that, it does not run again unless the `isAuthenticated` state changes
+    async function getUser() {
+      try {
+        const data = await DataService.getUser()
+        if (data.isLoggedIn) {
+          console.log('we are logged in as per isLoggedIn data: ', data.isLoggedIn)
+          setIsAuthenticated(true)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getUser()
+  }, [])
+
+  // const login = async (loginData) => {
+  const login = async () => {
     console.log('clicked to login')
 
     try {
-      const response = await DataService.login(loginData)
+      // const response = await DataService.login(loginData)
+      const response = await DataService.login({
+        email: 'cjin@gmail.com',
+        password: 'ajumbleoftesting',
+      })
       setUser(response.data.user)
       console.log(response)
 

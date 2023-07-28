@@ -28,8 +28,8 @@ app.use(logger('dev'))
 app.use(
   cors({
     // need this while in development, since front/backend are running on seperate origins
-    // origin: 'http://localhost:5173',
-    // credentials: true,
+    origin: 'http://localhost:5173',
+    credentials: true,
   })
 )
 
@@ -49,7 +49,9 @@ app.use(
     },
   })
 )
-app.use(cookieParser())
+
+// cookie parser middleware no longer needs to be used for express-session to work
+// app.use(cookieParser())
 // passport middleware
 app.use(passport.initialize())
 app.use(passport.session())
