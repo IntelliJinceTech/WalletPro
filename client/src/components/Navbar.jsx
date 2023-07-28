@@ -1,20 +1,19 @@
 import { CgProfile } from 'react-icons/cg'
 import { themeChange } from 'theme-change'
 import { useEffect } from 'react'
+import { useAuthContext } from '../context/AuthContext/authContext'
 
 const Navbar = (props) => {
+  const { isAuthenticated, login, logout } = useAuthContext()
+
   useEffect(() => {
     themeChange(false)
   }, [])
-  {
-    /* <select data-choose-theme>
-    <option value="">Default</option>
-    <option value="light">Light</option>
-    <option value="dark">Dark</option>
-    <option value="corporate">Corporate</option>
-    <option value="business">Business</option>
-  </select> */
-  }
+
+  useEffect(() => {
+    console.log(isAuthenticated)
+  }, [isAuthenticated])
+
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
@@ -67,7 +66,7 @@ const Navbar = (props) => {
               <a>Settings</a>
             </li>
             <li>
-              <a>Logout</a>
+              <a>{isAuthenticated ? `Logout` : `Login`}</a>
             </li>
           </ul>
         </div>

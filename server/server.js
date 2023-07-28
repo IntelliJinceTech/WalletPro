@@ -49,7 +49,9 @@ app.use(
     },
   })
 )
-app.use(cookieParser())
+
+// cookie parser middleware no longer needs to be used for express-session to work
+// app.use(cookieParser())
 // passport middleware
 app.use(passport.initialize())
 app.use(passport.session())

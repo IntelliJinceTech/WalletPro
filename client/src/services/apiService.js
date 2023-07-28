@@ -17,6 +17,10 @@ class DataService {
   login(data) {
     return instance.post('/login', data)
   }
+  signup(data) {
+    console.log('Data Service data: ', data)
+    return instance.post('/signup', data)
+  }
 }
 
 export default new DataService()

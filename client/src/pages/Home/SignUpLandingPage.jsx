@@ -1,43 +1,71 @@
-import React from 'react'
-import {GoogleLogin} from '@react-oauth/google'
+import { useState } from 'react'
+import { useForm, FormProvider, useFormContext } from 'react-hook-form'
+import { ErrorMessage } from '@hookform/error-message'
+import { GoogleLogin } from '@react-oauth/google'
 import GoogleBtn from '../../components/buttons/GoogleBtn'
+import axios from 'axios'
+import { useRoutingContext } from '../../context/RoutingContext/routingContext'
+import { useAuthContext } from '../../context/AuthContext/authContext'
+import DataService from '../../services/apiService'
 
 const SignUpLandingPage = () => {
+  const { isAuthenticated } = useAuthContext()
+  const { currentPage, setCurrentPage } = useRoutingContext()
+  const methods = useForm({
+    criteriaMode: 'all',
+  })
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = methods
+
+  const onSubmit = async (data, event) => {
+    event.preventDefault()
+    console.log('data: ', data)
+    try {
+      const response = await axios.post('http://localhost:8888/signup', data)
+      console.log(response.data)
+
+      if (response) {
+        console.log(isAuthenticated)
+      }
+    } catch (error) {
+      console.error('error from signing up: ', error)
+    }
+  }
+
   return (
-    <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Login now!</h1>
-          <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-        </div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <div className="card-body">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input type="text" placeholder="email" className="input input-bordered" />
+    <FormProvider {...methods}>
+      <div className="hero  bg-base-200 p-10">
+        <div className="hero-content flex-col lg:flex-row-reverse">
+          <div className="text-center lg:text-left">
+            <h1 className="text-5xl font-bold">Signup now!</h1>
+            <p className="py-6">Sign up now for increased financial understanding of your daily credit card carry!</p>
+          </div>
+          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+            <div className="card-body">
+              <form className="form-control" onSubmit={methods.handleSubmit(onSubmit)}>
+                <label className="label" htmlFor="email">
+                  <span className="label-text">Email:</span>
+                </label>
+                <input type="email" placeholder="xxxx@gmail.com" name="email" className="input input-bordered w-full max-w-xs" {...register('email')} />
+
+                <label htmlFor="password" className="label mt-2">
+                  <span className="label-text">Password (12 characters minimum): </span>
+                </label>
+                <input type="password" name="password" className="input input-bordered w-full max-w-xs mb-5" {...register('password')} />
+                <button className="btn btn-primary" type="submit">
+                  Signup
+                </button>
+              </form>
+
+              {/* <GoogleBtn /> */}
             </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input type="text" placeholder="password" className="input input-bordered" />
-              <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
-                  Forgot password?
-                </a>
-              </label>
-            </div>
-            <div className="form-control mt-6">
-              <button className="btn btn-primary">Login</button>
-            </div>
-            <GoogleBtn  />
           </div>
         </div>
       </div>
-      
-    </div>
+    </FormProvider>
   )
 }
 
