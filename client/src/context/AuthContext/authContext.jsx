@@ -26,7 +26,7 @@ const AuthProvider = ({ children }) => {
           setIsAuthenticated(true)
         }
       } catch (error) {
-        console.log(error)
+        console.log(`the useEffect for checking auth status did not work: `, error)
       }
     }
     getUser()

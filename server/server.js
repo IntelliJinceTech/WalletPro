@@ -29,7 +29,7 @@ app.use(
   cors({
     // need this while in development, since front/backend are running on seperate origins
     origin: 'http://localhost:5173',
-    credentials: true,
+    // credentials: true,
   })
 )
 

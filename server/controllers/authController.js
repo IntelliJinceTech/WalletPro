@@ -61,10 +61,10 @@ const signup = async (req, res, next) => {
     passport.authenticate('local')(req, res, () => {
       return res.json({ message: 'Registration successful', user: req.user })
     })
-    // req.login(newUser, (err) => {
-    //   if (err) return res.status(500).json({ error: 'login error' })
-    // })
-    // return res.status(200).json({ message: 'signup and login successful' })
+    req.login(newUser, (err) => {
+      if (err) return res.status(500).json({ error: 'login error' })
+    })
+    return res.status(200).json({ message: 'signup and login successful' })
   } catch (err) {
     next(err)
   }
