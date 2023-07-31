@@ -32,23 +32,27 @@ const AuthProvider = ({ children }) => {
     getUser()
   }, [])
 
-  // const login = async (loginData) => {
-  const login = async () => {
+  useEffect(() => {
+    console.log('authentication state: ', isAuthenticated)
+  }, [isAuthenticated])
+
+  const login = async (loginData) => {
+    // const login = async () => {
     console.log('clicked to login')
 
     try {
-      // const response = await DataService.login(loginData)
-      const response = await DataService.login({
-        email: 'cjin@gmail.com',
-        password: 'ajumbleoftesting',
-      })
+      const response = await DataService.login(loginData)
+      // const response = await DataService.login({
+      //   email: 'cjin@gmail.com',
+      //   password: 'ajumbleoftesting',
+      // })
       setUser(response.data.user)
       console.log(response)
 
       setCurrentPage('dashboard')
 
       setIsAuthenticated(true)
-      console.log('authentication: ', isAuthenticated)
+      // console.log('authentication: ', isAuthenticated)
     } catch (err) {
       console.error('login error', err.message)
     }
