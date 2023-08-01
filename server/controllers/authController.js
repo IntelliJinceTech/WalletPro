@@ -34,8 +34,6 @@ const login = (req, res, next) => {
         // Handle login error
         return next(err)
       }
-
-      console.log(user)
       // Authentication and login successful
       return res.status(200).json({ message: 'Login successful' })
     })
@@ -64,10 +62,11 @@ const signup = async (req, res, next) => {
       console.log('User Registered Correctly')
     })
 
-    await req.login(newUser, (err) => {
+    req.login(newUser, (err) => {
       if (err) return res.status(500).json({ error: 'login error' })
       console.log(`${newUser.email} logged in!`)
     })
+
     return res.status(200).json({ message: 'signup and login successful' })
   } catch (err) {
     next(err)

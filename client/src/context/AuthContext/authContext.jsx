@@ -17,13 +17,14 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
-    // this is used to check the authentication status only once, when the auth provider component mounts. After that, it does not run again unless the `isAuthenticated` state changes
+    // check authentication status
     async function getUser() {
       try {
         const data = await DataService.getUser()
         if (data.isLoggedIn) {
           console.log('we are logged in as per isLoggedIn data: ', data.isLoggedIn)
           setIsAuthenticated(true)
+          console.log('authentication state: ', isAuthenticated)
         }
       } catch (error) {
         console.log(`the useEffect for checking auth status did not work: `, error)
@@ -32,13 +33,13 @@ const AuthProvider = ({ children }) => {
     getUser()
   }, [])
 
-  useEffect(() => {
-    console.log('authentication state: ', isAuthenticated)
-  }, [isAuthenticated])
+  // useEffect(() => {
+  //   console.log('authentication state: ', isAuthenticated)
+  // }, [isAuthenticated])
 
   const login = async (loginData) => {
     // const login = async () => {
-    console.log('clicked to login')
+    console.log('clicked to login', 'loginData: ', loginData)
 
     try {
       const response = await DataService.login(loginData)
@@ -64,7 +65,7 @@ const AuthProvider = ({ children }) => {
       setIsAuthenticated(false)
       setCurrentPage('LandingPage')
       setUser(null)
-      console.log(user)
+      // console.log(user)
     } catch (error) {
       console.error('Logout Error', error.message)
     }

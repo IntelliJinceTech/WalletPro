@@ -5,6 +5,11 @@ const Schema = mongoose.Schema
 
 const UserSchema = new Schema({
   hasPassword: { type: 'boolean', default: true },
+  email: {
+    type: String,
+    required: true,
+  },
+
   // ! google setup seemed to have problems with passport-local-mongoose usernameField
   // google: {
   //   id: {

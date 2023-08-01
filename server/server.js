@@ -29,19 +29,19 @@ app.use(
   cors({
     // need this while in development, since front/backend are running on seperate origins
     origin: 'http://localhost:5173',
-    // credentials: true,
+    credentials: true,
   })
 )
 
 app.use(
   session({
     secret: 'keyboard cat', //secret used to sign the session ID cookie
-    resave: true, //save session on every request
+    resave: false, //save session on every request
     saveUninitialized: true,
     store: MongoStore.create({
       mongoUrl: process.env.DB_STRING,
       dbName: 'WalletPro',
-    }), //save uninitialized sessions (new and not modified)
+    }),
     cookie: {
       sameSite: 'none', //allow cross-site requests from different origin
       // secure: true, //requires HTTPS. For local environment you may skip this.
@@ -56,7 +56,7 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 passport.use(User.createStrategy())
-passport.use(google)
+// passport.use(google)
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
