@@ -26,10 +26,6 @@ const SignUpLandingPage = () => {
     try {
       const response = await axios.post('http://localhost:8888/signup', data)
       console.log(response.data)
-
-      if (response) {
-        console.log(isAuthenticated)
-      }
     } catch (error) {
       console.error('error from signing up: ', error)
     }

@@ -10,9 +10,13 @@ const Navbar = (props) => {
     themeChange(false)
   }, [])
 
-  useEffect(() => {
-    console.log(isAuthenticated)
-  }, [isAuthenticated])
+  const toggleLogin = () => {
+    if (isAuthenticated) {
+      logout()
+    } else {
+      login()
+    }
+  }
 
   return (
     <div className="navbar bg-base-100">
@@ -66,7 +70,7 @@ const Navbar = (props) => {
               <a>Settings</a>
             </li>
             <li>
-              <a>{isAuthenticated ? `Logout` : `Login`}</a>
+              <a onClick={toggleLogin}>{isAuthenticated ? `Logout` : `Login`}</a>
             </li>
           </ul>
         </div>
