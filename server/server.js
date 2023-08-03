@@ -1,21 +1,19 @@
-import dotenv from 'dotenv'
-dotenv.config()
 import express from 'express'
-const app = express()
-import cors from 'cors'
-import logger from 'morgan'
-import MongoStore from 'connect-mongo'
 import passport from 'passport'
 import session from 'express-session'
-import cookieParser from 'cookie-parser'
+import MongoStore from 'connect-mongo'
+import cors from 'cors'
+import logger from 'morgan'
+import connectDB from './config/database.js'
 import mainRoutes from './routes/mainRoutes.js'
 import oauthRoutes from './routes/oauthRoutes.js'
+import dotenv from 'dotenv'
+dotenv.config()
 // const googleRoutes = require('./routes/googleRoutes.js')
 
-// use .env file in config folder
+const app = express()
 
-import connectDB from './config/database.js'
-import google from './config/googleAuth.js'
+// import google from './config/googleAuth.js'
 
 import User from './models/User.js'
 

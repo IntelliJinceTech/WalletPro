@@ -72,7 +72,7 @@ const AuthProvider = ({ children }) => {
   }
 
   // useMemo is a Hook that lets you cache the result of a calculation between re-renders.
-  const authValue = useMemo(() => ({ isAuthenticated, login, logout }), [isAuthenticated])
+  const authValue = useMemo(() => ({ isAuthenticated, login, logout, setIsAuthenticated }), [isAuthenticated])
 
   return <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>
 }

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-  baseURL: 'http://localhost://8888',
+  baseURL: 'http://localhost:8888',
   withCredentials: true,
 })
 
@@ -17,10 +17,11 @@ class DataService {
   login(data) {
     return instance.post('/login', data)
   }
-  // signup(data) {
-  //   console.log('Data Service data: ', data)
-  //   return instance.post('/signup', data)
-  // }
+  signup(data) {
+    // todo: debugging needed
+    console.log('Data Service data: ', data)
+    return instance.post('/signup', data)
+  }
 }
 
 export default new DataService()

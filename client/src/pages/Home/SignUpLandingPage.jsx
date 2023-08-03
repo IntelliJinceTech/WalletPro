@@ -9,7 +9,7 @@ import { useAuthContext } from '../../context/AuthContext/authContext'
 import DataService from '../../services/apiService'
 
 const SignUpLandingPage = () => {
-  const { isAuthenticated } = useAuthContext()
+  const { isAuthenticated, setIsAuthenticated } = useAuthContext()
   const { currentPage, setCurrentPage } = useRoutingContext()
   const methods = useForm({
     criteriaMode: 'all',
@@ -24,7 +24,9 @@ const SignUpLandingPage = () => {
     event.preventDefault()
     console.log('data: ', data)
     try {
-      const response = await axios.post('http://localhost:8888/signup', data)
+      const response = await DataService.signup(data)
+      setIsAuthenticated(true)
+      setCurrentPage('Dashboard')
       console.log(response.data)
     } catch (error) {
       console.error('error from signing up: ', error)

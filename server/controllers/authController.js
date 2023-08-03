@@ -61,13 +61,19 @@ const signup = async (req, res, next) => {
       }
       console.log('User Registered Correctly')
     })
-
+    // passport.authenticate('local', (err, req, res) => {
+    //   if (err) {
+    //     // Handle authentication error
+    //     return next(err)
+    //   }
+    //   res.json({ message: 'authenticated!', user: req.user })
+    // })
+    console.log('is this firing')
     req.login(newUser, (err) => {
       if (err) return res.status(500).json({ error: 'login error' })
       console.log(`${newUser.email} logged in!`)
+      return res.status(200).json({ message: 'signup and login successful' })
     })
-
-    return res.status(200).json({ message: 'signup and login successful' })
   } catch (err) {
     next(err)
   }

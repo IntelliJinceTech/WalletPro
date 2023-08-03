@@ -31,11 +31,11 @@ Tests should be in each folder breakdown
 - 
 ### Front-end 
 #### Todos
-- Setup schema
+- User needs to be logged into a session and authenticate 
+    - isLoggedIn is currently still false after signing up
+    - isAuthenticated is also false
 - Setup reset on clicking add on credit card form
-- Create auth context
 - install and setup axios instead of fetch API
-- allow user to add to current wallet
 
 ### Backend
 #### Todos
