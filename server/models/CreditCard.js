@@ -23,6 +23,7 @@ const creditCardSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+    unique: true,
   },
   network: {
     type: String,
@@ -37,14 +38,19 @@ const creditCardSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
-  rewardForm: {
+  rewardType: {
     type: String,
     required: true,
   }, // cashback vs points vs miles
   annualFee: {
     type: Number,
+    required: true,
   },
-  paymentSchedule: Date,
+  paymentSchedule: {
+    // cycle of days between payments
+    type: Number,
+    default: 30,
+  },
   perks: {
     travel: {
       tripCancellationInsurancePerPerson: Number, // per person

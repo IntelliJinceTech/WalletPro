@@ -65,7 +65,7 @@ passport.deserializeUser(User.deserializeUser())
 // Routes
 app.use('/', mainRoutes)
 app.use('/auth', oauthRoutes)
-app.use('/card', cardRoutes)
+app.use('/cards', cardRoutes)
 
 //connect to database
 connectDB()
