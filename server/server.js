@@ -5,11 +5,15 @@ import MongoStore from 'connect-mongo'
 import cors from 'cors'
 import logger from 'morgan'
 import connectDB from './config/database.js'
+
+// routes
 import mainRoutes from './routes/mainRoutes.js'
 import oauthRoutes from './routes/oauthRoutes.js'
+import cardRoutes from './routes/cardRoutes.js'
+// const googleRoutes = require('./routes/googleRoutes.js')
+
 import dotenv from 'dotenv'
 dotenv.config()
-// const googleRoutes = require('./routes/googleRoutes.js')
 
 const app = express()
 
@@ -34,8 +38,8 @@ app.use(
 app.use(
   session({
     secret: 'keyboard cat', //secret used to sign the session ID cookie
-    resave: false, //save session on every request
-    saveUninitialized: true,
+    resave: true, //save session on every request
+    saveUninitialized: false,
     store: MongoStore.create({
       mongoUrl: process.env.DB_STRING,
       dbName: 'WalletPro',
@@ -61,6 +65,7 @@ passport.deserializeUser(User.deserializeUser())
 // Routes
 app.use('/', mainRoutes)
 app.use('/auth', oauthRoutes)
+app.use('/card', cardRoutes)
 
 //connect to database
 connectDB()
