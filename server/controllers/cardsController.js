@@ -1,10 +1,10 @@
+import mongoose from 'mongoose'
 import CreditCard from '../models/CreditCard.js'
 
 export const getCards = async (req, res) => {
   try {
-    const userId = req.user.id
     const allCards = await CreditCard.find().lean()
-    console.log(`userId: ${userId}`, `allCreditCards: ${allCards}`)
+    console.log(`allCreditCards: ${allCards}`)
     return res.json({ allCards })
   } catch (error) {
     console.error(error)
@@ -43,5 +43,25 @@ export const addCard = async (req, res) => {
     console.error(error)
   }
 }
-// export const editCards = () => {}
+// updating credit card information such as rewards or payment schedule
+export const updateCards = async (req, res) => {
+  try {
+    const creditCardId = req.params.cardId
+    const updateData = req.body
+    console.log(creditCardId)
+
+    const updatedCard = await CreditCard.findByIdAndUpdate(creditCardId, { ...updateData }, { new: true })
+
+    if (!updatedCard) {
+      return res.status(404).json({ error: 'credit card not found' })
+    }
+    // updatedCard.save()
+    // card.set(updateData)
+    await updatedCard.save()
+    res.json(updatedCard)
+  } catch (error) {
+    console.error(error)
+    return res.status(500)
+  }
+}
 // export const deleteCards = () => {}
