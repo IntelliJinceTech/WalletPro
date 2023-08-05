@@ -1,11 +1,8 @@
 import mongoose from 'mongoose'
 
-const categorySchema = new mongoose.Schema({
-  tier: {
-    type: String,
-    required: true,
-  },
-  category: {
+const rewardsSchema = new mongoose.Schema({
+  rewardsCategory: {
+    // e.g. dining, travel
     type: String,
     required: true,
   },
@@ -15,6 +12,7 @@ const categorySchema = new mongoose.Schema({
     min: 0,
     max: 99,
   },
+  rewardLimit: Number,
 })
 
 const creditCardSchema = new mongoose.Schema({
@@ -25,12 +23,13 @@ const creditCardSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+    unique: true,
   },
   network: {
     type: String,
     required: true,
   },
-  categories: [categorySchema],
+  rewards: [rewardsSchema],
   createdAt: {
     type: Date,
     default: Date.now(),
@@ -39,7 +38,33 @@ const creditCardSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
+  rewardType: {
+    type: String,
+    required: true,
+  }, // cashback vs points vs miles
+  annualFee: {
+    type: Number,
+    required: true,
+  },
+  paymentSchedule: {
+    // cycle of days between payments
+    type: Number,
+    default: 30,
+  },
+  perks: {
+    travel: {
+      tripCancellationInsurancePerPerson: Number, // per person
+      rentalCarInsurance: Boolean,
+      lostBaggageCoverage: Boolean,
+      hasForeignTransactionFee: Boolean,
+      airportLoungeAccess: Boolean,
+      loyaltyProgram: String,
+    },
+    purchase: {
+      purchaseProtection: Boolean,
+      extendedWarranty: Boolean,
+    },
+  },
 })
 
-const CreditCard = mongoose.model('CreditCard', creditCardSchema)
-export default CreditCard
+export default mongoose.model('CreditCard', creditCardSchema)
