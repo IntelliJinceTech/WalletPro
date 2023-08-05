@@ -64,4 +64,21 @@ export const updateCards = async (req, res) => {
     return res.status(500)
   }
 }
-// export const deleteCards = () => {}
+export const deleteCards = async (req, res) => {
+  try {
+    const creditCardId = req.params.cardId
+    console.log(creditCardId)
+
+    // Use findByIdAndDelete to find the document by ID and delete it
+    const deletedCard = await CreditCard.findByIdAndDelete(creditCardId)
+
+    if (!deletedCard) {
+      // If the credit card with the given ID was not found, return a 404 response
+      return res.status(404).json({ error: 'Credit card not found' })
+    }
+
+    res.json({ message: 'Credit card deleted successfully' })
+  } catch (error) {
+    console.error('error: ', error)
+  }
+}
