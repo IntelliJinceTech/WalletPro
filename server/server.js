@@ -10,6 +10,7 @@ import connectDB from './config/database.js'
 import mainRoutes from './routes/mainRoutes.js'
 import oauthRoutes from './routes/oauthRoutes.js'
 import cardRoutes from './routes/cardRoutes.js'
+// import walletRoutes from './routes/walletRoutes.js'
 // const googleRoutes = require('./routes/googleRoutes.js')
 
 import dotenv from 'dotenv'
@@ -66,6 +67,7 @@ passport.deserializeUser(User.deserializeUser())
 app.use('/', mainRoutes)
 app.use('/auth', oauthRoutes)
 app.use('/cards', cardRoutes)
+// app.use('/wallet', walletRoutes)
 
 //connect to database
 connectDB()
