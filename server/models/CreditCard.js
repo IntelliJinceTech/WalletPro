@@ -8,10 +8,10 @@ const rewardsSchema = new mongoose.Schema({
   },
   categoryPercent: {
     type: Number,
-    required: true,
     min: 0,
     max: 99,
   },
+  multiplier: Number,
   rewardLimit: Number,
 })
 
@@ -50,6 +50,10 @@ const creditCardSchema = new mongoose.Schema({
     // cycle of days between payments
     type: Number,
     default: 30,
+  },
+  favorite: {
+    type: Boolean,
+    default: true,
   },
   perks: {
     travel: {
