@@ -13,17 +13,18 @@ import cardRoutes from './routes/cardRoutes.js'
 // import walletRoutes from './routes/walletRoutes.js'
 // const googleRoutes = require('./routes/googleRoutes.js')
 
+// general setup
 import dotenv from 'dotenv'
 dotenv.config()
 
 const app = express()
 
 // import google from './config/googleAuth.js'
-
 import User from './models/User.js'
 
 // body parsing
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 //logging
 app.use(logger('dev'))
@@ -38,6 +39,7 @@ app.use(
 
 app.use(
   session({
+    // name: 'walletpro',
     secret: 'keyboard cat', //secret used to sign the session ID cookie
     resave: true, //save session on every request
     saveUninitialized: false,
@@ -58,7 +60,8 @@ app.use(
 // passport middleware
 app.use(passport.initialize())
 app.use(passport.session())
-passport.use(User.createStrategy())
+
+passport.use(User.createStrategy(User.authenticate()))
 // passport.use(google)
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())

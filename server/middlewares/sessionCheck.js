@@ -1,4 +1,4 @@
-export const sessionChecker = (req, res, next) => {
+export const sessionCheck = (req, res, next) => {
   console.log(`%cSession Checker: ${req.session.id}`, 'color:green')
   console.log(req.session)
   if (req.session.profile) {

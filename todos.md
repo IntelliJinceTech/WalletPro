@@ -29,20 +29,19 @@ Tests should be in each folder breakdown
 ## High Level Todos
 - Hook up front end sign in options with backend authentication
 - 
-### Front-end 
-#### Todos
+### Todos
+- DaisyUI removal --> Tailwind
 - User needs to be logged into a session and authenticate 
     - isLoggedIn is currently still false after signing up
     - isAuthenticated is also false
 - Setup reset on clicking add on credit card form
-- install and setup axios instead of fetch API
+- Create routes and controllers for credit card
 
-### Backend
-#### Todos
+### Done
 - Authentication
 - Main Routes
 - Auth Routes
-- 
+- Credit Card Controller, Model, 
 #### Logic
 
 ## 
