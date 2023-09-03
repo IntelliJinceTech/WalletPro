@@ -13,17 +13,21 @@ import cardRoutes from './routes/cardRoutes.js'
 // import walletRoutes from './routes/walletRoutes.js'
 // const googleRoutes = require('./routes/googleRoutes.js')
 
+// general setup
 import dotenv from 'dotenv'
 dotenv.config()
 
 const app = express()
 
 // import google from './config/googleAuth.js'
-
 import User from './models/User.js'
 
 // body parsing
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+//connect to database
+connectDB()
 
 //logging
 app.use(logger('dev'))
@@ -38,15 +42,16 @@ app.use(
 
 app.use(
   session({
+    name: 'walletpro',
     secret: 'keyboard cat', //secret used to sign the session ID cookie
-    resave: true, //save session on every request
+    resave: false, //save session on every request
     saveUninitialized: false,
     store: MongoStore.create({
       mongoUrl: process.env.DB_STRING,
       dbName: 'WalletPro',
     }),
     cookie: {
-      sameSite: 'none', //allow cross-site requests from different origin
+      // sameSite: 'none', //allow cross-site requests from different origin
       // secure: true, //requires HTTPS. For local environment you may skip this.
       maxAge: 1000 * 60 * 60 * 24 * 7, // One Week
     },
@@ -68,9 +73,6 @@ app.use('/', mainRoutes)
 app.use('/auth', oauthRoutes)
 app.use('/cards', cardRoutes)
 // app.use('/wallet', walletRoutes)
-
-//connect to database
-connectDB()
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on ${process.env.PORT}, you better catch it!`)

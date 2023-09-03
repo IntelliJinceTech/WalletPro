@@ -17,25 +17,33 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
-    // check authentication status
-    async function getUser() {
+    async function authCheck() {
       try {
-        const data = await DataService.getUser()
-        if (data.isLoggedIn) {
-          console.log('we are logged in as per isLoggedIn data: ', data.isLoggedIn)
+        const response = await DataService.getUser()
+        if (response.data.isLoggedIn) {
           setIsAuthenticated(true)
-          console.log('authentication state: ', isAuthenticated)
         }
-      } catch (error) {
-        console.log(`the useEffect for checking auth status did not work: `, error)
+        console.log(response.data.isLoggedIn)
+        // if (response.data.data.isLoggedIn) {
+        //   setIsAuthenticated(true)
+        //   console.log('authentication: ', isAuthenticated)
+        // }
+        // if (response.data.isLoggedIn) {
+        //   console.log('we are logged in as per isLoggedIn data: ', data.isLoggedIn)
+        //   setIsAuthenticated(true)
+        //   console.log('authentication state: ', isAuthenticated)
+        // }
+        // console.log(response)
+      } catch (err) {
+        console.log(`the useEffect for checking auth status did not work: `, err)
       }
     }
-    getUser()
+    authCheck()
   }, [])
 
-  // useEffect(() => {
-  //   console.log('authentication state: ', isAuthenticated)
-  // }, [isAuthenticated])
+  useEffect(() => {
+    console.log('isAuthenticated: ', isAuthenticated)
+  }, [isAuthenticated])
 
   const login = async (loginData) => {
     // const login = async () => {

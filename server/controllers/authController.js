@@ -5,7 +5,8 @@ import User from '../models/User.js'
 // req needs isAuthenticated State
 
 const getUser = (req, res) => {
-  console.log(req.isAuthenticated())
+  console.log('authentication status: ', req.isAuthenticated())
+  console.log(req.session)
   if (req.isAuthenticated()) {
     console.log(req.user)
     return res.json({

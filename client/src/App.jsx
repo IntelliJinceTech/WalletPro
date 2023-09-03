@@ -29,9 +29,9 @@ function App() {
   return (
     <>
       <Navbar />
-      {currentPage === 'LandingPage' && <Home />}
-      {isAuthenticated === true && currentPage === 'Dashboard' && <Dashboard />}
-
+      {/* {currentPage === 'LandingPage' && <Home />} */}
+      {/* {isAuthenticated === true && <Dashboard />} */}
+      <Dashboard />
       {/* {!isLoggedIn && <Dashboard />} */}
     </>
   )
