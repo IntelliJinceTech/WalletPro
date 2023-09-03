@@ -16,9 +16,14 @@ const Dashboard = () => {
       <TimeBasedStats />
       <div className="flex flex-col w-full border-opacity-50">
         <Wallet />
-        <button className="btn w-4/5 p-5 mb-4 place-content-center mx-auto" onClick={handleOpen}>
+        <button
+          type="button"
+          className="rounded-full bg-indigo-600 px-2.5 py-1 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          onClick={handleOpen}
+        >
           Add Credit Card
         </button>
+
         <Modal>
           <AddCreditCardForm />
         </Modal>
