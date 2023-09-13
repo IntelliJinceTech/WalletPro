@@ -20,6 +20,9 @@ const creditCardSchema = new mongoose.Schema({
       ref: 'Reward,',
     },
   ],
+  lastFourDigits: String,
+  expiryDate: String,
+  creditLimit: Number,
   createdAt: {
     type: Date,
     default: Date.now(),

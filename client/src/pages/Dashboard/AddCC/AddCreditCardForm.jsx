@@ -15,9 +15,11 @@ const AddCreditCardForm = () => {
 
   return (
     <FormProvider {...methods}>
-      <form method="post" className="form-control w-full max-w-lg place-content-center" onSubmit={methods.handleSubmit(onSubmit)}>
-        <label className="label" htmlFor="bank">
-          <span className="label-text">Credit Card Bank?</span>
+      <form method="post" className=" w-full max-w-lg place-content-center" onSubmit={methods.handleSubmit(onSubmit)}>
+        <div className="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
+          <label htmlFor="bank" className="block text-xs font-medium text-gray-900">
+            Credit Card Bank
+          </label>
           <input
             {...methods.register('bank', {
               required: 'This input is required',
@@ -26,12 +28,12 @@ const AddCreditCardForm = () => {
                 message: 'Alphabetic input only',
               },
             })}
-            name="bank"
             type="text"
-            placeholder="Type here"
-            className="input input-bordered w-full max-w-xs invalid:border-pink-500"
+            name="bank"
+            className="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+            placeholder="Example: Chase"
           />
-        </label>
+        </div>
         <ErrorMessage
           errors={errors}
           name="bank"
@@ -103,8 +105,11 @@ const AddCreditCardForm = () => {
         <CCCategorySelect tier="2nd" />
         <CCCategorySelect tier="3rd" />
         <CCCategorySelect tier="4th" />
-        <button className="btn btn-primary" type="submit">
-          Add
+        <button
+          className="rounded bg-indigo-600 px-2 py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          type="submit"
+        >
+          Add Credit Card
         </button>
       </form>
     </FormProvider>
