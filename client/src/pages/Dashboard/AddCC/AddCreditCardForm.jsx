@@ -1,5 +1,6 @@
 import { useForm, FormProvider, useFormContext } from 'react-hook-form'
-import CCCategorySelect from './CCCategorySelect'
+import { useEffect, useState } from 'react'
+// import CCCategorySelect from './CCCategorySelect'
 import { ErrorMessage } from '@hookform/error-message'
 import CategorySelection from './CategorySelection'
 
@@ -10,16 +11,22 @@ const AddCreditCardForm = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = methods
   const onSubmit = (data) => console.log(data)
 
   const creditCardTypes = [
-    { id: 'ccPoints', type: 'Points Multiplier' },
-    { id: 'ccPercentage', type: 'Percentage' },
+    { id: 'ccPoints', type: 'Points Multiplier', reference: 'points' },
+    { id: 'ccPercentage', type: 'Percentage', reference: 'percentage' },
   ]
 
-  let creditCardType = null
+  const [cardType, setCardType] = useState(null)
+  const watchType = watch('categoryType')
+
+  useEffect(() => {
+    console.log(cardType)
+  }, [cardType])
 
   return (
     <FormProvider {...methods}>
@@ -125,10 +132,14 @@ const AddCreditCardForm = () => {
                 <div key={creditCardType.id} className="flex items-center">
                   <input
                     id={creditCardType.id}
-                    name="notification-method"
+                    name="categoryType"
                     type="radio"
-                    defaultChecked={creditCardType.id === 'ccPoints'}
                     className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                    value={creditCardType.type}
+                    {...methods.register('categoryType', {
+                      required: 'This input is required',
+                    })}
+                    onChange={(e) => setCardType(creditCardType.reference)}
                   />
                   <label htmlFor={creditCardType.id} className="ml-3 block text-sm font-medium leading-6 text-gray-900">
                     {creditCardType.type}
@@ -140,7 +151,7 @@ const AddCreditCardForm = () => {
         </div>
         <div>
           <div>
-            <CategorySelection creditCardIncentiveType={creditCardType} />
+            <CategorySelection creditCardIncentiveType={cardType} />
           </div>
           <button
             type="button"
