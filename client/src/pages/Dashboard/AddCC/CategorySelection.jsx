@@ -12,7 +12,7 @@ const CategorySelection = ({ creditCardIncentiveType }) => {
   const { fields, append, remove } = useFieldArray({
     name: 'categories',
   })
-
+  console.log(creditCardIncentiveType)
   return (
     <div className="flex justify-around">
       <div className="flex items-center gap-x-1">
@@ -33,6 +33,7 @@ const CategorySelection = ({ creditCardIncentiveType }) => {
           <option value="other">Other</option>
         </select>
       </div>
+      {/* Refactor for DRY later */}
       {creditCardIncentiveType === 'percentage' && (
         <div>
           <label htmlFor="categoryPercent" className="sr-only">
@@ -54,7 +55,7 @@ const CategorySelection = ({ creditCardIncentiveType }) => {
         </div>
       )}
       {creditCardIncentiveType === 'points' && (
-        <div className="max-w-[25%]">
+        <div className="">
           <label htmlFor="points" className="sr-only">
             Percent
           </label>
@@ -68,7 +69,7 @@ const CategorySelection = ({ creditCardIncentiveType }) => {
               type="number"
               name="points"
               id="points"
-              className="block rounded-md border-0 w-full py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 "
+              className="block w-[60%] rounded-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 "
               placeholder="5 = 5x"
               {...register(`${selected}PointsMultiplier`, { min: 0, max: 99 })}
             />
