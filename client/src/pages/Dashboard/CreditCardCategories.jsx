@@ -1,3 +1,4 @@
+// ! Need to figure out how best to show categories
 const CreditCardCategories = () => {
   //   box-sizing: content-box;
   //   display: flex;

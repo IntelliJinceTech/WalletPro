@@ -1,5 +1,4 @@
 import { useState, useContext } from 'react'
-import DashboardNavBar from './DashboardNavBar'
 import Wallet from './Wallet'
 import Bank from './Bank'
 import Modal from '../../components/Modal'
@@ -28,8 +27,6 @@ const Dashboard = () => {
           <AddCreditCardForm />
         </Modal>
       </div>
-
-      {isMobile && <DashboardNavBar />}
     </div>
   )
 }
