@@ -1,4 +1,4 @@
-import { useForm, FormProvider, useFormContext, useController, Controller } from 'react-hook-form'
+import { useForm, FormProvider, useFormContext, useController, Controller, useFieldArray } from 'react-hook-form'
 import { useEffect, useState } from 'react'
 // import CCCategorySelect from './CCCategorySelect'
 import { ErrorMessage } from '@hookform/error-message'
@@ -161,7 +161,7 @@ const AddCreditCardForm = () => {
           <div className="mt-3">
             <label className="text-base font-semibold text-gray-900">Best 3 Categories</label>
             <p className="text-sm text-gray-500">Setup the best categories that this credit card covers</p>
-            {cardType && [...Array(numberBestCategories)].map((_, i) => <CategorySelection key={i} creditCardIncentiveType={cardType} />)}
+            {cardType && [...Array(numberBestCategories)].map((_, i) => <CategorySelection key={i} creditCardIncentiveType={cardType} index={i} />)}
           </div>
         </div>
         <button

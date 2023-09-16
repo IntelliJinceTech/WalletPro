@@ -6,7 +6,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join('  ')
 }
 
-const CategorySelection = ({ creditCardIncentiveType }) => {
+const CategorySelection = ({ creditCardIncentiveType, index }) => {
   const [selected, setSelected] = useState(null)
   const { register, control } = useFormContext()
   const { fields, append, remove } = useFieldArray({
@@ -16,18 +16,17 @@ const CategorySelection = ({ creditCardIncentiveType }) => {
   return (
     <div className="flex justify-around">
       <div className="flex items-center gap-x-1">
-        <label htmlFor="ccCategory" className="sr-only">
+        <label htmlFor={`categories[${index}.categoryType]`} className="sr-only">
           Category
         </label>
         <select
-          id="ccCategory"
-          name="ccCategory"
+          id={`categories[${index}].categoryType`}
           className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          {...register(`categories.categoryType`)}
+          {...register(`categories[${index}].categoryType`)}
         >
           <option value="groceries">Groceries</option>
           <option value="travel">Travel</option>
-          <option value="travel">Purchases through Portal</option>
+          <option value="portalPurchase">Purchases through Portal</option>
           <option value="dining">Dining</option>
           <option value="gas">Gas</option>
           <option value="other">Other</option>
@@ -56,7 +55,7 @@ const CategorySelection = ({ creditCardIncentiveType }) => {
       )}
       {creditCardIncentiveType === 'points' && (
         <div className="">
-          <label htmlFor="points" className="sr-only">
+          <label htmlFor={`categories[${index}].pointsMultiplier`} className="sr-only">
             Percent
           </label>
           <div className="relative mt-2 rounded-md shadow-sm">
@@ -67,11 +66,10 @@ const CategorySelection = ({ creditCardIncentiveType }) => {
             </div>
             <input
               type="number"
-              name="points"
-              id="points"
+              id={`categories[${index}].pointsMultiplier`}
               className="block w-[60%] rounded-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 "
               placeholder="5 = 5x"
-              {...register(`${selected}PointsMultiplier`, { min: 0, max: 99 })}
+              {...register(`categories[${index}].pointsMultiplier`, { min: 0, max: 99 })}
             />
           </div>
         </div>
