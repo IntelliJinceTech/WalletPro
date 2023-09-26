@@ -43,20 +43,6 @@ export const addCard = async (req, res) => {
       rewards: rewardCategories,
     })
 
-    // // if rewardType is percentage, then map to percentage
-    // if (rewardType === 'percentage') {
-    //   newCard.rewards = categories.map((rewardData) => ({
-    //     category: rewardData.categoryType,
-    //     percent: rewardData.percentage,
-    //   }))
-    // } else if (rewardType === 'points') {
-    //   // if rewardType is points, then map to pointsMultiplier
-    //   newCard.rewards = categories.map((rewardData) => ({
-    //     category: rewardData.categoryType,
-    //     pointsMultiplier: rewardData.pointsMultiplier,
-    //   }))
-    // }
-
     console.log('credit card created')
     res.json(newCard)
   } catch (error) {
