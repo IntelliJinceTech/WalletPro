@@ -13,29 +13,49 @@ export const getCards = async (req, res) => {
 export const addCard = async (req, res) => {
   try {
     // destructure from req.body
-    const { bank, name, network, rewardType, annualFee, rewards } = req.body
+    const { bankName, ccName, ccNetwork, rewardType, annualFee, categories } = req.body
+    // console.log(req.body)
 
-    // create array to hold rewards data
-    const rewardsData = []
-
-    // loop through rewards array in req.body and populate the rewardsData
-    for (const reward of rewards) {
-      const { rewardsCategory, categoryPercent, rewardLimit } = reward
-      rewardsData.push({
-        rewardsCategory,
-        categoryPercent,
-        rewardLimit,
+    let rewardCategories = []
+    if (rewardType === 'percentage') {
+      categories.map((category) => {
+        rewardCategories.push({
+          category: category.categoryType,
+          percent: category.percentage,
+        })
+      })
+    } else if (rewardType === 'points') {
+      categories.map((category) => {
+        rewardCategories.push({
+          category: category.categoryType,
+          pointsMultiplier: category.pointsMultiplier,
+        })
       })
     }
 
     const newCard = await CreditCard.create({
-      bank,
-      name,
-      network,
-      rewardType,
+      bank: bankName,
+      name: ccName,
+      network: ccNetwork,
+      rewardType: rewardType.toLowerCase(),
       annualFee,
-      rewards: rewardsData,
+      favorite: false,
+      rewards: rewardCategories,
     })
+
+    // // if rewardType is percentage, then map to percentage
+    // if (rewardType === 'percentage') {
+    //   newCard.rewards = categories.map((rewardData) => ({
+    //     category: rewardData.categoryType,
+    //     percent: rewardData.percentage,
+    //   }))
+    // } else if (rewardType === 'points') {
+    //   // if rewardType is points, then map to pointsMultiplier
+    //   newCard.rewards = categories.map((rewardData) => ({
+    //     category: rewardData.categoryType,
+    //     pointsMultiplier: rewardData.pointsMultiplier,
+    //   }))
+    // }
 
     console.log('credit card created')
     res.json(newCard)

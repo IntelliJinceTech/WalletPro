@@ -8,7 +8,6 @@ const creditCardSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    unique: true,
   },
   network: {
     type: String,
@@ -16,8 +15,20 @@ const creditCardSchema = new mongoose.Schema({
   },
   rewards: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Reward,',
+      category: {
+        type: String,
+      },
+      percent: {
+        type: Number,
+        min: 0,
+        max: 99,
+      },
+      pointsMultiplier: {
+        type: Number,
+        min: 0,
+        max: 99,
+      },
+      rewardLimit: Number,
     },
   ],
   lastFourDigits: String,
@@ -48,6 +59,7 @@ const creditCardSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
+  // ! post mvp
   perks: {
     travel: {
       tripCancellationInsurancePerPerson: Number, // per person

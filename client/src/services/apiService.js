@@ -5,19 +5,19 @@ const instance = axios.create({
   withCredentials: true,
 })
 
-class DataService {
-  getUser() {
+function DataService() {
+  this.getUser = () => {
     return instance.get('/getUser')
   }
 
-  logout() {
+  this.logout = () => {
     return instance.get('/logout')
   }
 
-  login(data) {
+  this.login = (data) => {
     return instance.post('/login', data)
   }
-  signup(data) {
+  this.signup = (data) => {
     // todo: debugging needed
     console.log('Data Service data: ', data)
     return instance.post('/signup', data)

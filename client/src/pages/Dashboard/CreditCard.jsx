@@ -27,7 +27,7 @@ const CreditCard = (props) => {
       {clients.map((client) => (
         <li key={client.id} className="overflow-hidden rounded-xl border border-gray-200">
           <div className="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
-            <div className="bg-white shadow sm:rounded-lg min-w-full">
+            <div className="bg-white shadow xs:rounded-lg min-w-full">
               <div className="px-4 py-5 sm:p-6">
                 <div className="flex justify-between">
                   <h3 className="text-base font-semibold leading-6 text-gray-900">Chase</h3>
@@ -37,7 +37,7 @@ const CreditCard = (props) => {
                   <div className="rounded-md bg-gray-50 px-6 py-5 sm:flex sm:items-start sm:justify-between">
                     <h4 className="sr-only">Visa</h4>
                     <div className="sm:flex sm:items-start">
-                      <svg className="h-8 w-auto sm:h-6 sm:flex-shrink-0" viewBox="0 0 36 24" aria-hidden="true">
+                      <svg className="h-8 w-auto xs:h-6 xs:flex-shrink-0" viewBox="0 0 36 24" aria-hidden="true">
                         <rect width={36} height={24} fill="#224DBA" rx={4} />
                         <path
                           fill="#fff"
@@ -45,11 +45,11 @@ const CreditCard = (props) => {
                         />
                       </svg>
                       <div>
-                        <div className="mt-3 sm:ml-4 sm:mt-0 flex justify-around">
-                          <div className="text-sm font-medium text-gray-900 pt-1">Ending with 4242</div>
+                        <div className="mt-3 sm:ml-4 sm:mt-0 flex xs:justify-start sm:justify-around">
+                          <div className="text-sm font-medium text-gray-900 pt-1 ">Ending with 4242</div>
                           <div className="mt-1 ml-3 text-sm text-gray-600 sm:flex sm:items-center">Expires 12/20</div>
                         </div>
-                        <div className="text-sm text-gray-600 sm:flex sm:items-center ml-4 mt-3">Credit Limit</div>
+                        <div className="text-sm text-gray-600 sm:flex sm:items-center xs:ml-0 sm:ml-4 mt-3">Credit Limit</div>
                       </div>
                     </div>
                   </div>

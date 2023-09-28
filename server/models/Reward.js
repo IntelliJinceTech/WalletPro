@@ -1,17 +1,17 @@
 import mongoose from 'mongoose'
 
 const rewardsSchema = new mongoose.Schema({
-  rewardsCategory: {
+  categoryType: {
     // e.g. dining, travel
     type: String,
     required: true,
   },
-  categoryPercent: {
+  percent: {
     type: Number,
     min: 0,
     max: 99,
   },
-  multiplier: Number,
+  pointsMultiplier: Number,
   rewardLimit: Number,
   creditCard: {
     type: mongoose.Schema.Types.ObjectId,
