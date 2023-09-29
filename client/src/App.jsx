@@ -6,29 +6,17 @@ import { useState, useEffect } from 'react'
 import { themeChange } from 'theme-change'
 import { useRoutingContext } from './context/RoutingContext/routingContext'
 import { useAuthContext } from './context/AuthContext/authContext'
+import LandingPage from './pages/Home/LandingPage'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false) //for testing
   const { currentPage } = useRoutingContext()
   const { isAuthenticated } = useAuthContext()
 
-  useEffect(() => {
-    themeChange(false)
-  }, [])
-
-  const selectTheme = () => (
-    <select data-choose-theme>
-      <option value="">Default</option>
-      <option value="light">Light</option>
-      <option value="dark">Dark</option>
-      <option value="corporate">Corporate</option>
-      <option value="business">Business</option>
-    </select>
-  )
-
   return (
     <>
       <Navbar />
+      {/* <LandingPage /> */}
       {/* {currentPage === 'LandingPage' && <Home />} */}
       {/* {isAuthenticated === true && <Dashboard />} */}
       <Dashboard />

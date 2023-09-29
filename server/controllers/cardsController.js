@@ -32,7 +32,7 @@ export const addCard = async (req, res) => {
         })
       })
     }
-
+    console.log(rewardsCategories)
     const newCard = await CreditCard.create({
       bank: bankName,
       name: ccName,
@@ -49,6 +49,8 @@ export const addCard = async (req, res) => {
     console.error(error)
   }
 }
+
+// todo testing needed
 // updating credit card information such as rewards or payment schedule
 export const updateCards = async (req, res) => {
   try {
