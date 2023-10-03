@@ -33,6 +33,7 @@ export const addCard = async (req, res) => {
       })
     }
     console.log(rewardsCategories)
+
     const newCard = await CreditCard.create({
       bank: bankName,
       name: ccName,

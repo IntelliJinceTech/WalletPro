@@ -6,6 +6,7 @@ const instance = axios.create({
 })
 
 function DataService() {
+  // auth
   this.getUser = () => {
     return instance.get('/getUser')
   }
@@ -22,6 +23,10 @@ function DataService() {
     console.log('Data Service data: ', data)
     return instance.post('/signup', data)
   }
+
+  // cards - CRUD
+
+  this.addCard = (data) => instance.post('/addCard', data)
 }
 
 export default new DataService()

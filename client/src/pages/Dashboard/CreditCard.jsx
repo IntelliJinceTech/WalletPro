@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import { EllipsisHorizontalIcon } from '@heroicons/react/20/solid'
+import {BookmarkIcon, EllipsisHorizontalIcon, PencilSquareIcon, TrashIcon} from '@heroicons/react/20/solid'
 
 const statuses = {
   Paid: 'text-green-700 bg-green-50 ring-green-600/20',
@@ -33,8 +33,8 @@ const CreditCard = (props) => {
                   <h3 className="text-base font-semibold leading-6 text-gray-900">Chase</h3>
                   <h4 className="text-sm">Sapphire Preferred</h4>
                 </div>
-                <div className="mt-5">
-                  <div className="rounded-md bg-gray-50 px-6 py-5 sm:flex sm:items-start sm:justify-between">
+                <div className="mt-5 flex bg-gray-50">
+                  <div className="rounded-md px-6 py-5 sm:flex sm:items-start sm:justify-between xs:w-full">
                     <h4 className="sr-only">Visa</h4>
                     <div className="sm:flex sm:items-start">
                       <svg className="h-8 w-auto xs:h-6 xs:flex-shrink-0" viewBox="0 0 36 24" aria-hidden="true">
@@ -49,10 +49,15 @@ const CreditCard = (props) => {
                           <div className="text-sm font-medium text-gray-900 pt-1 ">Ending with 4242</div>
                           <div className="mt-1 ml-3 text-sm text-gray-600 sm:flex sm:items-center">Expires 12/20</div>
                         </div>
-                        <div className="text-sm text-gray-600 sm:flex sm:items-center xs:ml-0 sm:ml-4 mt-3">Credit Limit</div>
+                        <div className="text-sm text-gray-600 sm:flex sm:items-center xs:ml-0 sm:ml-4 mt-3">Add</div>
                       </div>
                     </div>
                   </div>
+                    <div className="flex flex-col justify-around">
+                        <PencilSquareIcon className="mr-2 text-black w-6"/>
+                        <TrashIcon className="w-6"/>
+                        <BookmarkIcon className="w-6"/>
+                    </div>
                 </div>
               </div>
             </div>
@@ -95,7 +100,7 @@ const CreditCard = (props) => {
             <div className="flex justify-between gap-x-4 py-3">
               <dt className="text-gray-500">Average Weekly Point Accumulation</dt>
               <dd className="text-gray-700">
-                <time dateTime={client.lastInvoice.dateTime}>{client.lastInvoice.date}</time>
+                9000
               </dd>
             </div>
             <div className="flex justify-between gap-x-4 py-3">
