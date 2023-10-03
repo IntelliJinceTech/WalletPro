@@ -96,18 +96,17 @@ const CreditCard = (props) => {
               </Transition>
             </Menu> */}
           </div>
-          <dl className="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
+          <dl className="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6 bg-blue-800 text-gray-50">
             <div className="flex justify-between gap-x-4 py-3">
-              <dt className="text-gray-500">Average Weekly Point Accumulation</dt>
-              <dd className="text-gray-700">
+              <dt className="">Average Weekly Point Accumulation</dt>
+              <dd className="">
                 9000
               </dd>
             </div>
             <div className="flex justify-between gap-x-4 py-3">
-              <dt className="text-gray-500">Rewards Total</dt>
+              <dt className="">Rewards Total</dt>
               <dd className="flex items-start gap-x-2">
-                <div className="font-medium text-gray-900">{client.lastInvoice.amount}</div>
-                <div className={classNames(statuses[client.lastInvoice.status], 'rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset')}>{client.lastInvoice.status}</div>
+                5000
               </dd>
             </div>
           </dl>
