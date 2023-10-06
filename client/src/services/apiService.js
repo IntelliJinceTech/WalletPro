@@ -20,13 +20,14 @@ function DataService() {
   }
   this.signup = (data) => {
     // todo: debugging needed
-    console.log('Data Service data: ', data)
+    // console.log('Data Service data: ', data)
     return instance.post('/signup', data)
   }
 
   // cards - CRUD
-
   this.addCard = (data) => instance.post('/addCard', data)
+  this.updateCard = (cardId, data) => instance.put(`/updateCard/${cardId}`, data)
+  this.deleteCard = (cardId) => instance.delete(`/deleteCard/${cardId}`)
 }
 
 export default new DataService()
