@@ -1,5 +1,7 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Menu, Transition } from '@headlessui/react'
+// import {} from 'react-icons/lia'
+import { FaCcVisa } from 'react-icons/fa'
 import { BookmarkIcon, EllipsisHorizontalIcon, PencilSquareIcon, TrashIcon } from '@heroicons/react/20/solid'
 import APIService from '../../services/apiService'
 import { capitalizeFirst } from '../../utils/capitalize'
@@ -18,7 +20,7 @@ const clients = [
 ]
 
 const CreditCards = (props) => {
-  const [allCreditCards, setAllCreditCards] = useState(null)
+  const [allCreditCards, setAllCreditCards] = useState([])
 
   const getAllCards = async () => {
     try {
