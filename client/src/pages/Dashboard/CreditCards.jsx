@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { BookmarkIcon, EllipsisHorizontalIcon, PencilSquareIcon, TrashIcon } from '@heroicons/react/20/solid'
 import APIService from '../../services/apiService'
+import { capitalizeFirst } from '../../utils/capitalize'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -35,18 +36,18 @@ const CreditCards = (props) => {
 
   return (
     <ul role="list" className="grid grid-cols-1 gap-x-6 gap-y-8">
-      {clients.map((client) => (
-        <li key={client.id} className="overflow-hidden rounded-xl border border-gray-200">
+      {allCreditCards.map((card) => (
+        <li key={card.id} className="overflow-hidden rounded-xl border border-gray-200">
           <div className="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
             <div className="bg-white shadow xs:rounded-lg min-w-full">
               <div className="px-4 py-5 sm:p-6">
                 <div className="flex justify-between">
-                  <h3 className="text-base font-semibold leading-6 text-gray-900">Chase</h3>
-                  <h4 className="text-sm">Sapphire Preferred</h4>
+                  <h3 className="text-base font-semibold leading-6 text-gray-900">{card.bank}</h3>
+                  <h4 className="text-sm">{card.name}</h4>
                 </div>
                 <div className="mt-5 flex bg-gray-50">
                   <div className="rounded-md px-6 py-5 sm:flex sm:items-start sm:justify-between xs:w-full">
-                    <h4 className="sr-only">Visa</h4>
+                    <h4 className="sr-only">{card.network}</h4>
                     <div className="sm:flex sm:items-start">
                       <svg className="h-8 w-auto xs:h-6 xs:flex-shrink-0" viewBox="0 0 36 24" aria-hidden="true">
                         <rect width={36} height={24} fill="#224DBA" rx={4} />
@@ -60,7 +61,7 @@ const CreditCards = (props) => {
                           <div className="text-sm font-medium text-gray-900 pt-1 ">Ending with 4242</div>
                           <div className="mt-1 ml-3 text-sm text-gray-600 sm:flex sm:items-center">Expires 12/20</div>
                         </div>
-                        <div className="text-sm text-gray-600 sm:flex sm:items-center xs:ml-0 sm:ml-4 mt-3">Add</div>
+                        <div className="text-sm text-gray-600 sm:flex sm:items-center xs:ml-0 sm:ml-4 mt-3">{`Reward Type: ${capitalizeFirst(card.rewardType)}`}</div>
                       </div>
                     </div>
                   </div>
