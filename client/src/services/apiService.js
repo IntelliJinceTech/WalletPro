@@ -25,9 +25,10 @@ function DataService() {
   }
 
   // cards - CRUD
-  this.addCard = (data) => instance.post('/addCard', data)
-  this.updateCard = (cardId, data) => instance.put(`/updateCard/${cardId}`, data)
-  this.deleteCard = (cardId) => instance.delete(`/deleteCard/${cardId}`)
+  this.getCards = () => instance.get(`cards/`)
+  this.addCard = (data) => instance.post(`cards/addCard`, data)
+  this.updateCard = (cardId, data) => instance.put(`cards/updateCard/${cardId}`, data)
+  this.deleteCard = (cardId) => instance.delete(`cards/deleteCard/${cardId}`)
 }
 
 export default new DataService()

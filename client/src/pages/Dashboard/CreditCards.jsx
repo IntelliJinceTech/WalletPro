@@ -1,12 +1,7 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import {BookmarkIcon, EllipsisHorizontalIcon, PencilSquareIcon, TrashIcon} from '@heroicons/react/20/solid'
-
-const statuses = {
-  Paid: 'text-green-700 bg-green-50 ring-green-600/20',
-  Withdraw: 'text-gray-600 bg-gray-50 ring-gray-500/10',
-  Overdue: 'text-red-700 bg-red-50 ring-red-600/10',
-}
+import { BookmarkIcon, EllipsisHorizontalIcon, PencilSquareIcon, TrashIcon } from '@heroicons/react/20/solid'
+import APIService from '../../services/apiService'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -21,7 +16,23 @@ const clients = [
   },
 ]
 
-const CreditCard = (props) => {
+const CreditCards = (props) => {
+  const [allCreditCards, setAllCreditCards] = useState(null)
+
+  const getAllCards = async () => {
+    try {
+      const response = await APIService.getCards()
+      console.log(response)
+      setAllCreditCards(response.data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  useEffect(() => {
+    getAllCards()
+  }, [])
+
   return (
     <ul role="list" className="grid grid-cols-1 gap-x-6 gap-y-8">
       {clients.map((client) => (
@@ -53,11 +64,11 @@ const CreditCard = (props) => {
                       </div>
                     </div>
                   </div>
-                    <div className="flex flex-col justify-around">
-                        <PencilSquareIcon className="mr-2 text-black w-6"/>
-                        <TrashIcon className="w-6"/>
-                        <BookmarkIcon className="w-6"/>
-                    </div>
+                  <div className="flex flex-col justify-around">
+                    <PencilSquareIcon className="mr-2 text-black w-6" />
+                    <TrashIcon className="w-6" />
+                    <BookmarkIcon className="w-6" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -99,15 +110,11 @@ const CreditCard = (props) => {
           <dl className="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6 bg-blue-800 text-gray-50">
             <div className="flex justify-between gap-x-4 py-3">
               <dt className="">Average Weekly Point Accumulation</dt>
-              <dd className="">
-                9000
-              </dd>
+              <dd className="">9000</dd>
             </div>
             <div className="flex justify-between gap-x-4 py-3">
               <dt className="">Rewards Total</dt>
-              <dd className="flex items-start gap-x-2">
-                5000
-              </dd>
+              <dd className="flex items-start gap-x-2">5000</dd>
             </div>
           </dl>
         </li>
@@ -128,4 +135,4 @@ const CreditCard = (props) => {
   )
 }
 
-export default CreditCard
+export default CreditCards

@@ -4,8 +4,7 @@ import CreditCard from '../models/CreditCard.js'
 export const getCards = async (req, res) => {
   try {
     const allCards = await CreditCard.find().lean()
-    console.log(`allCreditCards: ${allCards}`)
-    return res.json({ allCards })
+    return res.json(allCards)
   } catch (error) {
     console.error(error)
   }

@@ -5,7 +5,7 @@ import Modal from '../../components/Modal'
 import { ModalContext } from '../../context/ModalContext/ModalContext'
 import AddCreditCardForm from './AddCC/AddCreditCardForm'
 import TimeBasedStats from './Stats/TimeBasedStats'
-import CategoryBadge from "./CategoryDisplay/CategoryBadge.jsx";
+import CategoryBadge from './CategoryDisplay/CategoryBadge.jsx'
 
 const Dashboard = () => {
   const [isMobile, setIsMobile] = useState(false)

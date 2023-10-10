@@ -1,4 +1,4 @@
-import CreditCard from './CreditCard'
+import CreditCards from './CreditCards'
 import Categories from './CreditCardCategories'
 
 const Wallet = () => {
@@ -7,7 +7,7 @@ const Wallet = () => {
       <div className="flex xs:flex-col lg:flex-row px-3 mx-auto mb-5 place-content-center">
         {/* <div className=""> */}
         <div className="grid lg:grid-cols-3 gap-3 max-h-1/2">
-          <CreditCard />
+          <CreditCards />
           <div className="sm:hidden ">
             <Categories />
           </div>
