@@ -43,8 +43,8 @@ const CreditCard = ({ bank, key, name, network, rewardType, setAllCreditCards })
                 </div>
               </div>
               <div className="flex flex-col justify-around">
-                <PencilSquareIcon className="mr-2 text-black w-6" />
-                <TrashIcon className="w-6" />
+                <PencilSquareIcon className="mr-2 text-black w-6 hover:text-gray-600" />
+                <TrashIcon className="w-6 text-red-500 hover:text-red-400" />
                 <BookmarkIcon className="w-6" />
               </div>
             </div>
