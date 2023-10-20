@@ -6,6 +6,7 @@ import { AuthProvider } from './context/AuthContext/authContext.jsx'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import { ModalProvider } from './context/ModalContext/ModalContext'
 import { RoutingProvider } from './context/RoutingContext/routingContext.jsx'
+import { EditingModeProvider } from './context/EditingModeContext/EditingModeContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
@@ -13,7 +14,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <AuthProvider>
       <GoogleOAuthProvider clientId="16726005967-ahkh53ae5hqckoreqtavf712t7gb5kf3.apps.googleusercontent.com">
         <ModalProvider>
-          <App />
+          <EditingModeProvider>
+            <App />
+          </EditingModeProvider>
         </ModalProvider>
       </GoogleOAuthProvider>
     </AuthProvider>

@@ -7,6 +7,7 @@ import AddCreditCardForm from './AddCC/AddCreditCardForm'
 import TimeBasedStats from './Stats/TimeBasedStats'
 import CategoryBadge from './CategoryDisplay/CategoryBadge.jsx'
 import APIService from '../../services/apiService'
+import { EditingModeContext } from '../../context/EditingModeContext/EditingModeContext'
 
 const Dashboard = () => {
   const [isMobile, setIsMobile] = useState(false)
