@@ -59,21 +59,6 @@ const creditCardSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
-  // ! post mvp
-  perks: {
-    travel: {
-      tripCancellationInsurancePerPerson: Number, // per person
-      rentalCarInsurance: Boolean,
-      lostBaggageCoverage: Boolean,
-      hasForeignTransactionFee: Boolean,
-      airportLoungeAccess: Boolean,
-      loyaltyProgram: String,
-    },
-    purchase: {
-      purchaseProtection: Boolean,
-      extendedWarranty: Boolean,
-    },
-  },
 })
 
 export default mongoose.model('CreditCard', creditCardSchema)

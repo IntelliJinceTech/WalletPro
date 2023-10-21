@@ -1,11 +1,13 @@
 import { useForm, FormProvider, useFormContext, useController, Controller, useFieldArray } from 'react-hook-form'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 // import CCCategorySelect from './CCCategorySelect'
 import { ErrorMessage } from '@hookform/error-message'
 import CategorySelection from './CategorySelection'
+import { ModalContext } from '../../../context/ModalContext/ModalContext'
 
 const AddCreditCardForm = () => {
   const [cardType, setCardType] = useState(null)
+  const { handleClose } = useContext(ModalContext)
 
   const numberBestCategories = 3
   const methods = useForm({
@@ -19,7 +21,10 @@ const AddCreditCardForm = () => {
     control,
   } = methods
 
-  const onSubmit = (data, e) => console.log(data, e)
+  const onSubmit = (data, e) => {
+    console.log(data, e)
+    handleClose()
+  }
 
   const { field } = useController({
     name: 'rewardType',
@@ -43,10 +48,16 @@ const AddCreditCardForm = () => {
 
   return (
     <FormProvider {...methods}>
-      <form className=" w-full max-w-lg place-content-center" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className=" w-full max-w-lg place-content-center"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <h2 className="text-base font-semibold leading-7 text-gray-900">General Info</h2>
         <div className="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-          <label htmlFor="bankName" className="block text-xs font-medium text-gray-900">
+          <label
+            htmlFor="bankName"
+            className="block text-xs font-medium text-gray-900"
+          >
             Credit Card Bank
           </label>
           <input
@@ -79,7 +90,10 @@ const AddCreditCardForm = () => {
           }
         /> */}
         <div className="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600 mt-1">
-          <label htmlFor="ccName" className="block text-xs font-medium text-gray-900">
+          <label
+            htmlFor="ccName"
+            className="block text-xs font-medium text-gray-900"
+          >
             Name
           </label>
           <input
@@ -91,7 +105,10 @@ const AddCreditCardForm = () => {
           />
         </div>
         <div className="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600 mt-1">
-          <label htmlFor="ccNetwork" className="block text-xs font-medium text-gray-900">
+          <label
+            htmlFor="ccNetwork"
+            className="block text-xs font-medium text-gray-900"
+          >
             Network
           </label>
           <input
@@ -130,7 +147,10 @@ const AddCreditCardForm = () => {
             <legend className="sr-only">Credit Card Reward Types</legend>
             <div className="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
               {creditCardTypes.map((creditCardType) => (
-                <div key={creditCardType.id} className="flex items-center">
+                <div
+                  key={creditCardType.id}
+                  className="flex items-center"
+                >
                   <Controller
                     name="rewardType"
                     control={control}
@@ -146,7 +166,10 @@ const AddCreditCardForm = () => {
                           // onChange={() => field.onChange(creditCardType.reference)}
                           checked={field.value === creditCardType.reference}
                         />
-                        <label htmlFor={creditCardType.id} className="ml-3 block text-sm font-medium leading-6 text-gray-900">
+                        <label
+                          htmlFor={creditCardType.id}
+                          className="ml-3 block text-sm font-medium leading-6 text-gray-900"
+                        >
                           {creditCardType.type}
                         </label>
                       </>
@@ -161,7 +184,14 @@ const AddCreditCardForm = () => {
           <div className="mt-3">
             <label className="text-base font-semibold text-gray-900">Best 3 Categories</label>
             <p className="text-sm text-gray-500">Setup the best categories that this credit card covers</p>
-            {cardType && [...Array(numberBestCategories)].map((_, i) => <CategorySelection key={i} creditCardIncentiveType={cardType} index={i} />)}
+            {cardType &&
+              [...Array(numberBestCategories)].map((_, i) => (
+                <CategorySelection
+                  key={i}
+                  creditCardIncentiveType={cardType}
+                  index={i}
+                />
+              ))}
           </div>
         </div>
         <button

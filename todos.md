@@ -6,8 +6,7 @@
 - Increased amount of credit cards for the points could provide individuals with different wallet/purse combinations and carries
 
 ### What's Next?
-- Identify Solution
-- Begin implmentation of a solution for calculating points for credit cards
+- 
 
 ## Folder Structure
 Tests should be in each folder breakdown
@@ -30,12 +29,11 @@ Tests should be in each folder breakdown
 - Hook up front end sign in options with backend authentication
 - 
 ### Todos
-- DaisyUI removal --> Tailwind
 - User needs to be logged into a session and authenticate 
     - isLoggedIn is currently still false after signing up
     - isAuthenticated is also false
 - Setup reset on clicking add on credit card form
-- Create routes and controllers for credit card
+- Setup API for adding credit cards to a different database (PostgreSQL) with more stable information. Keep mongodb backend for management of credit card points 
 
 ### Done
 - Authentication
