@@ -22,6 +22,7 @@ const AddCreditCardForm = () => {
   } = methods
 
   const onSubmit = (data, e) => {
+    e.preventDefault()
     console.log(data, e)
     handleClose()
   }
@@ -184,6 +185,7 @@ const AddCreditCardForm = () => {
           <div className="mt-3">
             <label className="text-base font-semibold text-gray-900">Best 3 Categories</label>
             <p className="text-sm text-gray-500">Setup the best categories that this credit card covers</p>
+            {/* todo: refactor to avoid using index later on */}
             {cardType &&
               [...Array(numberBestCategories)].map((_, i) => (
                 <CategorySelection
