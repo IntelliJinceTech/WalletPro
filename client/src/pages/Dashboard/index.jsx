@@ -51,11 +51,10 @@ const Dashboard = () => {
         >
           Add Credit Card
         </button>
-
-        <Modal>
-          <AddCreditCardForm />
-        </Modal>
       </div>
+      <Modal>
+        <AddCreditCardForm />
+      </Modal>
     </div>
   )
 }
