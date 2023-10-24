@@ -10,7 +10,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const CreditCard = ({ bank, key, name, network, rewardType, setAllCreditCards, id, inEditingMode, isEditActive, clearEditActive, isFavorite }) => {
+const CreditCard = ({ bank, name, network, rewardType, setAllCreditCards, id, inEditingMode, isEditActive, clearEditActive, isFavorite }) => {
   const [creditCardOrder, setCreditCardOrder] = useState([])
 
   return (

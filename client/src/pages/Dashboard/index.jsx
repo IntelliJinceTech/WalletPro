@@ -40,7 +40,10 @@ const Dashboard = () => {
       <TimeBasedStats />
       <CategoryBadge />
       <div className="flex flex-col w-full border-opacity-50">
-        <Wallet allCreditCards={allCreditCards} setAllCreditCards={setAllCreditCards} />
+        <Wallet
+          allCreditCards={allCreditCards}
+          setAllCreditCards={setAllCreditCards}
+        />
         <button
           type="button"
           className="rounded-full bg-indigo-600 px-2.5 py-1 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

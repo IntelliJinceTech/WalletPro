@@ -6,6 +6,7 @@ import { EditingModeContext } from '../../context/EditingModeContext/EditingMode
 const Wallet = ({ allCreditCards, setAllCreditCards }) => {
   const { setEditingMode, editingMode, toggleEditingMode } = useContext(EditingModeContext)
   const [activeEditModeIndex, setActiveEditModeIndex] = useState()
+  console.log(allCreditCards)
 
   return (
     <div>
@@ -16,7 +17,7 @@ const Wallet = ({ allCreditCards, setAllCreditCards }) => {
           <div className="grid grid-cols-1 gap-x-6 gap-y-8">
             {allCreditCards.map((card, idx) => (
               <CreditCard
-                key={card.id}
+                key={card._id}
                 bank={card.bank}
                 name={card.name}
                 network={card.network}

@@ -105,30 +105,49 @@ const AddCreditCardForm = () => {
             placeholder="Example: Sapphire Preferred"
           />
         </div>
-        <div className="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600 mt-1">
-          <label
-            htmlFor="ccNetwork"
-            className="block text-xs font-medium text-gray-900"
-          >
-            Network
-          </label>
-          <input
-            {...methods.register(
-              'ccNetwork'
-              // {
-              //   required: 'This input is required',
-              //   pattern: {
-              //     value: /[a-zA-Z]+$/,
-              //     message: 'Alphabetic input only',
-              //   },
-              // }
-            )}
-            id="ccNetwork"
-            type="text"
-            className="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-            placeholder="Example: VISA"
-          />
+        <div className=" flex gap-1 w-full">
+          <div className="grow rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600 mt-1">
+            <label
+              htmlFor="ccNetwork"
+              className="block text-xs font-medium text-gray-900"
+            >
+              Network
+            </label>
+            <input
+              {...methods.register(
+                'ccNetwork'
+                // {
+                //   required: 'This input is required',
+                //   pattern: {
+                //     value: /[a-zA-Z]+$/,
+                //     message: 'Alphabetic input only',
+                //   },
+                // }
+              )}
+              id="ccNetwork"
+              type="text"
+              className="block border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+              placeholder="Example: VISA"
+            />
+          </div>
+
+          <div className="grow rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600 mt-1">
+            <label
+              htmlFor="annualFee"
+              className="block text-xs font-medium text-gray-900"
+            >
+              Annual Fee
+            </label>
+            <input
+              {...methods.register('annualFee')}
+              id="annualFee"
+              type="number"
+              className="block border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+              placeholder="USD"
+            />
+          </div>
         </div>
+
         {/* <ErrorMessage
           errors={errors}
           name="network"
