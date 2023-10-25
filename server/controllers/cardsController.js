@@ -14,31 +14,30 @@ export const addCard = async (req, res) => {
     // destructure from req.body
     const { bankName, ccName, ccNetwork, rewardType, annualFee, categories } = req.body
     // console.log(req.body)
-
-    let rewardCategories = []
-    if (rewardType === 'percentage') {
-      categories.map((category) => {
-        rewardCategories.push({
+    console.log(categories)
+    let rewardCategories = categories.map((category) => {
+      category.pointsMultiplier = parseInt(category.pointsMultiplier) || 0
+      category.percentage = parseInt(category.percentage) || 0
+      if (rewardType === 'percentage') {
+        return {
           category: category.categoryType,
           percent: category.percentage,
-        })
-      })
-    } else if (rewardType === 'points') {
-      categories.map((category) => {
-        rewardCategories.push({
+        }
+      } else if (rewardType === 'points') {
+        return {
           category: category.categoryType,
           pointsMultiplier: category.pointsMultiplier,
-        })
-      })
-    }
-    console.log(rewardsCategories)
+        }
+      }
+    })
+    console.log('new reward categories array:  ', rewardCategories)
 
     const newCard = await CreditCard.create({
       bank: bankName,
       name: ccName,
       network: ccNetwork,
       rewardType: rewardType.toLowerCase(),
-      annualFee,
+      annualFee: annualFee,
       favorite: false,
       rewards: rewardCategories,
     })
