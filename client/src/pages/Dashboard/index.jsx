@@ -8,6 +8,7 @@ import TimeBasedStats from './Stats/TimeBasedStats'
 import CategoryBadge from './CategoryDisplay/CategoryBadge.jsx'
 import APIService from '../../services/apiService'
 import { EditingModeContext } from '../../context/EditingModeContext/EditingModeContext'
+import AddCCButton from './AddCC/AddCCButton'
 
 const Dashboard = () => {
   const [isMobile, setIsMobile] = useState(false)
@@ -44,13 +45,7 @@ const Dashboard = () => {
           allCreditCards={allCreditCards}
           setAllCreditCards={setAllCreditCards}
         />
-        <button
-          type="button"
-          className="rounded-full bg-indigo-600 px-2.5 py-1 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          onClick={handleOpen}
-        >
-          Add Credit Card
-        </button>
+        <AddCCButton>Add Credit Card</AddCCButton>
       </div>
       <Modal>
         <AddCreditCardForm />
