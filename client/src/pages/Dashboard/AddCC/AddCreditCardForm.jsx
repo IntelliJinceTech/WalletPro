@@ -166,7 +166,7 @@ const AddCreditCardForm = ({ getAllCards, setAllCreditCards }) => {
               id="ccNetwork"
               type="text"
               className="block border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-              placeholder="Example: VISA"
+              placeholder="VISA"
             />
           </div>
 
