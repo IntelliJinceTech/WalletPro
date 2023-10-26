@@ -136,11 +136,11 @@ const CreditCard = ({
       <dl className="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6 bg-blue-800 text-gray-50">
         <div className="flex justify-between gap-x-4 py-3">
           <dt className="">Average Weekly Point Accumulation</dt>
-          <dd className="">9000</dd>
+          <dd className="">1000</dd>
         </div>
         <div className="flex justify-between gap-x-4 py-3">
           <dt className="">Best Category</dt>
-          <dd className="flex items-start gap-x-2">Groceries</dd>
+          <dd className="flex items-start gap-x-2">Travel</dd>
         </div>
       </dl>
     </div>
