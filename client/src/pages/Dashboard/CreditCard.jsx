@@ -10,7 +10,21 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const CreditCard = ({ bank, name, network, rewardType, setAllCreditCards, id, inEditingMode, isEditActive, clearEditActive, isFavorite }) => {
+const CreditCard = ({
+  bank,
+  name,
+  network,
+  rewardType,
+  setAllCreditCards,
+  id,
+  inEditingMode,
+  isEditActive,
+  clearEditActive,
+  isFavorite,
+  lastFourDigits,
+  expiryDate,
+  annualFee,
+}) => {
   const [creditCardOrder, setCreditCardOrder] = useState([])
 
   return (
@@ -76,8 +90,8 @@ const CreditCard = ({ bank, name, network, rewardType, setAllCreditCards, id, in
                   </svg>
                   <div>
                     <div className="mt-3 sm:ml-4 sm:mt-0 flex xs:justify-start sm:justify-around">
-                      <div className="text-sm font-medium text-gray-900 pt-1 ">Ending with 4242</div>
-                      <div className="mt-1 ml-3 text-sm text-gray-600 sm:flex sm:items-center">Expires 12/20</div>
+                      <div className="text-sm font-medium text-gray-900 pt-1 ">Ending with {lastFourDigits}</div>
+                      <div className="mt-1 ml-3 text-sm text-gray-600 sm:flex sm:items-center">Expires {expiryDate}</div>
                     </div>
                     <div className="text-sm text-gray-600 sm:flex sm:items-center xs:ml-0 sm:ml-4 mt-3">{`Reward Type: ${capitalizeFirst(rewardType)}`}</div>
                   </div>

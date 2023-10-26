@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import CreditCard from '../models/CreditCard.js'
+import { convertDateToMonthYear } from '../utils/convertDateToMonthYear.js'
 
 export const getCards = async (req, res) => {
   try {
@@ -12,7 +13,7 @@ export const getCards = async (req, res) => {
 export const addCard = async (req, res) => {
   try {
     // destructure from req.body
-    const { bankName, ccName, ccNetwork, rewardType, annualFee, categories } = req.body
+    const { bankName, ccName, ccNetwork, rewardType, annualFee, categories, expiryDate, lastFourDigits } = req.body
     // console.log(req.body)
     console.log(categories)
     let rewardCategories = categories.map((category) => {
@@ -39,6 +40,8 @@ export const addCard = async (req, res) => {
       rewardType: rewardType.toLowerCase(),
       annualFee: annualFee,
       favorite: false,
+      expiryDate: convertDateToMonthYear(expiryDate),
+      lastFourDigits: lastFourDigits,
       rewards: rewardCategories,
     })
 

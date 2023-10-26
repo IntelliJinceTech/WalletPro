@@ -48,7 +48,10 @@ const Dashboard = () => {
         <AddCCButton>Add Credit Card</AddCCButton>
       </div>
       <Modal>
-        <AddCreditCardForm />
+        <AddCreditCardForm
+          getAllCards={getAllCards}
+          setAllCreditCards={setAllCreditCards}
+        />
       </Modal>
     </div>
   )

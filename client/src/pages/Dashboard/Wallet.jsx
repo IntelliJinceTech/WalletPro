@@ -6,7 +6,7 @@ import { EditingModeContext } from '../../context/EditingModeContext/EditingMode
 const Wallet = ({ allCreditCards, setAllCreditCards }) => {
   const { setEditingMode, editingMode, toggleEditingMode } = useContext(EditingModeContext)
   const [activeEditModeIndex, setActiveEditModeIndex] = useState()
-  console.log(allCreditCards)
+  // console.log(allCreditCards)
 
   return (
     <div>
@@ -25,6 +25,9 @@ const Wallet = ({ allCreditCards, setAllCreditCards }) => {
                 setAllCreditCards={setAllCreditCards}
                 id={card.id}
                 isFavorite={card.isFavorite}
+                lastFourDigits={card.lastFourDigits}
+                expiryDate={card.expiryDate}
+                annualFee={card.annualFee}
                 inEditingMode={activeEditModeIndex === idx}
                 isEditActive={() => setActiveEditModeIndex(idx)}
                 clearEditActive={() => setActiveEditModeIndex(null)}

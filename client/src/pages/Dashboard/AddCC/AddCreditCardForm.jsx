@@ -4,8 +4,9 @@ import { useEffect, useState, useContext } from 'react'
 import { ErrorMessage } from '@hookform/error-message'
 import CategorySelection from './CategorySelection'
 import { ModalContext } from '../../../context/ModalContext/ModalContext'
+import apiService from '../../../services/apiService'
 
-const AddCreditCardForm = () => {
+const AddCreditCardForm = ({ getAllCards, setAllCreditCards }) => {
   const [cardType, setCardType] = useState(null)
   const { handleClose } = useContext(ModalContext)
 
@@ -21,9 +22,16 @@ const AddCreditCardForm = () => {
     control,
   } = methods
 
-  const onSubmit = (data, e) => {
+  const onSubmit = async (data, e) => {
     e.preventDefault()
-    console.log(data, e)
+    try {
+      const response = await apiService.addCard(data)
+      console.log(response)
+      // console.log(data)
+    } catch (error) {
+      console.error(error)
+    }
+    getAllCards()
     handleClose()
   }
 
@@ -54,31 +62,29 @@ const AddCreditCardForm = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <h2 className="text-base font-semibold leading-7 text-gray-900">General Info</h2>
-        <div className="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
-          <label
-            htmlFor="bankName"
-            className="block text-xs font-medium text-gray-900"
-          >
-            Credit Card Bank
-          </label>
-          <input
-            {...methods.register(
-              'bankName'
-              // {
-              //   required: 'This input is required',
-              //   pattern: {
-              //     value: /[a-zA-Z]+$/,
-              //     message: 'Alphabetic input only',
-              //   },
-              // }
-            )}
-            id="bankName"
-            type="text"
-            className="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-            placeholder="Example: Chase"
-          />
-        </div>
-        {/* <ErrorMessage
+        <div className=" flex gap-1 w-full">
+          <div className="grow rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600 mt-1">
+            <label
+              htmlFor="bankName"
+              className="block text-xs font-medium text-gray-900"
+            >
+              Credit Card Bank
+            </label>
+            <input
+              {...methods.register('bankName', {
+                required: 'This input is required',
+                // pattern: {
+                //   value: /[a-zA-Z]+$/,
+                //   message: 'Alphabetic input only',
+                // },
+              })}
+              id="bankName"
+              type="text"
+              className="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+              placeholder="Chase"
+            />
+          </div>
+          {/* <ErrorMessage
           errors={errors}
           name="bank"
           render={({ messages }) =>
@@ -90,20 +96,53 @@ const AddCreditCardForm = () => {
             ))
           }
         /> */}
-        <div className="rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600 mt-1">
-          <label
-            htmlFor="ccName"
-            className="block text-xs font-medium text-gray-900"
-          >
-            Name
-          </label>
-          <input
-            id="ccName"
-            {...methods.register('ccName')}
-            type="text"
-            className="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-            placeholder="Example: Sapphire Preferred"
-          />
+          <div className="grow rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600 mt-1">
+            <label
+              htmlFor="lastFourDigits"
+              className="block text-xs font-medium text-gray-900"
+            >
+              Last 4 digits
+            </label>
+            <input
+              {...methods.register('lastFourDigits')}
+              id="lastFourDigits"
+              type="text"
+              className="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+              placeholder="xxxx"
+            />
+          </div>
+        </div>
+        <div className=" flex gap-1 w-full">
+          <div className="grow rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600 mt-1">
+            <label
+              htmlFor="ccName"
+              className="block text-xs font-medium text-gray-900"
+            >
+              Name
+            </label>
+            <input
+              id="ccName"
+              {...methods.register('ccName')}
+              type="text"
+              className="block w-full border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+              placeholder="Sapphire Preferred"
+            />
+          </div>
+          <div className="grow rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600 mt-1">
+            <label
+              htmlFor="expiryDate"
+              className="block text-xs font-medium text-gray-900"
+            >
+              Expiry Date
+            </label>
+            <input
+              {...methods.register('expiryDate')}
+              id="expiryDate"
+              type="month"
+              className="block border-0 p-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+              placeholder="USD"
+            />
+          </div>
         </div>
         <div className=" flex gap-1 w-full">
           <div className="grow rounded-md px-3 pb-1.5 pt-2.5 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600 mt-1">
