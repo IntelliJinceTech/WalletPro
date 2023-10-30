@@ -54,7 +54,7 @@ export const addCard = async (req, res) => {
 
 // todo testing needed
 // updating credit card information such as rewards or payment schedule
-export const updateCards = async (req, res) => {
+export const updateCard = async (req, res) => {
   try {
     const creditCardId = req.params.cardId
     const updateData = req.body
@@ -74,7 +74,7 @@ export const updateCards = async (req, res) => {
     return res.status(500)
   }
 }
-export const deleteCards = async (req, res) => {
+export const deleteCard = async (req, res) => {
   try {
     const creditCardId = req.params.cardId
     console.log(creditCardId)

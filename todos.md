@@ -33,13 +33,14 @@ Tests should be in each folder breakdown
     - isLoggedIn is currently still false after signing up
     - isAuthenticated is also false
 - Setup reset on clicking add on credit card form
+- Ensure CRUD requests for mongodb are working properly with the changes made to the model
 - Setup API for adding credit cards to a different database (PostgreSQL) with more stable information. Keep mongodb backend for management of credit card points 
 
 ### Done
 - Authentication
 - Main Routes
 - Auth Routes
-- Credit Card Controller, Model, 
+- Credit Card Model 
 #### Logic
 
 ## 
