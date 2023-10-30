@@ -29,8 +29,8 @@ const CreditCard = ({
   rewardType,
   setAllCreditCards,
   id,
-  inEditingMode,
-  isEditActive,
+  checkCardEditModeActive,
+  editTargetCardId,
   clearEditActive,
   isFavorite,
   lastFourDigits,
@@ -44,9 +44,11 @@ const CreditCard = ({
       <div className="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
         <div className="bg-white shadow xs:rounded-lg min-w-full">
           <div className="px-4 py-5 sm:p-6">
-            <div className="flex justify-between">
-              {inEditingMode ? (
-                <div>
+            <div className="flex justify-around">
+              {/* <h3 className="text-base font-semibold leading-6 text-gray-900">{bank}</h3>
+              <h4 className="text-sm">{name}</h4> */}
+              {checkCardEditModeActive ? (
+                <div className="flex justify-around">
                   <label
                     htmlFor="bank"
                     className="sr-only"
@@ -57,14 +59,14 @@ const CreditCard = ({
                     id="bank"
                     type="text"
                     placeholder={bank}
-                    className="rounded-md border-0 ring-1 ring-inset ring-gray-300 p-1 placeholder:font-semibold"
+                    className=" max-w-[70%] text-sm sm:max-w-full rounded-md border-0 ring-1 ring-inset ring-gray-300 p-1 placeholder:font-semibold"
                   />
                 </div>
               ) : (
                 <h3 className="text-base font-semibold leading-6 text-gray-900">{bank}</h3>
               )}
-              {inEditingMode ? (
-                <div>
+              {checkCardEditModeActive ? (
+                <div className="flex justify-around">
                   <label
                     htmlFor="card-name"
                     className="sr-only"
@@ -72,7 +74,7 @@ const CreditCard = ({
                   <input
                     id="card-name"
                     type="text"
-                    className="rounded-md border-0 ring-1 ring-inset ring-gray-300 p-1"
+                    className="text-sm max-w-[70%] sm:max-w-full rounded-md border-0 ring-1 ring-inset ring-gray-300 p-1 placeholder:font-semibold"
                     placeholder={name}
                   />
                 </div>
@@ -96,10 +98,10 @@ const CreditCard = ({
                 </div>
               </div>
               <div className="flex flex-col justify-around">
-                {!inEditingMode ? (
+                {!checkCardEditModeActive ? (
                   <PencilSquareIcon
                     className="mr-2 text-orange-300 w-6 hover:text-gray-600"
-                    onClick={isEditActive}
+                    onClick={editTargetCardId}
                   />
                 ) : (
                   <button

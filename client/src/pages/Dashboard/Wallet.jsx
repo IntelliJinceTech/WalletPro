@@ -5,14 +5,12 @@ import { EditingModeContext } from '../../context/EditingModeContext/EditingMode
 
 const Wallet = ({ allCreditCards, setAllCreditCards }) => {
   const { setEditingMode, editingMode, toggleEditingMode } = useContext(EditingModeContext)
-  const [activeEditModeIndex, setActiveEditModeIndex] = useState()
-  // console.log(allCreditCards)
+  const [activeEditModeId, setActiveEditModeId] = useState()
 
   return (
     <div>
       <div className="flex xs:flex-col lg:flex-row px-3 mx-auto mb-5 place-content-center">
-        {/* <div className=""> */}
-        <div className="grid lg:grid-cols-3 gap-3 max-h-1/2">
+        <div className="grid  lg:grid-cols-3 gap-3 max-h-1/2">
           {/* <CreditCards allCreditCards={allCreditCards} setAllCreditCards={setAllCreditCards} /> */}
           <div className="grid grid-cols-1 gap-x-6 gap-y-8">
             {allCreditCards.map((card, idx) => (
@@ -28,9 +26,9 @@ const Wallet = ({ allCreditCards, setAllCreditCards }) => {
                 lastFourDigits={card.lastFourDigits}
                 expiryDate={card.expiryDate}
                 annualFee={card.annualFee}
-                inEditingMode={activeEditModeIndex === card._id}
-                isEditActive={() => setActiveEditModeIndex(card._id)}
-                clearEditActive={() => setActiveEditModeIndex(null)}
+                checkCardEditModeActive={activeEditModeId === card._id}
+                editTargetCardId={() => setActiveEditModeId(card._id)}
+                clearEditActive={() => setActiveEditModeId(null)}
               />
             ))}
           </div>
