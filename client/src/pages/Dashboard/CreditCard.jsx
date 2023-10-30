@@ -39,6 +39,14 @@ const CreditCard = ({
 }) => {
   const [creditCardOrder, setCreditCardOrder] = useState([])
 
+  const handleBankNameAndCCNameSubmit = async (e, id, bank, ccName) => {
+    e.preventDefault()
+    try {
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200">
       <div className="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
