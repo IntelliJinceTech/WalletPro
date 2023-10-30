@@ -29,17 +29,25 @@ const Dashboard = () => {
     getAllCards()
   }, [])
 
-  const orderCards = (category) => {
-    // todo: when clicking on category badge
-    // todo: sort cards from highest to lowest based on category clicked
-    // todo: points > percentage
-    // const sortedCards = allCreditCards.sort((a, b) => {})
+  const sortCreditCardsByCategory = (selectedCategory, typeCategory) => {
+    // todo: replicate for all categories
+    if (selectedCategory === 'groceries') {
+      const sortedCards = allCreditCards
+        .map((card) => ({
+          ...card,
+          rewards: card.rewards.sort((a, b) => (b[typeCategory] || 0) - (a[typeCategory] || 0)),
+        }))
+        .sort((a, b) => (b.rewards[0][typeCategory] || 0) - (a.rewards[0][typeCategory] || 0))
+
+      setAllCreditCards(sortedCards)
+      console.log(allCreditCards)
+    }
   }
 
   return (
     <div className="min-h-screen">
       <TimeBasedStats />
-      <CategoryBadge />
+      <CategoryBadge sortCreditCardsByCategory={sortCreditCardsByCategory} />
       <div className="flex flex-col w-full border-opacity-50">
         <Wallet
           allCreditCards={allCreditCards}

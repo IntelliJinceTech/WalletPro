@@ -28,8 +28,8 @@ const Wallet = ({ allCreditCards, setAllCreditCards }) => {
                 lastFourDigits={card.lastFourDigits}
                 expiryDate={card.expiryDate}
                 annualFee={card.annualFee}
-                inEditingMode={activeEditModeIndex === idx}
-                isEditActive={() => setActiveEditModeIndex(idx)}
+                inEditingMode={activeEditModeIndex === card._id}
+                isEditActive={() => setActiveEditModeIndex(card._id)}
                 clearEditActive={() => setActiveEditModeIndex(null)}
               />
             ))}

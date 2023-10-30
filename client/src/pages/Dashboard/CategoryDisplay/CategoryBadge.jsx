@@ -26,12 +26,18 @@ const allCategoryBadges = [
   },
 ]
 
-const CategoryBadge = ({ handleSortCategory }) => {
+const CategoryBadge = ({ sortCreditCardsByCategory }) => {
   return (
     <div className="text-gray-50 flex flex-row mx-auto justify-around my-5">
       {allCategoryBadges.map((ele, idx) => (
-        <div key={idx} className="mx-auto ">
-          <button type="button" onClick={(e) => console.log(e)}>
+        <div
+          key={idx}
+          className="mx-auto "
+        >
+          <button
+            type="button"
+            onClick={() => sortCreditCardsByCategory(ele.category, ele.rewardCategory)}
+          >
             <ele.icon className="text-blue-500 w-10 h-10 hover:text-blue-400" />
           </button>
         </div>
