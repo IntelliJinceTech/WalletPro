@@ -52,6 +52,7 @@ const Dashboard = () => {
         <Wallet
           allCreditCards={allCreditCards}
           setAllCreditCards={setAllCreditCards}
+          getAllCards={getAllCards}
         />
         <AddCCButton>Add Credit Card</AddCCButton>
       </div>

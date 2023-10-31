@@ -56,19 +56,16 @@ export const addCard = async (req, res) => {
 // updating credit card information such as rewards or payment schedule
 export const updateCard = async (req, res) => {
   try {
-    const creditCardId = req.params.cardId
-    const updateData = req.body
-    console.log(creditCardId)
+    const { cardId } = req.params
+    const { bank, name } = req.body
+    const card = await CreditCard.findById(cardId)
 
-    const updatedCard = await CreditCard.findByIdAndUpdate(creditCardId, { ...updateData }, { new: true })
-
-    if (!updatedCard) {
-      return res.status(404).json({ error: 'credit card not found' })
+    if (card) {
+      card.bank = bank
+      card.name = name
+      await card.save()
+      return res.json({ card })
     }
-    // updatedCard.save()
-    // card.set(updateData)
-    await updatedCard.save()
-    res.json(updatedCard)
   } catch (error) {
     console.error(error)
     return res.status(500)

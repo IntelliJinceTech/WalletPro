@@ -6,6 +6,7 @@ import { BookmarkIcon, EllipsisHorizontalIcon, PencilSquareIcon, TrashIcon } fro
 import APIService from '../../services/apiService'
 import { capitalizeFirst } from '../../utils/capitalize'
 import { AmexIcon, MasterCardIcon, VisaIcon } from '../../components/BankingIcons'
+import { BankNameForm } from './BankNameForm'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -36,59 +37,36 @@ const CreditCard = ({
   lastFourDigits,
   expiryDate,
   annualFee,
+  getAllCards,
 }) => {
   const [creditCardOrder, setCreditCardOrder] = useState([])
 
-  const handleBankNameAndCCNameSubmit = async (e, id, bank, ccName) => {
-    e.preventDefault()
-    try {
-    } catch (error) {
-      console.error(error)
-    }
-  }
+  // const handleBankNameAndCCNameSubmit = async (e, data) => {
+  //   e.preventDefault()
+  //   try {
+  //     const response = await APIService.updateCard(data)
+  //     console.log(response)
+  //     clearEditActive()
+  //     // setAllCreditCards(response.data)
+  //   } catch (error) {
+  //     console.error(error)
+  //   }
+  // }
 
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200">
       <div className="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
         <div className="bg-white shadow xs:rounded-lg min-w-full">
           <div className="px-4 py-5 sm:p-6">
-            <div className="flex justify-around">
-              {/* <h3 className="text-base font-semibold leading-6 text-gray-900">{bank}</h3>
-              <h4 className="text-sm">{name}</h4> */}
-              {checkCardEditModeActive ? (
-                <div className="flex justify-around">
-                  <label
-                    htmlFor="bank"
-                    className="sr-only"
-                  >
-                    Bank
-                  </label>
-                  <input
-                    id="bank"
-                    type="text"
-                    placeholder={bank}
-                    className=" max-w-[70%] text-sm sm:max-w-full rounded-md border-0 ring-1 ring-inset ring-gray-300 p-1 placeholder:font-semibold"
-                  />
-                </div>
-              ) : (
-                <h3 className="text-base font-semibold leading-6 text-gray-900">{bank}</h3>
-              )}
-              {checkCardEditModeActive ? (
-                <div className="flex justify-around">
-                  <label
-                    htmlFor="card-name"
-                    className="sr-only"
-                  ></label>
-                  <input
-                    id="card-name"
-                    type="text"
-                    className="text-sm max-w-[70%] sm:max-w-full rounded-md border-0 ring-1 ring-inset ring-gray-300 p-1 placeholder:font-semibold"
-                    placeholder={name}
-                  />
-                </div>
-              ) : (
-                <h4 className="text-sm">{name}</h4>
-              )}
+            <div className="">
+              <BankNameForm
+                checkCardEditModeActive={checkCardEditModeActive}
+                bank={bank}
+                name={name}
+                clearEditActive={clearEditActive}
+                Id={id}
+                getAllCards={getAllCards}
+              />
             </div>
             <div className="mt-5 flex bg-gray-50">
               <div className="rounded-md px-6 py-5 sm:flex sm:items-start sm:justify-between xs:w-full">
@@ -112,25 +90,26 @@ const CreditCard = ({
                     onClick={editTargetCardId}
                   />
                 ) : (
-                  <button
-                    type="button"
-                    onClick={clearEditActive}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-6 h-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 019 9v.375M10.125 2.25A3.375 3.375 0 0113.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 013.375 3.375M9 15l2.25 2.25L15 12"
-                      />
-                    </svg>
-                  </button>
+                  // <button
+                  //   type="button"
+                  //   onClick={clearEditActive}
+                  // >
+                  //   <svg
+                  //     xmlns="http://www.w3.org/2000/svg"
+                  //     fill="none"
+                  //     viewBox="0 0 24 24"
+                  //     strokeWidth={1.5}
+                  //     stroke="currentColor"
+                  //     className="w-6 h-6"
+                  //   >
+                  //     <path
+                  //       strokeLinecap="round"
+                  //       strokeLinejoin="round"
+                  //       d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 019 9v.375M10.125 2.25A3.375 3.375 0 0113.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 013.375 3.375M9 15l2.25 2.25L15 12"
+                  //     />
+                  //   </svg>
+                  // </button>
+                  ''
                 )}
                 <TrashIcon className="w-6 text-red-500 hover:text-red-400" />
 
