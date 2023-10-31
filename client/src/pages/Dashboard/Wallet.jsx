@@ -6,6 +6,7 @@ import { EditingModeContext } from '../../context/EditingModeContext/EditingMode
 const Wallet = ({ allCreditCards, setAllCreditCards, getAllCards }) => {
   const { setEditingMode, editingMode, toggleEditingMode } = useContext(EditingModeContext)
   const [activeEditModeId, setActiveEditModeId] = useState()
+  const [favoriteCard, setFavorateCard] = useState(false)
 
   return (
     <div>
@@ -13,7 +14,7 @@ const Wallet = ({ allCreditCards, setAllCreditCards, getAllCards }) => {
         <div className="grid  lg:grid-cols-3 gap-3 max-h-1/2">
           {/* <CreditCards allCreditCards={allCreditCards} setAllCreditCards={setAllCreditCards} /> */}
           <div className="grid grid-cols-1 gap-x-6 gap-y-8">
-            {allCreditCards.map((card, idx) => (
+            {allCreditCards.map((card) => (
               <CreditCard
                 key={card._id}
                 bank={card.bank}
@@ -30,6 +31,8 @@ const Wallet = ({ allCreditCards, setAllCreditCards, getAllCards }) => {
                 editTargetCardId={() => setActiveEditModeId(card._id)}
                 clearEditActive={() => setActiveEditModeId(null)}
                 getAllCards={getAllCards}
+                setFavorateCard={setFavorateCard}
+                favoriteCard={favoriteCard}
               />
             ))}
           </div>

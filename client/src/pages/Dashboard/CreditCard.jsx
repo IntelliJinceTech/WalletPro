@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 // import {} from 'react-icons/lia'
 import { FaCcVisa } from 'react-icons/fa'
-import { BookmarkIcon, EllipsisHorizontalIcon, PencilSquareIcon, TrashIcon } from '@heroicons/react/20/solid'
+import { BookmarkIcon, EllipsisHorizontalIcon, PencilSquareIcon, TrashIcon, XCircleIcon } from '@heroicons/react/20/solid'
 import APIService from '../../services/apiService'
 import { capitalizeFirst } from '../../utils/capitalize'
 import { AmexIcon, MasterCardIcon, VisaIcon } from '../../components/BankingIcons'
@@ -41,17 +41,12 @@ const CreditCard = ({
 }) => {
   const [creditCardOrder, setCreditCardOrder] = useState([])
 
-  // const handleBankNameAndCCNameSubmit = async (e, data) => {
-  //   e.preventDefault()
-  //   try {
-  //     const response = await APIService.updateCard(data)
-  //     console.log(response)
-  //     clearEditActive()
-  //     // setAllCreditCards(response.data)
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // }
+  const deleteCard = async (id) => {
+    try {
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200">
@@ -66,6 +61,7 @@ const CreditCard = ({
                 clearEditActive={clearEditActive}
                 Id={id}
                 getAllCards={getAllCards}
+                setAllCreditCards={setAllCreditCards}
               />
             </div>
             <div className="mt-5 flex bg-gray-50">
@@ -86,30 +82,14 @@ const CreditCard = ({
               <div className="flex flex-col justify-around">
                 {!checkCardEditModeActive ? (
                   <PencilSquareIcon
-                    className="mr-2 text-orange-300 w-6 hover:text-gray-600"
+                    className="mr-2 text-grey-500 w-6 hover:text-gray-300"
                     onClick={editTargetCardId}
                   />
                 ) : (
-                  // <button
-                  //   type="button"
-                  //   onClick={clearEditActive}
-                  // >
-                  //   <svg
-                  //     xmlns="http://www.w3.org/2000/svg"
-                  //     fill="none"
-                  //     viewBox="0 0 24 24"
-                  //     strokeWidth={1.5}
-                  //     stroke="currentColor"
-                  //     className="w-6 h-6"
-                  //   >
-                  //     <path
-                  //       strokeLinecap="round"
-                  //       strokeLinejoin="round"
-                  //       d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 019 9v.375M10.125 2.25A3.375 3.375 0 0113.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 013.375 3.375M9 15l2.25 2.25L15 12"
-                  //     />
-                  //   </svg>
-                  // </button>
-                  ''
+                  <XCircleIcon
+                    className="mr-2 text-orange-300 w-6 hover:text-gray-600"
+                    onClick={clearEditActive}
+                  />
                 )}
                 <TrashIcon className="w-6 text-red-500 hover:text-red-400" />
 

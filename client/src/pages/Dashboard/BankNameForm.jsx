@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import apiService from '../../services/apiService'
 
-export const BankNameForm = ({ checkCardEditModeActive, bank, name, Id, clearEditActive, getAllCards }) => {
+export const BankNameForm = ({ checkCardEditModeActive, bank, name, Id, clearEditActive, getAllCards, setAllCreditCards }) => {
   const {
     register,
     handleSubmit,
@@ -12,11 +12,16 @@ export const BankNameForm = ({ checkCardEditModeActive, bank, name, Id, clearEdi
     try {
       // console.log(data)
       const response = await apiService.updateCard(Id, data)
-      console.log('cardupdated: ', response)
+      // todo use lodash to update card
+      // console.log('cardupdated: ', response)
+      // const updatedCard = response.data
+      // console.log(updatedCard)
+
+      getAllCards()
     } catch (error) {
       throw new Error(error)
     }
-    await getAllCards()
+
     await clearEditActive()
     console.log(checkCardEditModeActive)
   }
@@ -38,7 +43,6 @@ export const BankNameForm = ({ checkCardEditModeActive, bank, name, Id, clearEdi
             type="text"
             placeholder={bank}
             className=" max-w-[70%] text-sm sm:max-w-full rounded-md border-0 ring-1 ring-inset ring-gray-300 p-1 placeholder:font-semibold"
-            value={bank}
             {...register('bank')}
           />
         </div>
@@ -52,7 +56,6 @@ export const BankNameForm = ({ checkCardEditModeActive, bank, name, Id, clearEdi
             type="text"
             className="text-sm max-w-[75%] sm:max-w-full rounded-md border-0 ring-1 ring-inset ring-gray-300 p-1 placeholder:font-semibold"
             placeholder={name}
-            value={name}
             {...register('name')}
           />
         </div>
