@@ -1,6 +1,15 @@
 export const VisaIcon = () => (
-  <svg className="h-8 w-auto xs:h-6 xs:flex-shrink-0" viewBox="0 0 36 24" aria-hidden="true">
-    <rect width={36} height={24} fill="#224DBA" rx={4} />
+  <svg
+    className="h-8 w-auto xs:h-6 xs:flex-shrink-0"
+    viewBox="0 0 36 24"
+    aria-hidden="true"
+  >
+    <rect
+      width={36}
+      height={24}
+      fill="#224DBA"
+      rx={4}
+    />
     <path
       fill="#fff"
       d="M10.925 15.673H8.874l-1.538-6c-.073-.276-.228-.52-.456-.635A6.575 6.575 0 005 8.403v-.231h3.304c.456 0 .798.347.855.75l.798 4.328 2.05-5.078h1.994l-3.076 7.5zm4.216 0h-1.937L14.8 8.172h1.937l-1.595 7.5zm4.101-5.422c.057-.404.399-.635.798-.635a3.54 3.54 0 011.88.346l.342-1.615A4.808 4.808 0 0020.496 8c-1.88 0-3.248 1.039-3.248 2.481 0 1.097.969 1.673 1.653 2.02.74.346 1.025.577.968.923 0 .519-.57.75-1.139.75a4.795 4.795 0 01-1.994-.462l-.342 1.616a5.48 5.48 0 002.108.404c2.108.057 3.418-.981 3.418-2.539 0-1.962-2.678-2.077-2.678-2.942zm9.457 5.422L27.16 8.172h-1.652a.858.858 0 00-.798.577l-2.848 6.924h1.994l.398-1.096h2.45l.228 1.096h1.766zm-2.905-5.482l.57 2.827h-1.596l1.026-2.827z"
@@ -12,7 +21,13 @@ export const VisaIcon = () => (
 export const AmexIcon = () => (
   // * original code from flowbite
   // <svg aria-hidden="true" class="h-8 w-auto xs:h-6 xs:flex-shrink-0" viewBox="0 0 256 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <svg aria-hidden="true" className="h-8 w-auto xs:h-6 xs:flex-shrink-0" viewBox="0 0 36 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    aria-hidden="true"
+    className="h-8 w-auto xs:h-6 xs:flex-shrink-0"
+    viewBox="0 0 36 24"
+    fill="#006fcf"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <path
       d="M28.812 0L0 63.76H34.492L38.768 53.594H48.542L52.818 63.76H90.784V56.001L94.167 63.76H113.806L117.189 55.837V63.76H196.148L205.749 53.858L214.739 63.76L255.294 63.842L226.391 32.058L255.294 0H215.368L206.022 9.71899L197.315 0H111.418L104.042 16.457L96.493 0H62.073V7.495L58.244 0C58.244 0 28.812 0 28.812 0ZM35.486 9.05399H52.299L71.41 52.29V9.05399H89.828L104.589 40.054L118.193 9.05399H136.519V54.806H125.368L125.277 18.955L109.02 54.806H99.045L82.697 18.955V54.806H59.757L55.408 44.549H31.912L27.572 54.797H15.281C15.281 54.797 35.486 9.05399 35.486 9.05399ZM146.721 9.05399H192.063L205.931 24.034L220.246 9.05399H234.114L213.043 32.049L234.114 54.779H219.617L205.749 39.625L191.361 54.779H146.721V9.05399ZM43.665 16.795L35.924 35.067H51.397L43.665 16.795ZM157.918 18.527V26.879H182.654V36.188H157.918V45.306H185.663L198.555 31.876L186.21 18.519H157.918V18.527Z"
       fill="white"
@@ -22,7 +37,13 @@ export const AmexIcon = () => (
 
 // ! Adjust css later
 export const MasterCardIcon = () => (
-  <svg aria-hidden="true" className="h-8 w-auto xs:h-6 xs:flex-shrink-0" viewBox="0 0 601 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    aria-hidden="true"
+    className="h-8 w-auto xs:h-6 xs:flex-shrink-0"
+    viewBox="0 0 601 360"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <path
       d="M359.01 179.504C359.01 278.647 278.639 359.004 179.5 359.004C80.361 359.004 0 278.643 0 179.504C0 80.3709 80.362 0.00390625 179.5 0.00390625C278.637 0.00390625 359.01 80.3749 359.01 179.504Z"
       fill="#D9222A"

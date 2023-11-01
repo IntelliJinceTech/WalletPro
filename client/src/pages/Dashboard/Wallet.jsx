@@ -8,6 +8,17 @@ const Wallet = ({ allCreditCards, setAllCreditCards, getAllCards }) => {
   const [activeEditModeId, setActiveEditModeId] = useState()
   const [favoriteCard, setFavorateCard] = useState(false)
 
+  const deleteCard = async (cardId) => {
+    try {
+      // const response = await apiService.deleteCard(id)
+      // console.log(response)
+      // await setAllCreditCards((prevCards) => prevCards.filter((card) => card.id !== id))
+      setAllCreditCards(allCreditCards.filter((c) => c._id !== cardId))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <div>
       <div className="flex xs:flex-col lg:flex-row px-3 mx-auto mb-5 place-content-center sm:min-w-max">
@@ -21,6 +32,7 @@ const Wallet = ({ allCreditCards, setAllCreditCards, getAllCards }) => {
                 name={card.name}
                 network={card.network}
                 rewardType={card.rewardType}
+                allCreditCards={allCreditCards}
                 setAllCreditCards={setAllCreditCards}
                 id={card._id}
                 isFavorite={card.isFavorite}
@@ -33,6 +45,7 @@ const Wallet = ({ allCreditCards, setAllCreditCards, getAllCards }) => {
                 getAllCards={getAllCards}
                 setFavorateCard={setFavorateCard}
                 favoriteCard={favoriteCard}
+                deleteCard={() => deleteCard(card._id)}
               />
             ))}
           </div>

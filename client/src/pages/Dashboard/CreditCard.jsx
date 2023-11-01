@@ -7,6 +7,8 @@ import APIService from '../../services/apiService'
 import { capitalizeFirst } from '../../utils/capitalize'
 import { AmexIcon, MasterCardIcon, VisaIcon } from '../../components/BankingIcons'
 import { BankNameForm } from './BankNameForm'
+import apiService from '../../services/apiService'
+import { FaCcAmex } from 'react-icons/fa'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -19,7 +21,7 @@ const networkIcon = (network) => {
   } else if (networkToLower === 'mastercard') {
     return <MasterCardIcon />
   } else if (networkToLower === 'amex') {
-    return <AmexIcon />
+    return <FaCcAmex className="fill-blue-500 w-8 xs:h-auto xs:flex-shrink-0" />
   }
 }
 
@@ -38,15 +40,21 @@ const CreditCard = ({
   expiryDate,
   annualFee,
   getAllCards,
+  allCreditCards,
+  deleteCard,
 }) => {
   const [creditCardOrder, setCreditCardOrder] = useState([])
 
-  const deleteCard = async (id) => {
-    try {
-    } catch (error) {
-      console.error(error)
-    }
-  }
+  // const deleteCard = async (cardId) => {
+  //   try {
+  //     // const response = await apiService.deleteCard(id)
+  //     // console.log(response)
+  //     // await setAllCreditCards((prevCards) => prevCards.filter((card) => card.id !== id))
+  //     setAllCreditCards(allCreditCards.filter((c) => c.id !== cardId))
+  //   } catch (error) {
+  //     console.error(error)
+  //   }
+  // }
 
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200">
@@ -69,7 +77,7 @@ const CreditCard = ({
                 <h4 className="sr-only">{network}</h4>
                 <div className="sm:flex sm:items-start">
                   {/* network icon selection */}
-                  {networkIcon(network)}
+                  {networkIcon(network.toLowerCase())}
                   <div>
                     <div className="mt-3 sm:ml-4 sm:mt-0 flex xs:justify-start sm:justify-around">
                       <div className="text-sm font-medium text-gray-900 pt-1 ">Ending with {lastFourDigits}</div>
@@ -91,7 +99,11 @@ const CreditCard = ({
                     onClick={clearEditActive}
                   />
                 )}
-                <TrashIcon className="w-6 text-red-500 hover:text-red-400" />
+
+                <TrashIcon
+                  onClick={() => deleteCard(id)}
+                  className="w-6 text-red-500 hover:text-red-400"
+                />
 
                 {/* favorite toggle */}
                 <button type="button">

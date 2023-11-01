@@ -36,7 +36,7 @@ export const addCard = async (req, res) => {
     const newCard = await CreditCard.create({
       bank: bankName,
       name: ccName,
-      network: ccNetwork,
+      network: ccNetwork.toLowerCase(),
       rewardType: rewardType.toLowerCase(),
       annualFee: annualFee,
       favorite: false,
