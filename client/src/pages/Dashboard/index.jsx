@@ -18,8 +18,9 @@ const Dashboard = () => {
   const getAllCards = async () => {
     try {
       const response = await APIService.getCards()
-      console.log(response)
+      // console.log(response)
       setAllCreditCards(response.data)
+      console.log(allCreditCards)
     } catch (error) {
       console.error(error)
     }

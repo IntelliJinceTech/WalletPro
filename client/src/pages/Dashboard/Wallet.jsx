@@ -2,17 +2,16 @@ import { useContext, useState } from 'react'
 import CreditCard from './CreditCard'
 import Categories from './CreditCardCategories'
 import { EditingModeContext } from '../../context/EditingModeContext/EditingModeContext'
+import apiService from '../../services/apiService'
 
 const Wallet = ({ allCreditCards, setAllCreditCards, getAllCards }) => {
   const { setEditingMode, editingMode, toggleEditingMode } = useContext(EditingModeContext)
   const [activeEditModeId, setActiveEditModeId] = useState()
-  const [favoriteCard, setFavorateCard] = useState(false)
 
   const deleteCard = async (cardId) => {
     try {
-      // const response = await apiService.deleteCard(id)
+      const response = await apiService.deleteCard(cardId)
       // console.log(response)
-      // await setAllCreditCards((prevCards) => prevCards.filter((card) => card.id !== id))
       setAllCreditCards(allCreditCards.filter((c) => c._id !== cardId))
     } catch (error) {
       console.error(error)
@@ -43,8 +42,6 @@ const Wallet = ({ allCreditCards, setAllCreditCards, getAllCards }) => {
                 editTargetCardId={() => setActiveEditModeId(card._id)}
                 clearEditActive={() => setActiveEditModeId(null)}
                 getAllCards={getAllCards}
-                setFavorateCard={setFavorateCard}
-                favoriteCard={favoriteCard}
                 deleteCard={() => deleteCard(card._id)}
               />
             ))}

@@ -9,6 +9,7 @@ import { AmexIcon, MasterCardIcon, VisaIcon } from '../../components/BankingIcon
 import { BankNameForm } from './BankNameForm'
 import apiService from '../../services/apiService'
 import { FaCcAmex } from 'react-icons/fa'
+import find from 'lodash.find'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -42,6 +43,7 @@ const CreditCard = ({
   getAllCards,
   allCreditCards,
   deleteCard,
+  toggleFavorite,
 }) => {
   const [creditCardOrder, setCreditCardOrder] = useState([])
 
@@ -55,6 +57,10 @@ const CreditCard = ({
   //     console.error(error)
   //   }
   // }
+  const toggleFave = () => {
+    const test = find(allCreditCards, { _id: id })
+    console.log(test)
+  }
 
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200">
@@ -92,6 +98,7 @@ const CreditCard = ({
                   <PencilSquareIcon
                     className="mr-2 text-grey-500 w-6 hover:text-gray-300"
                     onClick={editTargetCardId}
+                    cursor="pointer"
                   />
                 ) : (
                   <XCircleIcon
@@ -103,12 +110,12 @@ const CreditCard = ({
                 <TrashIcon
                   onClick={() => deleteCard(id)}
                   className="w-6 text-red-500 hover:text-red-400"
+                  cursor="pointer"
                 />
-
-                {/* favorite toggle */}
-                <button type="button">
-                  <BookmarkIcon className={isFavorite ? 'w-6 text-green-500' : 'w-6'} />
-                </button>
+                <BookmarkIcon
+                  className={isFavorite ? 'w-6 text-green-500' : 'w-6'}
+                  onClick={() => toggleFave(id)}
+                />
               </div>
             </div>
           </div>
