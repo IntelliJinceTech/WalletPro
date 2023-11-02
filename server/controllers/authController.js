@@ -1,6 +1,8 @@
 import passport from 'passport'
 import { validationResult, body } from 'express-validator'
+import validator from 'validator'
 import User from '../models/User.js'
+import bcrypt from 'bcrypt'
 
 // req needs isAuthenticated State
 
@@ -16,6 +18,11 @@ const getUser = (req, res) => {
   }
   console.log('Not signed in')
   return res.json({ isLoggedIn: false })
+}
+
+const getUsers = async (req, res) => {
+  const users = await User.find({})
+  res.json(users)
 }
 
 const login = (req, res, next) => {
@@ -47,21 +54,20 @@ const signup = async (req, res, next) => {
     // await body('email').isEmail().withMessage('Invalid email address').run(req)
     // await body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long').run(req)
 
-    const errors = validationResult(req)
-    // console.log(errors)
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() })
-    }
-    const { email, password } = req.body
-    // const newUser = ({email,password})
-    const newUser = new User({ email, password })
-    User.register(newUser, password, (err) => {
-      if (err) {
-        console.log(`error while user registration: `, err)
-        return next(err)
-      }
-      console.log('User Registered Correctly')
-    })
+    const { email, name, password } = req.body
+    const saltRounds = 10
+    const passwordHash = await bcrypt.hash(password, saltRounds)
+
+    const newUser = new User({ email, name, passwordHash })
+    const savedUser = await newUser.save()
+    res.status(200).json(savedUser)
+    // User.register(newUser, password, (err) => {
+    //   if (err) {
+    //     console.log(`error while user registration: `, err)
+    //     return next(err)
+    //   }
+    //   console.log('User Registered Correctly')
+    // })
     // passport.authenticate('local', (err, req, res) => {
     //   if (err) {
     //     // Handle authentication error
@@ -70,11 +76,11 @@ const signup = async (req, res, next) => {
     //   res.json({ message: 'authenticated!', user: req.user })
     // })
     console.log('is this firing')
-    req.login(newUser, (err) => {
-      if (err) return res.status(500).json({ error: 'login error' })
-      console.log(`${newUser.email} logged in!`)
-      return res.status(200).json({ message: 'signup and login successful' })
-    })
+    // req.login(newUser, (err) => {
+    //   if (err) return res.status(500).json({ error: 'login error' })
+    //   console.log(`${newUser.email} logged in!`)
+    //   return res.status(200).json({ message: 'signup and login successful' })
+    // })
   } catch (err) {
     next(err)
   }
@@ -87,4 +93,4 @@ const logout = (req, res) => {
   res.json({ message: 'Logged out successfully' })
 }
 
-export default { getUser, login, signup, logout }
+export default { getUser, login, signup, logout, getUsers }

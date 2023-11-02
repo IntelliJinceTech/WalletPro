@@ -4,13 +4,15 @@ import session from 'express-session'
 import MongoStore from 'connect-mongo'
 import cors from 'cors'
 import logger from 'morgan'
+
+// configs
 import connectDB from './config/database.js'
+import google from './config/googleAuth.js'
 
 // routes
 import mainRoutes from './routes/mainRoutes.js'
 import oauthRoutes from './routes/oauthRoutes.js'
 import cardRoutes from './routes/cardRoutes.js'
-// import walletRoutes from './routes/walletRoutes.js'
 // const googleRoutes = require('./routes/googleRoutes.js')
 
 // general setup
@@ -43,9 +45,9 @@ app.use(
 app.use(
   session({
     name: 'walletpro',
-    secret: 'keyboard cat', //secret used to sign the session ID cookie
+    secret: 'keyboardcat', //secret used to sign the session ID cookie
     resave: false, //save session on every request
-    saveUninitialized: false,
+    saveUninitialized: true,
     store: MongoStore.create({
       mongoUrl: process.env.DB_STRING,
       dbName: 'WalletPro',
@@ -63,13 +65,13 @@ app.use(
 // passport middleware
 app.use(passport.initialize())
 app.use(passport.session())
-passport.use(User.createStrategy())
+// passport.use(User.createStrategy())
 // passport.use(google)
-passport.serializeUser(User.serializeUser())
-passport.deserializeUser(User.deserializeUser())
+// passport.serializeUser(User.serializeUser())
+// passport.deserializeUser(User.deserializeUser())
 
 // Routes
-app.use('/', mainRoutes)
+app.use('/api/user', mainRoutes)
 app.use('/auth', oauthRoutes)
 app.use('/cards', cardRoutes)
 // app.use('/wallet', walletRoutes)

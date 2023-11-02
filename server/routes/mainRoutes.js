@@ -1,10 +1,9 @@
 import express from 'express'
 import authController from '../controllers/authController.js'
-import { ensureAuth } from '../middlewares/auth.js'
-import { sessionCheck } from '../middlewares/sessionCheck.js'
 
 const router = express.Router()
 
+router.get('/getUsers', authController.getUsers)
 router.get('/getUser', authController.getUser)
 router.delete('/logout', authController.logout)
 
