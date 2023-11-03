@@ -50,37 +50,7 @@ const login = (req, res, next) => {
 
 const signup = async (req, res, next) => {
   try {
-    // await body('username').notEmpty().withMessage('Username is required').run(req)
-    // await body('email').isEmail().withMessage('Invalid email address').run(req)
-    // await body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long').run(req)
-
-    const { email, name, password } = req.body
-    const saltRounds = 10
-    const passwordHash = await bcrypt.hash(password, saltRounds)
-
-    const newUser = new User({ email, name, passwordHash })
-    const savedUser = await newUser.save()
-    res.status(200).json(savedUser)
-    // User.register(newUser, password, (err) => {
-    //   if (err) {
-    //     console.log(`error while user registration: `, err)
-    //     return next(err)
-    //   }
-    //   console.log('User Registered Correctly')
-    // })
-    // passport.authenticate('local', (err, req, res) => {
-    //   if (err) {
-    //     // Handle authentication error
-    //     return next(err)
-    //   }
-    //   res.json({ message: 'authenticated!', user: req.user })
-    // })
-    console.log('is this firing')
-    // req.login(newUser, (err) => {
-    //   if (err) return res.status(500).json({ error: 'login error' })
-    //   console.log(`${newUser.email} logged in!`)
-    //   return res.status(200).json({ message: 'signup and login successful' })
-    // })
+    res.send({ message: 'this is working!' })
   } catch (err) {
     next(err)
   }

@@ -19,9 +19,18 @@ function DataService() {
     return instance.post('/api/user/login', data)
   }
   this.signup = (data) => {
-    // todo: debugging needed
-    // console.log('Data Service data: ', data)
-    return instance.post('/api/user/signup', data)
+    return instance.get('/api/user/signup', data)
+  }
+
+  // google
+  this.google = (data) => {
+    return instance.get('/auth/google', {
+      headers: {
+        Authorization: `Bearer ${data}`,
+      },
+    })
+    // .then((response) => console.log(response.data))
+    // .catch((err) => console.log(err))
   }
 
   // cards - CRUD

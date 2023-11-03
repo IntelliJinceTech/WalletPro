@@ -7,8 +7,11 @@ dotenv.config()
 
 const oAuth2Client = new OAuth2Client(process.env.GOOGLE_ID, process.env.GOOGLE_SECRET)
 
-async function verifyGoogle(req, res, next) {
+export async function verifyGoogle(req, res, next) {
   const authHeader = req.headers.authorization
+  if (!authHeader) {
+    next(res.status(401).send('Unauthorized'))
+  }
   const tokenArray = authHeader.split(' ')
   const token = tokenArray[1]
 
@@ -18,9 +21,13 @@ async function verifyGoogle(req, res, next) {
       audience: process.env.GOOGLE_ID,
     })
     console.log('token is valid', ticket)
-    return true
+    const payload = ticket.getPayload()
+    if (payload) {
+      req.userId = payload['sub']
+      next()
+      return
+    }
   } catch (error) {
-    console.log(error)
-    return false
+    res.status(401).send('Unauthorized')
   }
 }

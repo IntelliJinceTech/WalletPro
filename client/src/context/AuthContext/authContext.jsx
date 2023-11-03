@@ -17,47 +17,47 @@ const AuthProvider = ({ children }) => {
   const { setCurrentPage } = useRoutingContext() // temp
   const [user, setUser] = useState(null)
 
-  useEffect(() => {
-    async function authCheck() {
-      try {
-        const response = await DataService.getUser()
-        if (response.data.isLoggedIn) {
-          setIsAuthenticated(true)
-        }
-        console.log(response.data.isLoggedIn)
-        // if (response.data.data.isLoggedIn) {
-        //   setIsAuthenticated(true)
-        //   console.log('authentication: ', isAuthenticated)
-        // }
-        // if (response.data.isLoggedIn) {
-        //   console.log('we are logged in as per isLoggedIn data: ', data.isLoggedIn)
-        //   setIsAuthenticated(true)
-        //   console.log('authentication state: ', isAuthenticated)
-        // }
-        // console.log(response)
-      } catch (err) {
-        console.log(`the useEffect for checking auth status did not work: `, err)
-      }
-    }
-    authCheck()
-  }, [])
+  // useEffect(() => {
+  //   async function authCheck() {
+  //     try {
+  //       const response = await DataService.getUser()
+  //       if (response.data.isLoggedIn) {
+  //         setIsAuthenticated(true)
+  //       }
+  //       console.log(response.data.isLoggedIn)
+  //       // if (response.data.data.isLoggedIn) {
+  //       //   setIsAuthenticated(true)
+  //       //   console.log('authentication: ', isAuthenticated)
+  //       // }
+  //       // if (response.data.isLoggedIn) {
+  //       //   console.log('we are logged in as per isLoggedIn data: ', data.isLoggedIn)
+  //       //   setIsAuthenticated(true)
+  //       //   console.log('authentication state: ', isAuthenticated)
+  //       // }
+  //       // console.log(response)
+  //     } catch (err) {
+  //       console.log(`the useEffect for checking auth status did not work: `, err)
+  //     }
+  //   }
+  //   authCheck()
+  // }, [])
 
-  useEffect(() => {
-    console.log('isAuthenticated: ', isAuthenticated)
-  }, [isAuthenticated])
+  // useEffect(() => {
+  //   console.log('isAuthenticated: ', isAuthenticated)
+  // }, [isAuthenticated])
 
-  const signup = async (data) => {
-    try {
-      const response = await apiService.signup(data)
-      if (response.status >= 200 && response.status < 300) {
-        const { user } = response.data
-        setUser(user)
-        setCurrentPage('dashboard')
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  // const signup = async (data) => {
+  //   try {
+  //     const response = await apiService.signup(data)
+  //     if (response.status >= 200 && response.status < 300) {
+  //       const { user } = response.data
+  //       setUser(user)
+  //       setCurrentPage('dashboard')
+  //     }
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
   const login = async (loginData) => {
     // const login = async () => {

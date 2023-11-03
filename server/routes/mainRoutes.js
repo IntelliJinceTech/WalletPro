@@ -1,5 +1,6 @@
 import express from 'express'
 import authController from '../controllers/authController.js'
+import { verifyGoogle } from '../middlewares/googleVerify.js'
 
 const router = express.Router()
 

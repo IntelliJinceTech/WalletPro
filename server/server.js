@@ -21,7 +21,6 @@ dotenv.config()
 
 const app = express()
 
-// import google from './config/googleAuth.js'
 import User from './models/User.js'
 
 // body parsing
@@ -75,6 +74,14 @@ app.use('/api/user', mainRoutes)
 app.use('/auth', oauthRoutes)
 app.use('/cards', cardRoutes)
 // app.use('/wallet', walletRoutes)
+
+app.use((err, req, res, next) => {
+  res.status(err.status || 500)
+  res.send({
+    status: err.status || 500,
+    message: err.message,
+  })
+})
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on ${process.env.PORT}, you better catch it!`)

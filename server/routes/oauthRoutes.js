@@ -1,5 +1,6 @@
 import express from 'express'
 import passport from 'passport'
+import { verifyGoogle } from '../middlewares/googleVerify.js'
 
 import dotenv from 'dotenv'
 
@@ -9,21 +10,25 @@ import User from '../models/User.js'
 const router = express.Router()
 
 // GOOGLE
-router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }))
+router.get('/google', verifyGoogle, async (req, res, next) => {
+  res.send({
+    message: `this works!`,
+  })
+})
 
 router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), function (req, res) {
   res.redirect('/dashboard')
 })
 
-router.get('/google/revoke', async (req, res) => {
-  if (unlinkGoogle(req)) {
-    req.session.flash = { type: 'success', message: ['Google account unlinked successfully'] }
-    res.redirect('/account')
-  } else {
-    req.session.flash = { type: 'error', message: ['Could not unlink account'] }
-    res.redirect('/account')
-  }
-})
+// router.get('/google/revoke', async (req, res) => {
+//   if (unlinkGoogle(req)) {
+//     req.session.flash = { type: 'success', message: ['Google account unlinked successfully'] }
+//     res.redirect('/account')
+//   } else {
+//     req.session.flash = { type: 'error', message: ['Could not unlink account'] }
+//     res.redirect('/account')
+//   }
+// })
 
 // export const unlinkGoogle = async (req) => {
 //   try {

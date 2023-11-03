@@ -8,6 +8,7 @@ import { useRoutingContext } from '../../context/RoutingContext/routingContext'
 import { useAuthContext } from '../../context/AuthContext/authContext'
 import DataService from '../../services/apiService'
 import { jwtDecode } from 'jwt-decode'
+import apiService from '../../services/apiService'
 // import { decodeJWT } from 'jose'
 
 const SignUpLandingPage = () => {
@@ -36,20 +37,20 @@ const SignUpLandingPage = () => {
     }
   }
 
-  const handleCallbackResponse = (res) => {
-    console.log(`Encoded JWT ID Token: ${res.credential}`)
-    const userObject = jwtDecode(res.credential)
-    console.log(userObject)
-  }
+  // const handleCallbackResponse = (res) => {
+  //   console.log(`Encoded JWT ID Token: ${res.credential}`)
+  //   const userObject = jwtDecode(res.credential)
+  //   console.log(userObject)
+  // }
 
-  useEffect(() => {
-    // global google
-    google.accounts.id.initialize({
-      client_id: '16726005967-ahkh53ae5hqckoreqtavf712t7gb5kf3.apps.googleusercontent.com',
-      callback: handleCallbackResponse,
-    })
-    google.accounts.id.renderButton(document.getElementById('googleSignIn'), { theme: 'outline', size: 'large' })
-  }, [])
+  // useEffect(() => {
+  //   // global google
+  //   google.accounts.id.initialize({
+  //     client_id: '16726005967-ahkh53ae5hqckoreqtavf712t7gb5kf3.apps.googleusercontent.com',
+  //     callback: handleCallbackResponse,
+  //   })
+  //   google.accounts.id.renderButton(document.getElementById('googleSignIn'), { theme: 'outline', size: 'large' })
+  // }, [])
 
   return (
     <FormProvider {...methods}>
@@ -188,6 +189,7 @@ const SignUpLandingPage = () => {
                 const payload = credential ? jwtDecode(credential) : undefined
                 if (payload) {
                   console.log(payload)
+                  apiService.google(credential)
                 }
               }}
               onError={(error) => console.log(error)}
