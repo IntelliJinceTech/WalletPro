@@ -11,15 +11,15 @@ import { EditingModeProvider } from './context/EditingModeContext/EditingModeCon
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
   <RoutingProvider>
-    <AuthProvider>
-      <GoogleOAuthProvider clientId="16726005967-ahkh53ae5hqckoreqtavf712t7gb5kf3.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId="16726005967-ahkh53ae5hqckoreqtavf712t7gb5kf3.apps.googleusercontent.com">
+      <AuthProvider>
         <ModalProvider>
           <EditingModeProvider>
             <App />
           </EditingModeProvider>
         </ModalProvider>
-      </GoogleOAuthProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </GoogleOAuthProvider>
   </RoutingProvider>
   // </React.StrictMode>
 )

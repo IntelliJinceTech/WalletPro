@@ -8,20 +8,20 @@ const instance = axios.create({
 function DataService() {
   // auth
   this.getUser = () => {
-    return instance.get('/getUser')
+    return instance.get('/api/user/getUser')
   }
 
   this.logout = () => {
-    return instance.get('/logout')
+    return instance.get('/api/user/logout')
   }
 
   this.login = (data) => {
-    return instance.post('/login', data)
+    return instance.post('/api/user/login', data)
   }
   this.signup = (data) => {
     // todo: debugging needed
     // console.log('Data Service data: ', data)
-    return instance.post('/signup', data)
+    return instance.post('/api/user/signup', data)
   }
 
   // cards - CRUD

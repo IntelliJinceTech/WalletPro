@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useMemo, useEffect } from 'react'
 import { useRoutingContext } from '../RoutingContext/routingContext'
 import axios from 'axios'
 import DataService from '../../services/apiService'
+import apiService from '../../services/apiService'
 
 // Create a named context
 const AuthContext = createContext()
@@ -44,6 +45,19 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     console.log('isAuthenticated: ', isAuthenticated)
   }, [isAuthenticated])
+
+  const signup = async (data) => {
+    try {
+      const response = await apiService.signup(data)
+      if (response.status >= 200 && response.status < 300) {
+        const { user } = response.data
+        setUser(user)
+        setCurrentPage('dashboard')
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const login = async (loginData) => {
     // const login = async () => {
