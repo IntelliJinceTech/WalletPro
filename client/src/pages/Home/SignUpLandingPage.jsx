@@ -189,7 +189,8 @@ const SignUpLandingPage = () => {
                 const payload = credential ? jwtDecode(credential) : undefined
                 if (payload) {
                   console.log(payload)
-                  apiService.google(credential)
+                  const response = apiService.google(credential)
+                  console.log(response)
                 }
               }}
               onError={(error) => console.log(error)}
