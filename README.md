@@ -1,6 +1,7 @@
 # Wallet Pro
 The next optimization web app for our daily credit card purchases without compromising security and data.  
 
+<img src="/img/WalletProScreenShot.png" width="50%">
 
 ## How It's Made:
 
