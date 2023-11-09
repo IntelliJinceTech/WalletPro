@@ -10,8 +10,8 @@ import { EditingModeProvider } from './context/EditingModeContext/EditingModeCon
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
-  <RoutingProvider>
-    <GoogleOAuthProvider clientId="16726005967-ahkh53ae5hqckoreqtavf712t7gb5kf3.apps.googleusercontent.com">
+  <GoogleOAuthProvider clientId="16726005967-ahkh53ae5hqckoreqtavf712t7gb5kf3.apps.googleusercontent.com">
+    <RoutingProvider>
       <AuthProvider>
         <ModalProvider>
           <EditingModeProvider>
@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           </EditingModeProvider>
         </ModalProvider>
       </AuthProvider>
-    </GoogleOAuthProvider>
-  </RoutingProvider>
+    </RoutingProvider>
+  </GoogleOAuthProvider>
   // </React.StrictMode>
 )

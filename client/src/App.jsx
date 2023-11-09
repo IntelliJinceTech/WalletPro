@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Dashboard from './pages/Dashboard'
 import { useState, useEffect } from 'react'
 import { themeChange } from 'theme-change'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import { useRoutingContext } from './context/RoutingContext/routingContext'
 import { useAuthContext } from './context/AuthContext/authContext'
 import LandingPage from './pages/Home/LandingPage'
@@ -17,9 +18,9 @@ function App() {
     <>
       <Navbar />
       {/* <LandingPage /> */}
-      {/* {currentPage === 'LandingPage' && <Home />} */}
+      {currentPage === 'LandingPage' && <Home />}
       {/* {isAuthenticated === true && <Dashboard />} */}
-      <Dashboard />
+      {/* <Dashboard /> */}
       {/* {!isLoggedIn && <Dashboard />} */}
     </>
   )

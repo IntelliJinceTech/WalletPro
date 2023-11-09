@@ -183,28 +183,21 @@ const SignUpLandingPage = () => {
 
             {/* Google Login from npm package */}
             <GoogleLogin
-              onSuccess={(credentialResponse) => {
+              onSuccess={async (credentialResponse) => {
                 console.log(credentialResponse)
                 const { credential } = credentialResponse
                 const payload = credential ? jwtDecode(credential) : undefined
                 if (payload) {
                   console.log(payload)
-                  const response = apiService.google(credential)
-                  console.log(response)
+                  const response = await apiService.google(credential)
+                  if (response) {
+                    console.log(response)
+                  }
                 }
               }}
               onError={(error) => console.log(error)}
               useOneTap
             />
-            <p className="mt-10 text-center text-sm text-gray-400">
-              Not a member?{' '}
-              <a
-                href="#"
-                className="font-semibold leading-6 text-indigo-400 hover:text-indigo-300"
-              >
-                Start a 14 day free trial
-              </a>
-            </p>
           </div>
         </div>
       </>
