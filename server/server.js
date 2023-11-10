@@ -7,13 +7,12 @@ import logger from 'morgan'
 
 // configs
 import connectDB from './config/database.js'
-import google from './config/googleAuth.js'
+import passportConfig from './config/passport.js'
 
 // routes
 import mainRoutes from './routes/mainRoutes.js'
-import oauthRoutes from './routes/oauthRoutes.js'
 import cardRoutes from './routes/cardRoutes.js'
-// const googleRoutes = require('./routes/googleRoutes.js')
+import authRoutes from './routes/authRoutes.js'
 
 // general setup
 import dotenv from 'dotenv'
@@ -21,10 +20,16 @@ dotenv.config()
 
 const app = express()
 
-import User from './models/User.js'
-
 // body parsing
 app.use(express.json())
+app.use(
+  cors({
+    // need this while in development, since front/backend are running on seperate origins
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST', 'OPTIONS', 'PATCH', 'PUT', 'DELETE'],
+    credentials: true,
+  })
+)
 app.use(express.urlencoded({ extended: true }))
 
 //connect to database
@@ -33,13 +38,13 @@ connectDB()
 //logging
 app.use(logger('dev'))
 
-app.use(
-  cors({
-    // need this while in development, since front/backend are running on seperate origins
-    origin: 'http://localhost:5173',
-    credentials: true,
-  })
-)
+// app.use(
+//   cors({
+//     // need this while in development, since front/backend are running on seperate origins
+//     origin: 'http://localhost:5173',
+//     credentials: true,
+//   })
+// )
 
 app.use(
   session({
@@ -64,6 +69,7 @@ app.use(
 // passport middleware
 app.use(passport.initialize())
 app.use(passport.session())
+passportConfig()
 // passport.use(User.createStrategy())
 // passport.use(google)
 // passport.serializeUser(User.serializeUser())
@@ -71,9 +77,8 @@ app.use(passport.session())
 
 // Routes
 app.use('/api/user', mainRoutes)
-app.use('/auth', oauthRoutes)
+app.use('/auth', authRoutes)
 app.use('/cards', cardRoutes)
-// app.use('/wallet', walletRoutes)
 
 app.use((err, req, res, next) => {
   res.status(err.status || 500)

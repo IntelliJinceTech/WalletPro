@@ -6,6 +6,8 @@ import bcrypt from 'bcrypt'
 
 // req needs isAuthenticated State
 
+const clientHost = 'http://localhost:5173'
+
 const getUser = (req, res) => {
   console.log('authentication status: ', req.isAuthenticated())
   console.log(req.session)
@@ -61,6 +63,33 @@ const logout = (req, res) => {
     console.log('User has logged out.')
   })
   res.json({ message: 'Logged out successfully' })
+  res.redirect(clientHost)
 }
 
-export default { getUser, login, signup, logout, getUsers }
+/**
+ * @desc Google OAuth 2.0 via passport
+ * @route /google
+ * @method GET
+ */
+export const googleLogin = (req, res, next) => {
+  // scope tells us how much to ask from google
+  passport.authenticate('google', { scope: ['profile', 'email'] })(req, res, next)
+}
+
+/**
+ * @desc Google OAuth 2.0 via passport callback. used to redirect after authentication
+ * @route /google/callback
+ * @method GET
+ */
+export const googleCallback = (req, res) => {
+  passport.authenticate('google', {
+    failureRedirect: clientHost,
+    successMessage: true,
+    failureMessage: true,
+  })(req, res, () => {
+    // console.log(req)
+    res.redirect('http://localhost:5173/dashboard')
+  })
+}
+
+export default { getUser, login, signup, logout, getUsers, googleLogin, googleCallback }

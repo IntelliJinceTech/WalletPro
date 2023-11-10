@@ -1,18 +1,39 @@
 import mongoose from 'mongoose'
-import passportLocalMongoose from 'passport-local-mongoose'
+// import passportLocalMongoose from 'passport-local-mongoose'
 
 const Schema = mongoose.Schema
 
 const UserSchema = new Schema({
-  hasPassword: { type: 'boolean', default: true },
+  username: {
+    type: String,
+    required: false,
+  },
+  password: {
+    type: String,
+    required: false,
+  },
   email: {
     type: String,
     required: true,
     unique: true,
   },
   name: String,
-  googleId: String,
-  googleToken: String,
+  googleId: {
+    type: String,
+    required: false,
+    unique: true,
+  },
+  displayName: {
+    type: String,
+  },
+  image: {
+    type: String,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now(),
+  },
+  // googleToken: String,
   cards: [
     {
       type: mongoose.Schema.Types.ObjectId,

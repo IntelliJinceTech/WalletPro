@@ -12,14 +12,14 @@ function DataService() {
   }
 
   this.logout = () => {
-    return instance.get('/api/user/logout')
+    return instance.get('/auth/logout')
   }
 
   this.login = (data) => {
-    return instance.post('/api/user/login', data)
+    return instance.post('/auth/login', data)
   }
   this.signup = (data) => {
-    return instance.get('/api/user/signup', data)
+    return instance.get('/auth/signup', data)
   }
 
   // google
