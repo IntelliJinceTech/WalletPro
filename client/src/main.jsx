@@ -10,16 +10,16 @@ import { EditingModeProvider } from './context/EditingModeContext/EditingModeCon
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
-  <GoogleOAuthProvider clientId="16726005967-ahkh53ae5hqckoreqtavf712t7gb5kf3.apps.googleusercontent.com">
-    <RoutingProvider>
-      <AuthProvider>
-        <ModalProvider>
-          <EditingModeProvider>
-            <App />
-          </EditingModeProvider>
-        </ModalProvider>
-      </AuthProvider>
-    </RoutingProvider>
-  </GoogleOAuthProvider>
+  // <GoogleOAuthProvider clientId="16726005967-ahkh53ae5hqckoreqtavf712t7gb5kf3.apps.googleusercontent.com">
+  <RoutingProvider>
+    <AuthProvider>
+      <ModalProvider>
+        <EditingModeProvider>
+          <App />
+        </EditingModeProvider>
+      </ModalProvider>
+    </AuthProvider>
+  </RoutingProvider>
+  // </GoogleOAuthProvider>
   // </React.StrictMode>
 )

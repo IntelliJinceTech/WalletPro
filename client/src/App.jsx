@@ -2,6 +2,7 @@ import './App.css'
 import Home from './pages/Home'
 import Navbar from './components/Navbar'
 import Dashboard from './pages/Dashboard'
+import Login from './pages/Login'
 import { useState, useEffect } from 'react'
 import { themeChange } from 'theme-change'
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom'
@@ -26,12 +27,17 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={isAuthenticated ? <Navigate to="/dashboard" /> : <Home />}
-        ></Route>
+          element={<Home />}
+        />
+        <Route
+          path="/login"
+          element={isAuthenticated ? <Navigate to="/dashboard" /> : <Login />}
+        />
+
         <Route
           path="/dashboard"
-          element={isAuthenticated ? <Dashboard /> : <Navigate to="/" />}
-        ></Route>
+          element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />}
+        />
       </Routes>
     </BrowserRouter>
   )

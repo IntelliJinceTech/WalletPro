@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import img from '../../images/iceland.jpeg'
@@ -22,7 +23,10 @@ const LandingPage = () => {
           alt=""
           className="absolute inset-0 -z-10 h-full w-full object-cover opacity-40"
         />
-        <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+        <div
+          className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+          aria-hidden="true"
+        >
           <div
             className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
             style={{
@@ -38,19 +42,23 @@ const LandingPage = () => {
               Influenced by the rise in digital currency and desire to help consumers achieve financial freedom for their next trip, purchase, and more.{' '}
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
-                href="#signup"
+              <button
+                type="button"
+                // href="#signup"
                 className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
               >
-                Get started
-              </a>
+                <Link to="/login">Get started</Link>
+              </button>
               {/* <a href="#" className="text-sm font-semibold leading-6 text-white">
                 Learn more <span aria-hidden="true">→</span>
               </a> */}
             </div>
           </div>
         </div>
-        <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+        <div
+          className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+          aria-hidden="true"
+        >
           <div
             className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
             style={{

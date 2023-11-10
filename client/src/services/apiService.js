@@ -23,14 +23,17 @@ function DataService() {
   }
 
   // google
-  this.google = (data) => {
-    return instance.get('/auth/google', {
-      headers: {
-        Authorization: `Bearer ${data}`,
-      },
-    })
-    // .then((response) => console.log(response.data))
-    // .catch((err) => console.log(err))
+  // this.google = (data) => {
+  //   return instance.get('/auth/google', {
+  //     headers: {
+  //       Authorization: `Bearer ${data}`,
+  //     },
+  //   })
+  //   // .then((response) => console.log(response.data))
+  //   // .catch((err) => console.log(err))
+  // }
+  this.google = () => {
+    return instance.get('/auth/google')
   }
 
   // cards - CRUD

@@ -37,6 +37,22 @@ const SignUpLandingPage = () => {
     }
   }
 
+  const handleJWT = async (credentialResponse) => {
+    const { credential } = credentialResponse
+    const payload = credential ? jwtDecode(credential) : undefined
+    if (payload) {
+      console.log(payload)
+      const response = await apiService.google(credential)
+      if (response) {
+        console.log(response)
+      }
+    }
+  }
+
+  const handleGoogleLogin = async (event) => {
+    await window.open('http://localhost:8888/auth/google', '_self')
+  }
+
   // const handleCallbackResponse = (res) => {
   //   console.log(`Encoded JWT ID Token: ${res.credential}`)
   //   const userObject = jwtDecode(res.credential)
@@ -176,61 +192,30 @@ const SignUpLandingPage = () => {
                 </button>
               </div>
             </form>
-            {/* Google SignIn  */}
-            {/* <div>
-              <div id="googleSignIn"></div>
-            </div> */}
-
-            {/* Google Login from npm package */}
-            <GoogleLogin
-              onSuccess={async (credentialResponse) => {
-                console.log(credentialResponse)
-                const { credential } = credentialResponse
-                const payload = credential ? jwtDecode(credential) : undefined
-                if (payload) {
-                  console.log(payload)
-                  const response = await apiService.google(credential)
-                  if (response) {
-                    console.log(response)
-                  }
-                }
-              }}
-              onError={(error) => console.log(error)}
-              useOneTap
-            />
+            {/* custom google button */}
+            <button
+              type="button"
+              className=" text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
+              onClick={handleGoogleLogin}
+            >
+              <svg
+                className="w-4 h-4 mr-2"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 18 19"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              Sign in with Google
+            </button>
           </div>
         </div>
       </>
-      {/*       
-      <div className="hero  bg-base-200 p-10">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Signup now!</h1>
-            <p className="py-6">Sign up now for increased financial understanding of your daily credit card carry!</p>
-          </div>
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <div className="card-body">
-
-              <form className="form-control" onSubmit={methods.handleSubmit(onSubmit)}>
-                <label className="label" htmlFor="email">
-                  <span className="label-text">Email:</span>
-                </label>
-                <input type="email" placeholder="xxxx@gmail.com" name="email" className="input input-bordered w-full max-w-xs" {...register('email')} />
-
-                <label htmlFor="password" className="label mt-2">
-                  <span className="label-text">Password (12 characters minimum): </span>
-                </label>
-                <input type="password" name="password" className="input input-bordered w-full max-w-xs mb-5" {...register('password')} />
-                <button className="btn btn-primary" type="submit">
-                  Signup
-                </button>
-              </form> */}
-
-      {/* <GoogleBtn /> */}
-      {/* </div>
-          </div>
-        </div>
-      </div> */}
     </FormProvider>
   )
 }
