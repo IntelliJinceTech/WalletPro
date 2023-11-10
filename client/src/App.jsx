@@ -4,7 +4,7 @@ import Navbar from './components/Navbar'
 import Dashboard from './pages/Dashboard'
 import { useState, useEffect } from 'react'
 import { themeChange } from 'theme-change'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom'
 import { useRoutingContext } from './context/RoutingContext/routingContext'
 import { useAuthContext } from './context/AuthContext/authContext'
 import LandingPage from './pages/Home/LandingPage'
@@ -12,17 +12,28 @@ import LandingPage from './pages/Home/LandingPage'
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false) //for testing
   const { currentPage } = useRoutingContext()
+  const { user, setUser } = useAuthContext()
   const { isAuthenticated } = useAuthContext()
 
   return (
-    <>
+    <BrowserRouter>
       <Navbar />
       {/* <LandingPage /> */}
-      {currentPage === 'LandingPage' && <Home />}
+      {/* {currentPage === 'LandingPage' && <Home />} */}
       {/* {isAuthenticated === true && <Dashboard />} */}
       {/* <Dashboard /> */}
       {/* {!isLoggedIn && <Dashboard />} */}
-    </>
+      <Routes>
+        <Route
+          path="/"
+          element={isAuthenticated ? <Navigate to="/dashboard" /> : <Home />}
+        ></Route>
+        <Route
+          path="/dashboard"
+          element={isAuthenticated ? <Dashboard /> : <Navigate to="/" />}
+        ></Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 

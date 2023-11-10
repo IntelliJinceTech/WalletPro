@@ -1,4 +1,5 @@
 import { Fragment } from 'react'
+import { Link } from 'react-router-dom'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useAuthContext } from '../context/AuthContext/authContext'
@@ -22,7 +23,10 @@ const Navbar = () => {
   }
 
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure
+      as="nav"
+      className="bg-gray-800"
+    >
       {({ open }) => (
         <div>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -36,10 +40,13 @@ const Navbar = () => {
                   <div className="flex space-x-4">
                     {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
 
-                    <a href="#" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
-                      Dashboard
-                    </a>
-                    <a href="#" className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+                    <div className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+                      <Link to="/dashboard">Dashboard</Link>
+                    </div>
+                    <a
+                      href="#"
+                      className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                    >
                       Card Bank
                     </a>
                   </div>
@@ -48,7 +55,10 @@ const Navbar = () => {
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex items-center">
                   {/* Profile dropdown */}
-                  <Menu as="div" className="relative ml-3">
+                  <Menu
+                    as="div"
+                    className="relative ml-3"
+                  >
                     <div>
                       <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="absolute -inset-1.5" />
@@ -73,21 +83,30 @@ const Navbar = () => {
                       <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                         <Menu.Item>
                           {({ active }) => (
-                            <a href="#" className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
+                            <a
+                              href="#"
+                              className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            >
                               Your Profile
                             </a>
                           )}
                         </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
-                            <a href="#" className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
+                            <a
+                              href="#"
+                              className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            >
                               Settings
                             </a>
                           )}
                         </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
-                            <a href="#" className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
+                            <a
+                              href="#"
+                              className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            >
                               Sign out
                             </a>
                           )}
@@ -102,7 +121,17 @@ const Navbar = () => {
                 <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
-                  {open ? <XMarkIcon className="block h-6 w-6" aria-hidden="true" /> : <Bars3Icon className="block h-6 w-6" aria-hidden="true" />}
+                  {open ? (
+                    <XMarkIcon
+                      className="block h-6 w-6"
+                      aria-hidden="true"
+                    />
+                  ) : (
+                    <Bars3Icon
+                      className="block h-6 w-6"
+                      aria-hidden="true"
+                    />
+                  )}
                 </Disclosure.Button>
               </div>
             </div>
@@ -111,10 +140,18 @@ const Navbar = () => {
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-              <Disclosure.Button as="a" href="#" className="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white">
+              <Disclosure.Button
+                as="a"
+                href="#"
+                className="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
+              >
                 Dashboard
               </Disclosure.Button>
-              <Disclosure.Button as="a" href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+              <Disclosure.Button
+                as="a"
+                href="#"
+                className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+              >
                 Card Bank
               </Disclosure.Button>
             </div>
@@ -138,17 +175,32 @@ const Navbar = () => {
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" />
+                  <BellIcon
+                    className="h-6 w-6"
+                    aria-hidden="true"
+                  />
                 </button>
               </div>
               <div className="mt-3 space-y-1 px-2">
-                <Disclosure.Button as="a" href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">
+                <Disclosure.Button
+                  as="a"
+                  href="#"
+                  className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                >
                   Your Profile
                 </Disclosure.Button>
-                <Disclosure.Button as="a" href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">
+                <Disclosure.Button
+                  as="a"
+                  href="#"
+                  className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                >
                   Settings
                 </Disclosure.Button>
-                <Disclosure.Button as="a" href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">
+                <Disclosure.Button
+                  as="a"
+                  href="#"
+                  className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                >
                   Sign out
                 </Disclosure.Button>
               </div>
