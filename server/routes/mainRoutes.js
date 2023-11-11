@@ -4,7 +4,7 @@ import { verifyGoogle } from '../middlewares/googleVerify.js'
 
 const router = express.Router()
 
-router.get('/getUsers', authController.getUsers)
+// router.get('/getUsers', authController.getUsers)
 router.get('/getUser', authController.getUser)
 
 // router.get('/', (req, res) => {

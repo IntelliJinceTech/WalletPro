@@ -12,24 +12,27 @@ export default function passportConfig() {
         // passReqToCallback: true,
       },
       async function (request, accessToken, refreshToken, profile, done) {
-        try {
-          console.log('profile from google: ', profile)
-          done(null, profile)
-          // const user = await User.findOne({ googleId: profile.id })
-          // if (user) {
-          //   return done(null, user)
-          // }
-          // const newUser = await User.create({
-          //   googleId: profile.id,
-          //   email: profile.emails[0].value,
-          //   password:null,
-          // })
-        } catch (error) {
-          console.log(error)
+        // console.log('profile from google: ', profile)
+        const newUser = {
+          googleId: profile.id,
+          name: profile.displayName,
+          email: profile.emails[0].value,
+          firstName: profile.name.givenName,
+          lastName: profile.name.familyName,
+          image: profile.photos[0].value,
         }
-        // User.findOrCreate({ googleId: profile.id }, function (err, user) {
-        //   return cb(err, user)
-        // })
+
+        try {
+          let user = await User.findOne({ googleId: profile.id })
+          if (user) {
+            done(null, user)
+          } else {
+            user = await User.create(newUser)
+            done(null, user)
+          }
+        } catch (error) {
+          console.error(error)
+        }
       }
     )
   )
