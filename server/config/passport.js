@@ -1,8 +1,39 @@
 import passport from 'passport'
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20'
 import User from '../models/User.js'
+import LocalStrategy from 'passport-local'
+import bcrypt from 'bcrypt'
 
 export default function passportConfig() {
+  passport.use(
+    new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
+      try {
+        const user = await User.findOne({ email })
+        if (!user) {
+          return done(null, false, {
+            message: `Email ${email} does not exist`,
+          })
+        }
+        if (!user.password) {
+          return done(null, false, {
+            message: `Password is required`,
+          })
+        }
+
+        // compare input password with password stored on db
+        const match = await bcrypt.compare(password, user.password)
+
+        if (match) {
+          return done(null, user)
+        }
+        return done(null, false, {
+          message: `Incorrect password`,
+        })
+      } catch (error) {
+        return done(error)
+      }
+    })
+  )
   passport.use(
     new GoogleStrategy(
       {

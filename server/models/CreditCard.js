@@ -59,10 +59,12 @@ const creditCardSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-  },
+  owners: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
 })
 
 export default mongoose.model('CreditCard', creditCardSchema)
