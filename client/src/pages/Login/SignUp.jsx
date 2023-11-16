@@ -29,9 +29,9 @@ const SignUpLandingPage = () => {
     try {
       console.log(data)
       // const response = await DataService.signup(data)
-      setIsAuthenticated(true)
-      setCurrentPage('Dashboard')
-      console.log(response.data)
+      // setIsAuthenticated(true)
+      // setCurrentPage('Dashboard')
+      // console.log(response.data)
     } catch (error) {
       console.error('error from signing up: ', error)
     }
@@ -99,19 +99,37 @@ const SignUpLandingPage = () => {
             >
               <div>
                 <label
-                  htmlFor="firstLastName"
+                  htmlFor="firstName"
                   className="block text-sm font-medium leading-6 text-white"
                 >
-                  First and Last Name
+                  First Name
                 </label>
                 <div className="mt-2">
                   <input
-                    id="firstLastName"
-                    name="firstLastName"
+                    id="firstName"
+                    name="firstName"
                     type="text"
                     required
                     className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-                    {...register('name')}
+                    {...register('firstName')}
+                  />
+                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="lastName"
+                  className="block text-sm font-medium leading-6 text-white"
+                >
+                  Last Name
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="lastName"
+                    name="lastName"
+                    type="text"
+                    required
+                    className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                    {...register('lastName')}
                   />
                 </div>
               </div>

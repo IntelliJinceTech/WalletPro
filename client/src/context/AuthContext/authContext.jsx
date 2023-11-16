@@ -21,6 +21,8 @@ const AuthProvider = ({ children }) => {
     async function authCheck() {
       try {
         const response = await DataService.getUser()
+        setUser(response.data)
+        setIsAuthenticated(true)
         console.log(response)
       } catch (err) {
         console.log(`the useEffect for checking auth status did not work: `, err)

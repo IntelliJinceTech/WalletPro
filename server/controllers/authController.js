@@ -9,14 +9,14 @@ import bcrypt from 'bcrypt'
 const clientHost = 'http://localhost:5173'
 
 const getUser = (req, res) => {
-  console.log('authentication status: ', req.isAuthenticated())
-  console.log(req.session)
   if (req.isAuthenticated()) {
-    console.log(req.user)
-    return res.json({
-      isLoggedIn: true,
-      user: req.user,
-    })
+    console.log(`responding from the server, the user is: ${req.user}`)
+    return res
+      .json({
+        isLoggedIn: true,
+        user: req.user,
+      })
+      .toJSON()
   }
   console.log('Not signed in')
   return res.json({ isLoggedIn: false })
