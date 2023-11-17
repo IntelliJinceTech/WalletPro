@@ -4,16 +4,14 @@ import { ErrorMessage } from '@hookform/error-message'
 import { GoogleLogin } from '@react-oauth/google'
 import GoogleBtn from '../../components/buttons/GoogleBtn'
 import axios from 'axios'
-import { useRoutingContext } from '../../context/RoutingContext/routingContext'
 import { useAuthContext } from '../../context/AuthContext/authContext'
 import DataService from '../../services/apiService'
 import { jwtDecode } from 'jwt-decode'
 import apiService from '../../services/apiService'
 // import { decodeJWT } from 'jose'
 
-const SignUpLandingPage = () => {
-  const { isAuthenticated, setIsAuthenticated } = useAuthContext()
-  const { currentPage, setCurrentPage } = useRoutingContext()
+const Login = () => {
+  const { isAuthenticated, setIsAuthenticated, signup } = useAuthContext()
   const methods = useForm({
     criteriaMode: 'all',
   })
@@ -27,11 +25,7 @@ const SignUpLandingPage = () => {
     event.preventDefault()
     // console.log('data: ', data)
     try {
-      console.log(data)
-      // const response = await DataService.signup(data)
-      // setIsAuthenticated(true)
-      // setCurrentPage('Dashboard')
-      // console.log(response.data)
+      await signup(data)
     } catch (error) {
       console.error('error from signing up: ', error)
     }
@@ -53,34 +47,11 @@ const SignUpLandingPage = () => {
     await window.open('http://localhost:8888/auth/google', '_self')
   }
 
-  // const handleCallbackResponse = (res) => {
-  //   console.log(`Encoded JWT ID Token: ${res.credential}`)
-  //   const userObject = jwtDecode(res.credential)
-  //   console.log(userObject)
-  // }
-
-  // useEffect(() => {
-  //   // global google
-  //   google.accounts.id.initialize({
-  //     client_id: '16726005967-ahkh53ae5hqckoreqtavf712t7gb5kf3.apps.googleusercontent.com',
-  //     callback: handleCallbackResponse,
-  //   })
-  //   google.accounts.id.renderButton(document.getElementById('googleSignIn'), { theme: 'outline', size: 'large' })
-  // }, [])
-
   return (
     <FormProvider {...methods}>
       <>
-        {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-900">
-        <body class="h-full">
-        ```
-      */}
         <div
-          id="signup"
+          id="login"
           className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8"
         >
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -89,7 +60,7 @@ const SignUpLandingPage = () => {
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
               alt="Your Company"
             />
-            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">Sign in to your account</h2>
+            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">Login</h2>
           </div>
 
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -97,42 +68,6 @@ const SignUpLandingPage = () => {
               className="space-y-6"
               onSubmit={methods.handleSubmit(onSubmit)}
             >
-              <div>
-                <label
-                  htmlFor="firstName"
-                  className="block text-sm font-medium leading-6 text-white"
-                >
-                  First Name
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="firstName"
-                    name="firstName"
-                    type="text"
-                    required
-                    className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-                    {...register('firstName')}
-                  />
-                </div>
-              </div>
-              <div>
-                <label
-                  htmlFor="lastName"
-                  className="block text-sm font-medium leading-6 text-white"
-                >
-                  Last Name
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="lastName"
-                    name="lastName"
-                    type="text"
-                    required
-                    className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-                    {...register('lastName')}
-                  />
-                </div>
-              </div>
               <div>
                 <label
                   htmlFor="email"
@@ -179,14 +114,14 @@ const SignUpLandingPage = () => {
                   >
                     Password
                   </label>
-                  <div className="text-sm">
+                  {/* <div className="text-sm">
                     <a
                       href="#"
                       className="font-semibold text-indigo-400 hover:text-indigo-300"
                     >
                       Forgot password?
                     </a>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="mt-2">
                   <input
@@ -206,7 +141,7 @@ const SignUpLandingPage = () => {
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                 >
-                  Sign in
+                  Sign up
                 </button>
               </div>
             </form>

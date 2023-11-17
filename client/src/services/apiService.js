@@ -19,7 +19,7 @@ function DataService() {
     return instance.post('/auth/login', data)
   }
   this.signup = (data) => {
-    return instance.get('/auth/signup', data)
+    return instance.post('/auth/signup', data)
   }
 
   // google

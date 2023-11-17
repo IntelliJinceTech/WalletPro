@@ -1,8 +1,6 @@
 import { createContext, useContext, useState, useMemo, useEffect } from 'react'
-import { useRoutingContext } from '../RoutingContext/routingContext'
 import axios from 'axios'
 import DataService from '../../services/apiService'
-import apiService from '../../services/apiService'
 
 // Create a named context
 const AuthContext = createContext()
@@ -14,16 +12,17 @@ const useAuthContext = () => useContext(AuthContext)
 // a provider is a component that allows you to share context with its nested components
 const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const { setCurrentPage } = useRoutingContext() // temp
   const [user, setUser] = useState(null)
 
   useEffect(() => {
     async function authCheck() {
       try {
         const response = await DataService.getUser()
-        setUser(response.data)
-        setIsAuthenticated(true)
-        console.log(response)
+        if (response.data) {
+          setUser(response.data)
+          setIsAuthenticated(true)
+          console.log(response)
+        }
       } catch (err) {
         console.log(`the useEffect for checking auth status did not work: `, err)
       }
@@ -35,18 +34,19 @@ const AuthProvider = ({ children }) => {
   //   console.log('isAuthenticated: ', isAuthenticated)
   // }, [isAuthenticated])
 
-  // const signup = async (data) => {
-  //   try {
-  //     const response = await apiService.signup(data)
-  //     if (response.status >= 200 && response.status < 300) {
-  //       const { user } = response.data
-  //       setUser(user)
-  //       setCurrentPage('dashboard')
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
+  const signup = async (data) => {
+    try {
+      const response = await DataService.signup(data)
+      if (response.status >= 200 && response.status < 300) {
+        const { user } = response.data
+        console.log(user)
+        setUser(user)
+        setIsAuthenticated(true)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const login = async (loginData) => {
     // const login = async () => {
@@ -61,8 +61,6 @@ const AuthProvider = ({ children }) => {
       setUser(response.data.user)
       console.log(response)
 
-      setCurrentPage('dashboard')
-
       setIsAuthenticated(true)
       // console.log('authentication: ', isAuthenticated)
     } catch (err) {
@@ -74,7 +72,6 @@ const AuthProvider = ({ children }) => {
     try {
       await DataService.logout()
       setIsAuthenticated(false)
-      setCurrentPage('LandingPage')
       setUser(null)
       // console.log(user)
     } catch (error) {
@@ -83,7 +80,7 @@ const AuthProvider = ({ children }) => {
   }
 
   // useMemo is a Hook that lets you cache the result of a calculation between re-renders.
-  const authValue = useMemo(() => ({ isAuthenticated, login, logout, setIsAuthenticated }), [isAuthenticated])
+  const authValue = useMemo(() => ({ isAuthenticated, login, logout, setIsAuthenticated, signup }), [isAuthenticated])
 
   return <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>
 }

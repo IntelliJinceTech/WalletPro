@@ -52,7 +52,27 @@ const login = (req, res, next) => {
 
 const signup = async (req, res, next) => {
   try {
-    res.send({ message: 'this is working!' })
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ error: errors.array() })
+    }
+
+    const { email, password, firstName, lastName } = req.body
+    const newUser = await User.signup(email, password, firstName, lastName)
+
+    // Log in the newly registered user
+    req.login(newUser, (err) => {
+      if (err) {
+        // Handle login error
+        return res.status(500).json({ error: 'Login error' })
+      }
+      // User is logged in
+
+      return res.status(200).json({
+        message: 'Signup and login successful',
+        user: newUser.toJSON(),
+      })
+    })
   } catch (err) {
     next(err)
   }
@@ -63,7 +83,6 @@ const logout = (req, res) => {
     console.log('User has logged out.')
   })
   res.json({ message: 'Logged out successfully' })
-  res.redirect(clientHost)
 }
 
 /**
