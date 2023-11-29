@@ -58,10 +58,10 @@ const signup = async (req, res, next) => {
     }
 
     const { email, password, firstName, lastName } = req.body
-    const newUser = await User.signup(email, password, firstName, lastName)
-
+    console.log(req.body)
+    const user = await User.signup(email, password, firstName, lastName)
     // Log in the newly registered user
-    req.login(newUser, (err) => {
+    req.login(user, (err) => {
       if (err) {
         // Handle login error
         return res.status(500).json({ error: 'Login error' })
@@ -70,7 +70,7 @@ const signup = async (req, res, next) => {
 
       return res.status(200).json({
         message: 'Signup and login successful',
-        user: newUser.toJSON(),
+        user: user.toJSON(),
       })
     })
   } catch (err) {

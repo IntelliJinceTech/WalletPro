@@ -7,7 +7,6 @@ import axios from 'axios'
 import { useAuthContext } from '../../context/AuthContext/authContext'
 import DataService from '../../services/apiService'
 import { jwtDecode } from 'jwt-decode'
-import apiService from '../../services/apiService'
 // import { decodeJWT } from 'jose'
 
 const SignUpLandingPage = () => {
@@ -24,6 +23,7 @@ const SignUpLandingPage = () => {
   const onSubmit = async (data, event) => {
     event.preventDefault()
     // console.log('data: ', data)
+    console.log(data)
     try {
       await signup(data)
     } catch (error) {
@@ -36,7 +36,7 @@ const SignUpLandingPage = () => {
     const payload = credential ? jwtDecode(credential) : undefined
     if (payload) {
       console.log(payload)
-      const response = await apiService.google(credential)
+      const response = await DataService.google(credential)
       if (response) {
         console.log(response)
       }

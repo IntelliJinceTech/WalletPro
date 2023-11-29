@@ -18,7 +18,7 @@ const AuthProvider = ({ children }) => {
     async function authCheck() {
       try {
         const response = await DataService.getUser()
-        if (response.data) {
+        if (response.data.isLoggedIn) {
           setUser(response.data)
           setIsAuthenticated(true)
           console.log(response)
@@ -37,6 +37,7 @@ const AuthProvider = ({ children }) => {
   const signup = async (data) => {
     try {
       const response = await DataService.signup(data)
+      console.log(response)
       if (response.status >= 200 && response.status < 300) {
         const { user } = response.data
         console.log(user)
