@@ -1,7 +1,7 @@
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, BellIcon, XMarkIcon, SparklesIcon } from '@heroicons/react/24/outline'
 import { useAuthContext } from '../context/AuthContext/authContext'
 import { useEffect } from 'react'
 import { GiWallet } from 'react-icons/gi'
@@ -13,6 +13,7 @@ function classNames(...classes) {
 
 const Navbar = () => {
   const { isAuthenticated, login, logout, user } = useAuthContext()
+  const [mouseHover, setMouseHover] = useState(false)
 
   const toggleLogin = () => {
     if (isAuthenticated) {
@@ -21,6 +22,15 @@ const Navbar = () => {
       login()
     }
   }
+  const handleMouseHover = () => setMouseHover(true)
+
+  const handleMouseLeave = () => setMouseHover(false)
+  const comingSoon = () => (
+    <span className="text-gray-300 text-sm font-medium px-3">
+      <SparklesIcon className="inline text-sm w-8 text-yellow-200" />
+      Coming Soon!
+    </span>
+  )
 
   return (
     <Disclosure
@@ -45,12 +55,15 @@ const Navbar = () => {
                     <div className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
                       <Link to="/dashboard">Dashboard</Link>
                     </div>
-                    <a
-                      href="#"
-                      className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                    <div
+                      // href="#"
+                      // className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                      onMouseOver={handleMouseHover}
+                      onMouseLeave={handleMouseLeave}
                     >
-                      Card Bank
-                    </a>
+                      <button className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Card Bank</button>
+                      {mouseHover && comingSoon()}
+                    </div>
                   </div>
                 </div>
               </div>
