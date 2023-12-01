@@ -10,16 +10,18 @@ const clientHost = 'http://localhost:5173'
 
 const getUser = (req, res) => {
   if (req.isAuthenticated()) {
-    console.log(`responding from the server, the user is: ${req.user}`)
-    return res
-      .json({
-        isLoggedIn: true,
-        user: req.user,
-      })
-      .toJSON()
+    // User is authenticated
+    return res.json({
+      isLoggedIn: true,
+      user: req.user,
+    })
+  } else {
+    // User is not authenticated
+    console.log('Not signed in')
+    return res.json({
+      isLoggedIn: false,
+    })
   }
-  console.log('Not signed in')
-  return res.json({ isLoggedIn: false })
 }
 
 const getUsers = async (req, res) => {

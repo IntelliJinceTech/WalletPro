@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useMemo, useEffect } from 'react'
 import axios from 'axios'
 import DataService from '../../services/apiService'
+import { useNavigate } from 'react-router-dom'
 
 // Create a named context
 const AuthContext = createContext()
@@ -13,15 +14,18 @@ const useAuthContext = () => useContext(AuthContext)
 const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     async function authCheck() {
       try {
         const response = await DataService.getUser()
+        const userData = response.data
+        console.log(response)
         if (response.data.isLoggedIn) {
-          setUser(response.data)
+          setUser(userData)
           setIsAuthenticated(true)
-          console.log(response)
+          navigate('/dashboard')
         }
       } catch (err) {
         console.log(`the useEffect for checking auth status did not work: `, err)
@@ -43,6 +47,7 @@ const AuthProvider = ({ children }) => {
         console.log(user)
         setUser(user)
         setIsAuthenticated(true)
+        navigate('/dashboard')
       }
     } catch (error) {
       console.log(error)
@@ -63,7 +68,7 @@ const AuthProvider = ({ children }) => {
       console.log(response)
 
       setIsAuthenticated(true)
-      // console.log('authentication: ', isAuthenticated)
+      navigate('/dashboard')
     } catch (err) {
       console.error('login error', err.message)
     }
@@ -74,14 +79,14 @@ const AuthProvider = ({ children }) => {
       await DataService.logout()
       setIsAuthenticated(false)
       setUser(null)
-      // console.log(user)
+      navigate('/', { replace: true })
     } catch (error) {
       console.error('Logout Error', error.message)
     }
   }
 
   // useMemo is a Hook that lets you cache the result of a calculation between re-renders.
-  const authValue = useMemo(() => ({ isAuthenticated, login, logout, setIsAuthenticated, signup }), [isAuthenticated])
+  const authValue = useMemo(() => ({ user, setUser, login, logout, setIsAuthenticated, signup }), [user])
 
   return <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>
 }
