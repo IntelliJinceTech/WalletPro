@@ -47,21 +47,6 @@ const SignUpLandingPage = () => {
     await window.open('http://localhost:8888/auth/google', '_self')
   }
 
-  // const handleCallbackResponse = (res) => {
-  //   console.log(`Encoded JWT ID Token: ${res.credential}`)
-  //   const userObject = jwtDecode(res.credential)
-  //   console.log(userObject)
-  // }
-
-  // useEffect(() => {
-  //   // global google
-  //   google.accounts.id.initialize({
-  //     client_id: '16726005967-ahkh53ae5hqckoreqtavf712t7gb5kf3.apps.googleusercontent.com',
-  //     callback: handleCallbackResponse,
-  //   })
-  //   google.accounts.id.renderButton(document.getElementById('googleSignIn'), { theme: 'outline', size: 'large' })
-  // }, [])
-
   return (
     <FormProvider {...methods}>
       <>
@@ -146,25 +131,6 @@ const SignUpLandingPage = () => {
                   />
                 </div>
               </div>
-              {/* <div>
-                <label
-                  htmlFor="username"
-                  className="block text-sm font-medium leading-6 text-white"
-                >
-                  Username
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="username"
-                    name="username"
-                    type="text"
-                    autoComplete="username"
-                    required
-                    className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-                    {...register('username')}
-                  />
-                </div>
-              </div> */}
               <div>
                 <div className="flex items-center justify-between">
                   <label
