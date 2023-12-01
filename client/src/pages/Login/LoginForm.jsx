@@ -10,7 +10,7 @@ import { jwtDecode } from 'jwt-decode'
 import apiService from '../../services/apiService'
 // import { decodeJWT } from 'jose'
 
-const Login = () => {
+const LoginForm = () => {
   const { isAuthenticated, setIsAuthenticated, signup } = useAuthContext()
   const methods = useForm({
     criteriaMode: 'all',
@@ -173,4 +173,4 @@ const Login = () => {
   )
 }
 
-export default SignUpLandingPage
+export default LoginForm
