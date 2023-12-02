@@ -5,13 +5,12 @@ import Dashboard from './pages/Dashboard'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
 import { useState, useEffect } from 'react'
-import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom'
+import { Routes, Route, Link, Navigate } from 'react-router-dom'
 import { useAuthContext } from './context/AuthContext/authContext'
 
 function App() {
   // const [isLoggedIn, setIsLoggedIn] = useState(false) //for testing
-  const { user, setUser } = useAuthContext()
-  const { isAuthenticated } = useAuthContext()
+  const { user, setUser, isAuthenticated } = useAuthContext()
 
   return (
     <>
@@ -19,21 +18,19 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={isAuthenticated ? <Navigate to="/dashboard" /> : <Home />}
+          element={<Home />}
         />
-
+        <Route
+          path="/dashboard"
+          element={<Dashboard />}
+        />
         <Route
           path="/signup"
-          element={isAuthenticated ? <Navigate to="/dashboard" /> : <SignUp />}
+          element={<SignUp />}
         />
         <Route
           path="/login"
           element={<Login />}
-        />
-
-        <Route
-          path="/dashboard"
-          element={isAuthenticated ? <Dashboard /> : <Navigate to="/signup" />}
         />
       </Routes>
     </>

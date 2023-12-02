@@ -9,8 +9,6 @@ const AuthContext = createContext()
 // Custom hook to allow components to consume the context(authentication)
 const useAuthContext = () => useContext(AuthContext)
 
-// Creating a provider to wrap components that needs to access Auth/User's data
-// a provider is a component that allows you to share context with its nested components
 const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
@@ -20,11 +18,13 @@ const AuthProvider = ({ children }) => {
     async function authCheck() {
       try {
         const response = await DataService.getUser()
-        const userData = response.data
-        console.log(response)
-        if (response.data.isLoggedIn) {
-          setUser(userData)
+
+        const userData = await response.data.user
+        const loggedInStatus = await response.data.isLoggedIn
+
+        if (loggedInStatus) {
           setIsAuthenticated(true)
+          setUser(userData)
           navigate('/dashboard')
         }
       } catch (err) {
@@ -34,9 +34,13 @@ const AuthProvider = ({ children }) => {
     authCheck()
   }, [])
 
-  // useEffect(() => {
-  //   console.log('isAuthenticated: ', isAuthenticated)
-  // }, [isAuthenticated])
+  useEffect(() => {
+    if (isAuthenticated) {
+      console.log(isAuthenticated)
+      console.log(user)
+      navigate('/dashboard')
+    }
+  }, [isAuthenticated])
 
   const signup = async (data) => {
     try {
@@ -86,7 +90,7 @@ const AuthProvider = ({ children }) => {
   }
 
   // useMemo is a Hook that lets you cache the result of a calculation between re-renders.
-  const authValue = useMemo(() => ({ user, setUser, login, logout, setIsAuthenticated, signup }), [user])
+  const authValue = useMemo(() => ({ user, login, logout, setIsAuthenticated, signup }), [user])
 
   return <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>
 }

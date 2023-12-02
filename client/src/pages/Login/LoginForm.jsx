@@ -145,6 +145,9 @@ const LoginForm = () => {
                 </button>
               </div>
             </form>
+            <div className="text-white">
+              Not a user? <span>Sign up!</span>
+            </div>
             {/* custom google button */}
             <button
               type="button"
