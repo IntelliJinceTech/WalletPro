@@ -7,6 +7,7 @@ import Login from './pages/Login'
 import { useState, useEffect } from 'react'
 import { Routes, Route, Link, Navigate } from 'react-router-dom'
 import { useAuthContext } from './context/AuthContext/authContext'
+import ProtectedRoute from './pages/ProtectedRoute'
 
 function App() {
   // const [isLoggedIn, setIsLoggedIn] = useState(false) //for testing
