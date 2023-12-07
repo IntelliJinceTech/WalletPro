@@ -21,10 +21,15 @@ function App() {
           path="/"
           element={<Home />}
         />
-        <Route
-          path="/dashboard"
-          element={<Dashboard />}
-        />
+        {
+          <ProtectedRoute>
+            {/* Testing needed for protected route */}
+            <Route
+              path="/dashboard"
+              element={<Dashboard />}
+            />
+          </ProtectedRoute>
+        }
         <Route
           path="/signup"
           element={<SignUp />}
