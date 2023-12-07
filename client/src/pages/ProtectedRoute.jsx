@@ -1,5 +1,6 @@
 import React from 'react'
 import { useAuthContext } from '../context/AuthContext/authContext'
+import { Navigate } from 'react-router-dom'
 
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuthContext()
@@ -7,7 +8,7 @@ const ProtectedRoute = ({ children }) => {
     // user is not authenticated
     return (
       <Navigate
-        to="/"
+        to="/signup"
         replace
       />
     )

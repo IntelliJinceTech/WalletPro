@@ -12,7 +12,7 @@ function DataService() {
   }
 
   this.logout = () => {
-    return instance.get('/auth/logout')
+    return instance.delete('/auth/logout')
   }
 
   this.login = (data) => {

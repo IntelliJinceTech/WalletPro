@@ -2,7 +2,7 @@ import React from 'react'
 import LandingPage from './LandingPage'
 import Footer from './Footer'
 
-const Home = () => {
+const Landing = () => {
   return (
     <div>
       <LandingPage />
@@ -11,4 +11,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Landing

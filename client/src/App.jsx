@@ -1,5 +1,5 @@
 import './App.css'
-import Home from './pages/Home'
+import Landing from './pages/Landing'
 import Navbar from './components/Navbar'
 import Dashboard from './pages/Dashboard'
 import SignUp from './pages/SignUp'
@@ -19,7 +19,7 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Home />}
+          element={<Landing />}
         />
         <Route
           path="/dashboard"

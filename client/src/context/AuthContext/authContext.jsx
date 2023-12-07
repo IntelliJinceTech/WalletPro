@@ -79,6 +79,9 @@ const AuthProvider = ({ children }) => {
   }
 
   const logout = async () => {
+    // setIsAuthenticated(false)
+    // setUser(null)
+    // navigate('/dashboard')
     try {
       await DataService.logout()
       setIsAuthenticated(false)
